@@ -1,0 +1,32 @@
+.CardWrapper {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    padding: 0 5%;
+}
+.Card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    font-size: 22px;
+    width: 400px;
+}
+.Card h4 {
+    font-family: "Poppins";
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    /* color: #739ebb; */
+    color: rgb(53, 58, 152);
+}
+.Line {
+    height: 4px;
+    border-radius: 1px;
+    width: 50px;
+    background-color: rgba(255, 255, 255, 0.599);
+    margin-top: 4px;
+    margin-bottom: 10px;
+}
