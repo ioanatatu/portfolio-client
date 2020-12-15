@@ -1,0 +1,57 @@
+.Normal label {
+    width: 34px;
+    height: 14px;
+    position: relative;
+    display: inline-block;
+    border-radius: 60px;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    background: none;
+    border: 1.5px solid #1869ff;
+}
+.LightMode.Normal label {
+    border: 1.5px solid #1869ff;
+    background-color: white;
+}
+.DarkMode.Normal label {
+    border: 1.5px solid #1869ff;
+    background-color: #1869ff;
+}
+
+.Normal label:after {
+    content: "";
+    position: absolute;
+    border-radius: 100%;
+    width: 10px;
+    height: 10px;
+    transition: 0.4s;
+}
+
+.LightMode.Normal label:after {
+    background: #1869ff;
+    top: 0.5px;
+    left: 1px;
+    transition: 0.4s;
+}
+.DarkMode.Normal label:after {
+    box-sizing: border-box;
+    background: white;
+    border: 0.1px solid #1869ff;
+    top: 0.5px;
+    left: 20px;
+}
+
+.Normal {
+    position: relative;
+    display: inline-block;
+}
+.Normal input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    opacity: 0;
+    cursor: pointer;
+}

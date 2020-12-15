@@ -1,0 +1,69 @@
+// ---------------------------------------- GENERAL
+.App {
+    display: flex;
+    font-family: "Butler";
+    font-family: "Sailec-Light";
+    font-family: "Sailec-Medium";
+    position: relative;
+}
+h1 {
+    font-weight: normal;
+}
+/* rgb(247, 108, 108) */
+/* 
+ *
+ *
+ *
+ *
+ *
+ */
+.Spin-outer {
+    height: 70vmin;
+    width: 70vmin;
+    border-radius: 50%;
+    /* border: 0.5px solid rgb(221, 221, 221); */
+    pointer-events: none;
+    position: absolute;
+}
+.Spin-outer .dot {
+    height: 8px;
+    width: 8px;
+    background-color: #48ccc8;
+    border-radius: 50%;
+    margin-top: 35%;
+    /* border: 5px solid #f8f8f8; */
+}
+.Spin-inner {
+    height: 63vmin;
+    width: 63vmin;
+    border-radius: 50%;
+    /* border: 0.5px solid rgba(221, 221, 221, 0.707); */
+    pointer-events: none;
+    font-size: 35px;
+    position: absolute;
+}
+.Spin-inner .dot {
+    height: 4px;
+    width: 4px;
+    background-color: #61c0df;
+    border-radius: 50%;
+    margin-top: 42vmin;
+    /* border: 5px solid #f8f8f8; */
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .Spin-outer {
+        animation: spin infinite 36s linear;
+    }
+    .Spin-inner {
+        animation: spin infinite 38s linear;
+    }
+}
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

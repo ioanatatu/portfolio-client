@@ -1,18 +1,24 @@
 import React from "react";
-import css from "./App.module.css";
+import style from "./App.scss";
+
+// Data
+import journal from "./journal";
 
 // Components
-import Timeline from "./Timeline/Timeline";
+import Menu from "./Menu/Menu";
 import Main from "./Main/Main";
+
+// React Context
+import { ViewportProvider } from "./CustomHooks/ViewportProvider";
 
 const App = () => {
     return (
-        <div className={css.App}>
-            <div className={css.Logo}>it.</div>
-
-            <Main />
-            <Timeline />
-        </div>
+        <ViewportProvider>
+            <div className={style.App}>
+                <Main projects={journal.projects} timeline={journal.timeline} />
+                <Menu timeline={journal.timeline} />
+            </div>
+        </ViewportProvider>
     );
 };
 

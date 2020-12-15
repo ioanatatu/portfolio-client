@@ -1,0 +1,52 @@
+@import "variables.scss";
+
+.Menu {
+    height: 100vh;
+    width: 10%;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 999;
+    padding-top: 3.8%;
+    padding-right: 3.5vw;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    a {
+        font-family: $sa;
+        font-family: $po;
+        letter-spacing: 0.5px;
+        font-size: 12px;
+        color: $fc-primary-l;
+    }
+
+    .Timeline {
+        display: flex;
+        flex-direction: column;
+        align-items: right;
+        color: rgba(92, 92, 92, 0.61);
+        font-family: "DM Sans";
+        ul {
+            list-style: none;
+        }
+
+        li {
+            text-align: right;
+            cursor: pointer;
+
+            a {
+                font-size: 12px;
+            }
+        }
+        .Timeline h3 {
+            margin: 3px 0;
+        }
+    }
+    .Count {
+        font-family: "DM Sans";
+        font-size: 10px;
+        margin-top: auto;
+    }
+}

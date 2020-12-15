@@ -1,35 +1,84 @@
-import React, { Fragment } from "react";
-import Card from "../../Card/Card";
-import { FaChevronDown } from "react-icons/fa";
+// Styles
+import style from "./Welcome.module.scss";
 
-import css from "./Welcome.module.css";
+// React
+import React from "react";
+import { Link } from "react-scroll";
+
+// React Custom Hook
+import { useViewport } from "../../CustomHooks/ViewportProvider";
+
+// Components
+import Card from "./Card/Card";
+import Line from "../../UI/Line";
+import Arrow from "../../UI/Arrow";
 
 const Welcome = () => {
+    const { width } = useViewport();
+    const breakpoint = 699;
+
+    let styleCardsContainer = {
+        width: "100%",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "40px",
+        marginTop: "60px",
+    };
+    if (width < breakpoint) {
+        styleCardsContainer = {
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            marginTop: "60px",
+        };
+    }
+
     return (
-        <div className={css.WelcomeWrapper}>
-            <div className={css.Welcome}>
-                <span style={{ zIndex: 10 }}>
-                    <h1>Dear Visitor,</h1>
-                    <h2>I am Ioana and this is my portfolio</h2>
-                </span>
-                <span className={css.Letter}>Hi</span>
-                <div className={css.Line}></div>
+        <div className={style.WelcomeWrapper} id="intro">
+            <div className={style.Welcome}>
+                {/* this should eventually be a separate component that renders either the Date or the Greeting, so it receives props*/}
+                <h6 className={style.Greeting}>Hi there dear Visitor,</h6>
+
+                <div
+                    style={{
+                        width: "70%",
+                        height: "100%",
+                        // backgroundColor: "yellowgreen",
+                    }}
+                >
+                    <div className={style.Heading}>
+                        <h1>I am Ioana</h1>
+                        <h1>and this is my portfolio</h1>
+                    </div>
+                    <div className={style.Line}>
+                        <Line />
+                    </div>
+
+                    <div style={styleCardsContainer}>
+                        <Card title={"projects"}>
+                            The buttons below are linked to the projects I am
+                            currently developing.
+                        </Card>
+                        <Card title={"timeline"}>
+                            The links on the right will take you to the entries
+                            of my web development "journal", to give you an
+                            overview of what I'm working on every day and how
+                            each project is unfolding.
+                        </Card>
+                    </div>
+                </div>
             </div>
 
-            <div className={css.Cards}>
-                <Card title={"projects"} bcg={""}>
-                    The buttons below take you to the projects I am currently
-                    developing.
-                </Card>
-                <Card title={"timeline"} bcg={""}>
-                    The links on the right will take you to the entries of my
-                    development journal, to give you an overview of what I'm
-                    working on every day and how each project unfolds.
-                </Card>
-            </div>
-
-            <div className={css.ChevIcon}>
-                <FaChevronDown />
+            <div className={style.ChevIcon}>
+                <Link
+                    to="projects"
+                    spy={true}
+                    smooth={true}
+                    offset={0}
+                    duration={500}
+                >
+                    <Arrow size={40} fontSize={22} />
+                </Link>
             </div>
         </div>
     );

@@ -1,0 +1,23 @@
+@import "variables.scss";
+
+.Card {
+    font-family: "Lora";
+    h4 {
+        font-family: "Poppins";
+        font-family: $gt;
+        font-family: $sa;
+        // font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        color: $blue-l;
+    }
+    .L {
+        height: 4px;
+        border-radius: 1px;
+        width: 50px;
+        background-color: $blue-l;
+        // margin: 0 auto;
+        margin-top: 4px;
+        margin-bottom: 10px;
+    }
+}
