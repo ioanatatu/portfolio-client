@@ -1,8 +1,8 @@
 import style from "./Menu.module.scss";
 
-// React
+// React Router
 import React from "react";
-import { Link } from "react-scroll";
+import { Link } from "react-router-dom";
 
 const Timeline = (props) => {
     return (
@@ -12,12 +12,13 @@ const Timeline = (props) => {
                     return (
                         <li key={index.toString()}>
                             <Link
-                                activeClass="active"
-                                to={day.date}
-                                spy={true}
-                                smooth={true}
-                                offset={0}
-                                duration={500}
+                                to={`/timeline/:${day.date}`}
+                                // activeClass="active"
+                                // to={day.date}
+                                // spy={true}
+                                // smooth={true}
+                                // offset={0}
+                                // duration={500}
                             >
                                 {day.date}
                             </Link>

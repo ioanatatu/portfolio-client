@@ -2,14 +2,18 @@
     "name": "portfolio",
     "version": "0.1.0",
     "private": true,
+    "proxy": "http://localhost:4006",
     "dependencies": {
         "@testing-library/jest-dom": "^5.11.5",
         "@testing-library/react": "^11.1.1",
         "@testing-library/user-event": "^12.2.0",
+        "axios": "^0.21.0",
         "node-sass": "^4.14.1",
+        "rc-progress": "^3.1.1",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "react-icons": "^4.1.0",
+        "react-router-dom": "^5.2.0",
         "react-scripts": "4.0.0",
         "react-scroll": "^1.8.1",
         "web-vitals": "^0.2.4"

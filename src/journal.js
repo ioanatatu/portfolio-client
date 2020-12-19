@@ -37,6 +37,210 @@ const journal = {
     ],
     timeline: [
         {
+            date: "2020-12-18",
+            projects: [
+                {
+                    name: "portfolio",
+                    tasks: {
+                        done: [
+                            {
+                                description:
+                                    "Created cluster on MongoDB Atlas.",
+                                duration: 60,
+                                image: "",
+                                tags: ["mongoDB"],
+                                status: "just started",
+                                links: [""],
+                            },
+                            {
+                                description:
+                                    "Following steps on aws to upload my certificate to my app in the Load Balancer from ACM --> waiting to be applied... Hope it works. Later edit --> self signed SSL certificate not working - noticed that when I made an http request from postman.",
+                                duration: 60,
+                                image:
+                                    "2020-12-18_SelfSignedSSLCertificateNotWorking.png",
+                                tags: ["aws", "terminal"],
+                                status: "just started",
+                                links: [
+                                    "https://ostechnix.com/how-to-use-pbcopy-and-pbpaste-commands-on-linux/",
+                                ],
+                            },
+                            {
+                                description:
+                                    'Using openssl in the terminal to create a self-signed SSL certificate. "However, some commands may not available on all platforms, for example pbcopy and pbpaste. These commands are exclusively available only on Mac OS X platform." So now I need to install... no, nevermind, I can just open the certificate in the terminal with the command less or cat server.crt and terminate wth q.',
+                                duration: 120,
+                                image: "",
+                                tags: ["aws", "terminal"],
+                                status: "just started",
+                                links: [
+                                    "https://ostechnix.com/how-to-use-pbcopy-and-pbpaste-commands-on-linux/",
+                                ],
+                            },
+                            {
+                                description:
+                                    "Situation: my react client-side is comfortably hosted on netlify, which offers an out-of-the-box ssl certificate, so I don't have to worry about buying and installing one - the way I did with thenap.de on GoDaddy. The consequence is that I don't want to move my entire app to aws, instead only host the REST API server. This requires however, that I install an SSL certificate for the domain name of the server. I just found out that I don't need to get a domain name and that I can just install what's called a \"self-signed certificate for development and testing purposes\". I am now reading a very good article about how to self sign such a certificate.\n Note to self: for a self signed security certificate the common name (aka domain name) must be max 64 bytes. Mine was longer, so I had to delete the app and the code pipeline and create new ones. (Advantage: more practice) On this occasion I also changed the region from US Virginia to EU Frankfurt - I don't know yet what difference this makes.",
+                                duration: 120,
+                                image: "",
+                                tags: ["aws"],
+                                status: "just started",
+                                links: [
+                                    "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/configuring-https.html",
+                                    "https://joedixon.co.uk/installing-a-self-signed-ssl-certificate-on-elastic-beanstalk",
+                                ],
+                            },
+                        ],
+                        projectRandomIdeas: [
+                            {
+                                idea:
+                                    "How to implement a seach across the entire content of the page if at some point I would like to find out information about a specific topic?!?",
+                                check: false,
+                            },
+                            {
+                                idea:
+                                    "Add tags in the timeline menu for better orientation.",
+                                check: false,
+                            },
+                        ],
+                    },
+                    images: [],
+                },
+            ],
+        },
+        {
+            date: "2020-12-17",
+            projects: [
+                {
+                    name: "portfolio",
+                    tasks: {
+                        done: [
+                            {
+                                description:
+                                    "Reading about how to host my client-side separately from my server-side, which is on netlify.",
+                                duration: 120,
+                                image: "",
+                                tags: ["aws"],
+                                status: "just started",
+                                links: [
+                                    "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/configuring-https.html",
+                                    "https://joedixon.co.uk/installing-a-self-signed-ssl-certificate-on-elastic-beanstalk",
+                                ],
+                            },
+                            {
+                                description:
+                                    "Implementing react routing with 404 page.",
+                                duration: 120,
+                                image: "",
+                                tags: ["react", "react router"],
+                                status: "just started",
+                            },
+                            {
+                                description: "Udemy classes on routing.",
+                                duration: 180,
+                                image: "",
+                                tags: ["learning"],
+                                status: "final",
+                            },
+                        ],
+                        projectRandomIdeas: [
+                            {
+                                idea:
+                                    "Build a custom 404 page not found component.",
+                                check: false,
+                            },
+                        ],
+                    },
+                    images: [],
+                },
+            ],
+        },
+        {
+            date: "2020-12-16",
+            projects: [
+                {
+                    name: "portfolio",
+                    tasks: {
+                        done: [
+                            {
+                                description: "Build the <Tasks/> component.",
+                                duration: 90,
+                                image: "",
+                                tags: ["css", "JSX"],
+                                status: "work in progress",
+                            },
+                            {
+                                description:
+                                    "Think about features like adding/ removing/ editing in place (with opening input fields) or external (with popping modals). NEW JOURNAL ENTRY -> form in a modal, ADD NEW TASK -> sliding form from top.",
+                                duration: 40,
+                                image: "",
+                                tags: ["concept"],
+                                status: "concept phase",
+                            },
+                            {
+                                description:
+                                    "Add EditTask, DeleteTask buttons to <Task/> component and AddTask to the Tasks title in the <ProjectEntry/> component.",
+                                duration: 45,
+                                image: "",
+                                tags: ["css", "react-icons"],
+                                status: "work in progress",
+                            },
+                            {
+                                description: "UI coding - <Tasks/> component.",
+                                duration: 40,
+                                image: "",
+                                tags: ["css", "react"],
+                                status: "work in progress",
+                            },
+                            {
+                                description:
+                                    "Coded project buttons and used a custom hook to determine which project is active and add a css class for styling.",
+                                duration: 50,
+                                image: "",
+                                tags: ["css", "react"],
+                                status: "work in progress",
+                            },
+                            {
+                                description:
+                                    "Coding Tech labels with rc-progress npm package",
+                                duration: 150,
+                                image: "",
+                                tags: ["react", "vanilla JS", "npm package"],
+                                status: "work in progress",
+                            },
+                        ],
+                        projectRandomIdeas: [
+                            {
+                                idea:
+                                    "Build the form as a modal, so that the user can see when the state (and therefore the component) is updating.",
+                                check: false,
+                            },
+                        ],
+                    },
+                    images: [],
+                },
+                {
+                    name: "sinkplant",
+                    tasks: {
+                        done: [
+                            {
+                                description: "Build the <Tasks/> component.",
+                                duration: 90,
+                                image: "",
+                                tags: ["css", "JSX"],
+                                status: "work in progress",
+                            },
+                        ],
+                        projectRandomIdeas: [
+                            {
+                                idea:
+                                    "Build the form as a modal, so that the user can see when the state (and therefore the component) is updating.",
+                                check: false,
+                            },
+                        ],
+                    },
+                    images: [],
+                },
+            ],
+        },
+        {
             date: "2020-12-15",
             projects: [
                 {
@@ -118,7 +322,6 @@ const journal = {
                     images: [],
                 },
             ],
-            generalRandomIdeas: [{}],
         },
         {
             date: "2020-12-14",

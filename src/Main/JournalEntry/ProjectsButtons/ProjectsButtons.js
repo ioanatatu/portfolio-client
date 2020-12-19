@@ -1,18 +1,30 @@
-import React from "react";
+// Style
+import style from "./ProjectButton.module.scss";
+
+// React
+import React, { useState } from "react";
 
 const ProjectButtons = (props) => {
+    const [activeButton, setActiveButton] = useState(0);
+
+    console.log("activeButton", activeButton);
+
     return (
-        <div>
+        <div style={{ borderBottom: "2px solid silver" }}>
             {props.projects.map((project, index) => (
                 <button
+                    className={`${style.ProjectButton} + " " + ${
+                        activeButton === index ? style.Active : null
+                    }`}
                     style={{
                         outline: "none",
-                        padding: 0,
-                        margin: 0,
                         background: "none",
-                        border: "none",
                     }}
-                    onClick={() => props.click(index)}
+                    onClick={() => {
+                        props.click(index);
+                        console.log("index", index);
+                        setActiveButton(index);
+                    }}
                 >
                     {project.name}
                 </button>

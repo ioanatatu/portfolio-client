@@ -1,8 +1,39 @@
+// React
 import React from "react";
+
+// Components
 import WorkingTime from "./WorkingTime";
+import TechLabel from "./TechLabel";
 
 const Stats = ({ tasks }) => {
-    console.log("day", tasks);
+    // console.log("tags", tasks[0].tags.length);
+    // console.log("duration", tasks[0].duration);
+
+    const totalWorkTime = calculateWorkingTime(tasks);
+    const allTags = [];
+
+    ////////////////////////////////////////////// to refactor /////////////////////
+    ////////////////////////////////////////////////////////////////////////////////
+    tasks.forEach((task) => {
+        const time = task.tags.length
+            ? (task.duration / task.tags.length).toFixed(2)
+            : 0;
+
+        if (!allTags.length) {
+            task.tags.forEach((tag) => {
+                allTags.push({ name: tag, time: time });
+            });
+        } else {
+            allTags.forEach((tag) => {
+                task.tags.forEach((t) => {
+                    tag.name.toLowerCase() === t.toLowerCase
+                        ? (tag.duration += time)
+                        : allTags.push({ name: t, time: time });
+                });
+            });
+        }
+    });
+
     return (
         <div>
             <div
@@ -14,9 +45,20 @@ const Stats = ({ tasks }) => {
                     boxShadow: "2.5px 2.5px #1869ff",
                 }}
             >
-                <WorkingTime workingTime={calculateWorkingTime(tasks)} />
+                <WorkingTime workingTime={totalWorkTime} />
             </div>
-            <div>tech labels</div>
+            <div
+                style={{
+                    marginTop: "10px",
+                    display: "grid",
+                    gridTemplateColumns: "47% 47%",
+                    gap: "6%",
+                }}
+            >
+                {allTags.map((tag, i) => (
+                    <TechLabel key={(i + 9000).toString()} tech={tag} />
+                ))}
+            </div>
         </div>
     );
 };

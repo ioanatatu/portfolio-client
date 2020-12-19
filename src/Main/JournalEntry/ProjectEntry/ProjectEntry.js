@@ -10,22 +10,41 @@ import Stats from "../Stats/Stats";
 import ProjectGallery from "../Stats/ProjectGallery";
 import ProjectRandomIdeas from "../Stats/ProjectRandomIdeas";
 import Line from "../../../UI/Line";
+import { BiAddToQueue } from "react-icons/bi";
 
 const ProjectEntry = ({ project }) => {
     return (
         <div className={style.ProjectEntry}>
             <div className={style.ColMain}>
                 <div>
-                    <h1>Tasks</h1>
+                    <span style={{ display: "flex" }}>
+                        <h1>Tasks</h1>
+                        <button
+                            style={{
+                                marginLeft: "20px",
+                                outline: "none",
+                                background: "none",
+                                border: "none",
+                                marginTop: "-10px",
+                                cursor: "pointer",
+                            }}
+                        >
+                            <BiAddToQueue color={"grey"} size={"20px"} />
+                        </button>
+                    </span>
                     <ul className={style.Categories}>
                         <li>Nr.</li>
                         <li>Description</li>
-                        <li style={{ textAlign: "center" }}>Duration</li>
-                        <li style={{ textAlign: "center" }}>Image</li>
+                        <li style={{ textAlign: "left" }}>Duration</li>
+                        <li style={{ textAlign: "left", paddingRight: "10px" }}>
+                            Image
+                        </li>
                     </ul>
                 </div>
 
-                <Tasks project={project} />
+                <div className={style.TasksContainer}>
+                    <Tasks project={project} />
+                </div>
 
                 <Line />
             </div>

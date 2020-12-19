@@ -74,7 +74,7 @@ const Welcome = () => {
                     to="projects"
                     spy={true}
                     smooth={true}
-                    offset={0}
+                    offset={2}
                     duration={500}
                 >
                     <Arrow size={40} fontSize={22} />

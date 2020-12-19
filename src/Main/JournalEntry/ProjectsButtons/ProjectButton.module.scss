@@ -1,0 +1,35 @@
+@import "variables.scss";
+
+.ProjectButton {
+    border: none;
+    font-family: $dm;
+    font-size: 13.5px;
+    font-weight: 500;
+    padding: 0 30px;
+    padding-bottom: 10px;
+    // border-bottom: 4px solid $blue-l;
+    cursor: pointer;
+
+    &:first-child {
+        padding-left: 10px;
+    }
+    &.Active {
+        color: $blue-l;
+        position: relative;
+    }
+    &.Active::after {
+        content: "";
+        position: absolute;
+        left: 0%;
+        width: 100%;
+        height: 5px;
+        bottom: -2px;
+        background-color: $blue-l;
+        background: $blue-l;
+        color: $blue-l;
+    }
+    &:hover {
+        color: black;
+        transition: all 0.2s linear;
+    }
+}

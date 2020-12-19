@@ -3,10 +3,10 @@ import style from "./Menu.module.scss";
 
 // React
 import React from "react";
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-scroll";
 
 // Components
-import Timeline from "./Timeline";
+import TimelineLinks from "./TimelineLinks";
 import Count from "./Count";
 
 const Menu = ({ timeline }) => {
@@ -37,17 +37,27 @@ const Menu = ({ timeline }) => {
                     to="projects"
                     spy={true}
                     smooth={true}
-                    offset={0}
+                    offset={2}
                     duration={500}
                 >
                     projects
                 </Link>
             </div>
-
-            <div>timeline</div>
+            <div>
+                <Link
+                    activeClass="active"
+                    to="timeline"
+                    spy={true}
+                    smooth={true}
+                    offset={0}
+                    duration={500}
+                >
+                    timeline
+                </Link>
+            </div>
 
             <div>
-                <Timeline timeline={timeline} />
+                <TimelineLinks timeline={timeline} />
             </div>
 
             <div className={style.Count}>

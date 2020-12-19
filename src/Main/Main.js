@@ -1,11 +1,13 @@
 // React
 import React, { useState } from "react";
 
+// React Router
+import { Switch, Route } from "react-router-dom";
+
 // Components
 import Welcome from "./Welcome/Welcome";
 import Projects from "./Projects/Projects";
-import JournalEntry from "./JournalEntry/JournalEntry";
-import Form from "./Form/Form";
+import Timeline from "./Timeline/Timeline";
 import DarkModeToggler from "../UI/DarkModeToggler";
 
 const Main = ({ projects, timeline }) => {
@@ -54,13 +56,7 @@ const Main = ({ projects, timeline }) => {
 
             <Projects projects={projects} />
 
-            <div className="JournalEntries">
-                {timeline.map((day) => (
-                    <JournalEntry day={day} />
-                ))}
-            </div>
-
-            <Form />
+            <Timeline timeline={timeline} />
         </div>
     );
 };
