@@ -1,16 +1,13 @@
 // React
 import React, { useState } from "react";
 
-// React Router
-import { Switch, Route } from "react-router-dom";
-
 // Components
 import Welcome from "./Welcome/Welcome";
 import Projects from "./Projects/Projects";
 import Timeline from "./Timeline/Timeline";
 import DarkModeToggler from "../UI/DarkModeToggler";
 
-const Main = ({ projects, timeline }) => {
+const Main = ({ timeline }) => {
     const [darkMode, setDarkMode] = useState(false);
 
     const toggleDarkMode = () => {
@@ -54,7 +51,7 @@ const Main = ({ projects, timeline }) => {
 
             <Welcome />
 
-            <Projects projects={projects} />
+            <Projects />
 
             <Timeline timeline={timeline} />
         </div>

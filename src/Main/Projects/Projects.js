@@ -1,8 +1,24 @@
-import React from "react";
+// Style
 import css from "./Projects.module.css";
 
-const Projects = ({ projects }) => {
-    console.log("projects", projects);
+// React
+import React, { useEffect, useState } from "react";
+
+// others
+import { API_URL } from "../../../secrets";
+
+const Projects = () => {
+    const [projects, setProjects] = useState({});
+
+    useEffect(() => {
+        fetch(`${API_URL}/projects`)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log("data from Projects", data);
+            })
+            .catch(console.log);
+    }, []);
+
     return (
         <div className={css.Projects} id="projects">
             <a target="_blank" href="https://www.thenap.de" rel="noreferrer">

@@ -63,7 +63,15 @@ const Welcome = () => {
                             The links on the right will take you to the entries
                             of my web development "journal", to give you an
                             overview of what I'm working on every day and how
-                            each project is unfolding.
+                            each project is unfolding.\n It's worth mentioning
+                            that, while the initial intention for this project
+                            was to build a sort of a productivity tool, where I
+                            could keep track of my daily tasks and give a
+                            potential employer a feel for my skills, it is now
+                            developing into a blog-like project, where I am also
+                            adding links to other resources and basically
+                            documenting what I am working on, reading, learning
+                            and researching.
                         </Card>
                     </div>
                 </div>

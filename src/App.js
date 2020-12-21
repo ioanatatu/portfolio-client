@@ -45,7 +45,7 @@ const App = () => {
                         path="/"
                         render={() => (
                             <Main
-                                projects={journal.projects}
+                                // projects={journal.projects}
                                 timeline={journalData && journalData.timeline}
                             />
                         )}
