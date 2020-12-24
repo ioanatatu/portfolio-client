@@ -25,6 +25,5 @@ export const ViewportProvider = ({ children }) => {
 
 export const useViewport = () => {
     const { width } = useContext(viewportContext);
-    console.log("width ", width);
     return { width };
 };

@@ -37,6 +37,31 @@ const journal = {
     ],
     timeline: [
         {
+            date: "2020-12-24",
+            projects: [
+                {
+                    name: "portfolio",
+                    tasks: {
+                        done: [
+                            {
+                                description:
+                                    "Learned about GSI = Global Secondary Indexes and had some trouble with deploying as you need to first remove the GSI from your serverless.yml file, deploy, add it and then deploy again.",
+                                duration: 60,
+                                image: "",
+                                tags: ["mongoDB"],
+                                status: "just started",
+                                links: [
+                                    "https://seed.run/docs/serverless-errors/cannot-perform-more-than-one-gsi-creation-or-deletion-in-a-single-update",
+                                ],
+                            },
+                        ],
+                        projectRandomIdeas: [],
+                    },
+                    images: [],
+                },
+            ],
+        },
+        {
             date: "2020-12-18",
             projects: [
                 {

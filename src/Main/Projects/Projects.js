@@ -5,7 +5,7 @@ import css from "./Projects.module.css";
 import React, { useEffect, useState } from "react";
 
 // others
-import { API_URL } from "../../../secrets";
+import { API_URL } from "../../util/secrets";
 
 const Projects = () => {
     const [projects, setProjects] = useState({});
