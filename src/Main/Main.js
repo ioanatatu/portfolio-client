@@ -6,7 +6,7 @@ import Welcome from "./Welcome/Welcome";
 import Projects from "./Projects/Projects";
 import Timeline from "./Timeline/Timeline";
 import DarkModeToggler from "../UI/DarkModeToggler";
-import CreateProject from "./CreateProject";
+import CreateProjectForm from "./CreateProjectForm/CreateProjectForm";
 
 const Main = ({ timeline }) => {
     const [darkMode, setDarkMode] = useState(false);
@@ -27,13 +27,14 @@ const Main = ({ timeline }) => {
         >
             <div
                 style={{
-                    position: "absolute",
-                    top: "100px",
-                    left: "200px",
+                    position: "fixed",
+                    top: "5%",
+                    left: "50%",
+                    transform: "translate(-50%, 0)",
                     zIndex: "999",
                 }}
             >
-                <CreateProject />
+                <CreateProjectForm />
             </div>
             <div
                 style={{
