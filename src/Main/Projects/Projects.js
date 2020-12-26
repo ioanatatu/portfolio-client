@@ -6,17 +6,20 @@ import React, { useEffect, useState } from "react";
 
 // others
 import { API_URL } from "../../util/secrets";
+import axios from "axios";
 
 const Projects = () => {
-    const [projects, setProjects] = useState({});
+    // const [projects, setProjects] = useState({});
 
     useEffect(() => {
-        fetch(`${API_URL}/projects`)
-            .then((res) => res.json())
-            .then((data) => {
-                console.log("data from Projects", data);
-            })
-            .catch(console.log);
+        (async () => {
+            try {
+                let response = await axios.get(`${API_URL}/projects`);
+                console.log("res from fetch data ", response);
+            } catch (err) {
+                console.log(err);
+            }
+        })();
     }, []);
 
     return (
