@@ -35,6 +35,12 @@
         border-radius: 3px;
         margin-bottom: 20px;
     }
+    .Error {
+        font-size: 11px;
+        color: orangered;
+        margin-top: 3px;
+        font-weight: 400;
+    }
 
     form {
         display: grid;
@@ -118,12 +124,6 @@
                 border-radius: 3px;
                 background: #f8fafa;
             }
-            .Error {
-                font-size: 11px;
-                color: orangered;
-                margin-top: 3px;
-                font-weight: 400;
-            }
             ul {
                 display: grid;
                 grid-template-columns: repeat(4, 1fr);
@@ -163,6 +163,14 @@
                         color: white;
                     }
                 }
+            }
+            .SpinnerContainer {
+                height: 150px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-bottom: 50px;
+                padding-right: 50px;
             }
             .PreviewContainer {
                 height: 120px;

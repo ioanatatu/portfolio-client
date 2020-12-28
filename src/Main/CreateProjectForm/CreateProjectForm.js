@@ -2,10 +2,12 @@
 import style from "./CreateProjectForm.module.scss";
 
 // React
-import React, { Fragment, useState, useRef, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 // Components
+import Error from "../../UI/Error";
+import LoadingSpinner from "../../UI/LoadingSpinner";
 import { BsCloudUpload } from "react-icons/bs";
 import { BiTrashAlt } from "react-icons/bi";
 
@@ -13,257 +15,304 @@ import { BiTrashAlt } from "react-icons/bi";
 import axios from "axios";
 
 const CreateProject = () => {
+    // state
     const { register, handleSubmit } = useForm();
     const [logoPreview, setLogoPreview] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loadingData, setLoadingData] = useState(false);
+    const [loadingLogo, setLoadingLogo] = useState(false);
+    const [githubLinks, setGithubLinks] = useState([]);
+    const [buttonDisabled, setButtonDisabled] = useState(true);
 
     // errors
     const [generalError, setGeneralError] = useState(false);
     const [titleExistsError, setTitleExistsError] = useState(false);
     const [noTitleError, setNoTitleError] = useState(false);
-    const [urlNotValidError, setUrlNotValidError] = useState(false);
+    const [invalidExternalLinkError, setInvalidExternalLinkError] = useState(
+        false
+    );
     const [noGithubLinkError, setNoGithubLinkError] = useState(false);
-    const [maxGithubLinkError, setMaxGithubLinkError] = useState(false);
+    const [invalidGithubLinkErrors, setInvalidGithubLinkErrors] = useState(
+        new Set()
+    );
     const [invalidPasswordError, setInvalidPasswordError] = useState(false);
-    const [githubLinks, setGithubLinks] = useState(["githubLink"]);
-    const i = useRef(null);
+    const [maxGithubLinkError, setMaxGithubLinkError] = useState(false);
+
+    useEffect(() => {}, [invalidGithubLinkErrors, githubLinks, loadingLogo]);
 
     const onSubmit = async (data) => {
-        // console.log("__DATA \n", data);
+        console.log("DATA__", data);
+        // 1. check if title exists
+        if (data.title.length === 0) {
+            return setNoTitleError(true);
+        }
 
-        if (logoPreview) {
-            const img = logoPreview.split(";")[1];
-            const mime = logoPreview.split(";")[0].split(":")[1];
+        // 2. if externalLink was entered, check if externalLink is valid
+        if (data.externalLink.trim().length !== 0) {
+            if (!checkValidURL(data.externalLink)) {
+                return setInvalidExternalLinkError(true);
+            } else {
+                data.externalLink = prependHTTP(data.externalLink);
+            }
+        }
 
-            try {
-                const res = await axios.post(
-                    "https://0ryd02k588.execute-api.eu-west-1.amazonaws.com/dev/image",
-                    { img, mime }
-                );
-
-                if (!res.data.imageURL) {
-                    setGeneralError(true);
+        // 3. check if githubLink was entered and if yes, check if it is valid
+        Object.entries(data.githubLinks).forEach((githubLink, index) => {
+            if (parseInt(index) === 0) {
+                // check if the first githubLink exists
+                if (githubLink[1].trim().length === 0) {
+                    return setNoGithubLinkError(true);
                 } else {
-                    data.logo = res.data.imageURL;
-                }
-            } catch (err) {
-                console.log("error from upload image", err);
-                setGeneralError(true);
-            }
-        }
-
-        if (
-            validateAndFilterData(data) &&
-            data.password !== "" &&
-            !generalError
-        ) {
-            try {
-                setLoading(true);
-                const res = await axios.post(
-                    "https://0ryd02k588.execute-api.eu-west-1.amazonaws.com/dev/project",
-                    data,
-                    {
-                        validateStatus: function (status) {
-                            return status;
-                        },
+                    if (!checkValidURL(githubLink[1])) {
+                        return setInvalidGithubLinkErrors(
+                            (prev) => new Set(prev.add(index))
+                        );
                     }
-                );
-
-                if (res.status === 401) {
-                    console.log("example 401");
-                    loading(false);
-                    setInvalidPasswordError(true);
                 }
-
-                if (res.status === 200) {
-                    loading(false);
-                    console.log("___DATA FROM API", res.data);
+            } else {
+                if (githubLink[1].trim().length === 0) {
+                    const remainingLinks = githubLinks.filter(
+                        (_, i) => i !== parseInt(index) - 1
+                    );
+                    return setGithubLinks(remainingLinks);
+                } else {
+                    if (!checkValidURL(githubLink[1])) {
+                        return setInvalidGithubLinkErrors(
+                            (prev) => new Set(prev.add(index))
+                        );
+                    }
                 }
-                res.status === 409
-                    ? setTitleExistsError(true)
-                    : setGeneralError(true);
-            } catch (err) {
-                console.log(JSON.stringify(err));
+            }
+        });
+
+        // 4. process githubLinks to have array format
+        data.githubLinks = Object.values(data.githubLinks);
+
+        // 5. map techStack into array
+        data.techStack = filterTrueTechStackLabels(data.techStack);
+
+        // 6. check if image is valid
+        if (data.password) {
+            if (logoPreview) {
+                const img = logoPreview.split(";")[1];
+                const mime = logoPreview.split(";")[0].split(":")[1];
+
+                try {
+                    const res = await axios.post(
+                        "https://0ryd02k588.execute-api.eu-west-1.amazonaws.com/dev/image",
+                        { img, mime }
+                    );
+                    if (!res.data.imageURL) {
+                        setGeneralError(true);
+                    } else {
+                        data.logo = res.data.imageURL;
+                        console.log("data.logo", data.logo);
+                    }
+                } catch (err) {
+                    console.log("error from upload image", err);
+                    setGeneralError(true);
+                }
             }
         }
+
+        //     try {
+        //         setLoading(true);
+        //         const res = await axios.post(
+        //             "https://0ryd02k588.execute-api.eu-west-1.amazonaws.com/dev/project",
+        //             data,
+        //             {
+        //                 validateStatus: function (status) {
+        //                     return status;
+        //                 },
+        //             }
+        //         );
+        //         if (res.status === 401) {
+        //             console.log("example 401");
+        //             loading(false);
+        //             setInvalidPasswordError(true);
+        //         }
+        //         if (res.status === 200) {
+        //             loading(false);
+        //             console.log("___DATA FROM API", res.data);
+        //         }
+        //         res.status === 409
+        //             ? setTitleExistsError(true)
+        //             : setGeneralError(true);
+        //     } catch (err) {
+        //         console.log(JSON.stringify(err));
+        //     }
+        // }
     };
 
-    const createSelectedImagePreview = (e) => {
+    const appendGithubInputField = (e) => {
+        e.preventDefault();
+
+        if (githubLinks.length < 2) {
+            setGithubLinks((current) => [...current, "githubLink"]);
+        } else {
+            setMaxGithubLinkError(true);
+            setTimeout(() => {
+                setMaxGithubLinkError(false);
+            }, 1500);
+        }
+    };
+    const removeGithubInputField = (e) => {
+        e.preventDefault();
+
+        const index = parseInt(e.currentTarget.attributes.index.value);
+        const newLinks = githubLinks.filter((_, i) => i !== index);
+
+        setGithubLinks(newLinks);
+
+        setInvalidGithubLinkErrors(
+            (prev) => new Set([...prev].filter((err) => err !== index + 1))
+        );
+    };
+    const resetGithubErrors = (e) => {
+        setInvalidGithubLinkErrors(
+            (prev) =>
+                new Set(
+                    [...prev].filter(
+                        (err) => parseInt(e.target.id) !== parseInt(err)
+                    )
+                )
+        );
+    };
+    const disableAddRepoButton = (e) => {
+        e.target.value.length < 8
+            ? setButtonDisabled(true)
+            : setButtonDisabled(false);
+    };
+    const createPreviewSelectedImage = (e) => {
+        e.preventDefault();
         setLogoPreview(null);
 
         const file = e.target.files[0];
 
         if (file) {
+            setLoadingLogo(true);
             const reader = new FileReader();
 
             reader.addEventListener("load", function () {
-                setLoading(true);
                 setLogoPreview(this.result);
+                console.log(logoPreview);
             });
-
             reader.readAsDataURL(file);
         }
 
-        if (logoPreview) {
-            setLoading(false);
-        }
+        setTimeout(() => setLoadingLogo(false), 500);
+        console.log(file);
     };
-
-    const appendGithubInputField = () => {
-        if (githubLinks.length < 3) {
-            const newLinks = [...githubLinks, "githubLink"];
-            setGithubLinks(newLinks);
-        } else {
-            setMaxGithubLinkError(true);
-        }
-    };
-    const removeGithubInputField = (e) => {
-        e.preventDefault();
-        const index = parseInt(e.currentTarget.attributes.index.value);
-        const newLinks = githubLinks.filter((_, i) => i !== index);
-
-        setGithubLinks(newLinks);
-    };
-
-    const validateAndFilterData = (data) => {
-        let dataIsValid = true;
-
-        // title validation
-        if (!data.title) {
-            setNoTitleError(true);
-            dataIsValid = false;
-        }
-
-        // url validation and https formatting --> externalLink
-        if (data.externalLink !== "") {
-            if (checkValidURL(data.externalLink)) {
-                data.externalLink = prependHTTP(data.externalLink);
-            } else {
-                setUrlNotValidError(true);
-                dataIsValid = false;
-            }
-        }
-
-        // url validation and https formatting --> githubLinks
-        if (data.githubLink) {
-            if (checkValidURL(data.githubLink)) {
-                data.githubLink = prependHTTP(data.githubLink);
-            }
-        } else {
-            setNoGithubLinkError(true);
-            dataIsValid = false;
-        }
-        // map techStack into array
-        if (data.techStack) {
-            data.techStack = filterTrueTechStackLabels(data.techStack);
-        }
-
-        return dataIsValid;
-    };
-
-    useEffect(() => {}, [githubLinks]);
 
     return (
         <div className={style.FormContainer}>
             <h1>Create New Project</h1>
             {generalError && (
-                <div
-                    style={{
-                        fontSize: "12px",
-                        color: "orangered",
-                        marginTop: 5,
-                        marginLeft: 3,
-                    }}
-                >
+                <Error fontSize={"12px"} marginLeft={3}>
                     Oops, something went wrong. Try again later.
-                </div>
+                </Error>
             )}
             <h4>
                 As visitor, you can add a project to the frontend for demo
                 purposes. React will update the state, but no request will be
                 sent to the backend. When refreshing the page, the data you
-                entered will be lost.
+                entered will be lost. Entering an incorrect password will throw
+                an error.
             </h4>
 
-            {loading ? (
-                <div className={style.LoadingRing}>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
+            {loadingData ? (
+                <LoadingSpinner size={80} />
             ) : (
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className={style.LabelAndInput}>
-                        <label>
+                <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+                    <div id="first column">
+                        <label htmlFor="title">
                             Project Name <span>must be unique</span>
                             <input
                                 type="text"
                                 name="title"
+                                id="title"
                                 ref={register}
                                 onClick={() => {
                                     setTitleExistsError(false);
                                     setNoTitleError(false);
                                 }}
                             />
-                            {titleExistsError && (
-                                <div className={style.Error}>
-                                    Project name must be unique
-                                </div>
-                            )}
-                            {noTitleError && (
-                                <div className={style.Error}>
-                                    Project has to have a name
-                                </div>
-                            )}
+                            {noTitleError ? (
+                                <Error>You have to enter a project name</Error>
+                            ) : titleExistsError ? (
+                                <Error>Project name must be unique</Error>
+                            ) : null}
                         </label>
 
-                        <label>
+                        <label htmlFor="description">
                             Project Description
                             <textarea
                                 type="text"
                                 name="description"
+                                id="description"
                                 ref={register}
                             />
                         </label>
 
-                        <label>
+                        <label htmlFor="externalLink">
                             URL
                             <input
                                 type="text"
                                 name="externalLink"
+                                id="externalLink"
                                 ref={register}
-                                onClick={() => setUrlNotValidError(false)}
+                                onClick={() =>
+                                    setInvalidExternalLinkError(false)
+                                }
                             />
-                            {urlNotValidError && (
-                                <div className={style.Error}>
-                                    The URL is not valid
-                                </div>
+                            {invalidExternalLinkError && (
+                                <Error>The URL is not valid</Error>
                             )}
                         </label>
 
-                        {/*---------------------------------------- githubLink --- */}
-                        <label>
+                        <label htmlFor="githubLinks">
                             GitHub Repo <span>you can add up to 3 repos</span>
+                            <input
+                                type="text"
+                                name={`githubLinks.githubLink${0}`}
+                                ref={register}
+                                onChange={(e) => {
+                                    setNoGithubLinkError(false);
+                                    resetGithubErrors(e);
+                                    disableAddRepoButton(e);
+                                }}
+                                id="0"
+                            />
+                            {noGithubLinkError ? (
+                                <Error>
+                                    You need to add at least one GitHub repo to
+                                    your project
+                                </Error>
+                            ) : invalidGithubLinkErrors.has(0) ? (
+                                <Error>Invalid github link</Error>
+                            ) : null}
                             {githubLinks.map((link, index) => (
-                                <div
-                                    style={{
-                                        display: "flex",
-                                        alignItems: "baseline",
-                                    }}
-                                >
-                                    <input
-                                        type="text"
-                                        name={link}
-                                        ref={register}
-                                        key={index.toString}
-                                        onClick={() => {
-                                            setNoGithubLinkError(false);
-                                            setUrlNotValidError(false);
+                                <Fragment>
+                                    <div
+                                        style={{
+                                            display: "flex",
+                                            alignItems: "baseline",
                                         }}
-                                        style={{ marginRight: 3 }}
-                                    />
-                                    {index > 0 && (
+                                        key={(index + 1001).toString()}
+                                    >
+                                        <input
+                                            type="text"
+                                            name={`githubLinks.${link}${
+                                                index + 1
+                                            }`}
+                                            ref={register}
+                                            onChange={(e) => {
+                                                setNoGithubLinkError(false);
+                                                resetGithubErrors(e);
+                                            }}
+                                            id={index + 1}
+                                            style={{ marginRight: 3 }}
+                                        />
+
                                         <button
                                             onClick={removeGithubInputField}
                                             index={index}
@@ -271,114 +320,105 @@ const CreateProject = () => {
                                                 cursor: "pointer",
                                                 marginTop: 2,
                                             }}
-                                            ref={i}
                                             className={
                                                 style.RemoveGithubInputFieldButton
                                             }
                                         >
                                             <BiTrashAlt />
                                         </button>
-                                    )}
-                                </div>
+                                    </div>
+                                    {invalidGithubLinkErrors.has(index + 1) ? (
+                                        <Error>Invalid github link</Error>
+                                    ) : null}
+                                </Fragment>
                             ))}
-                            {/*
-                        
-                        
-                        
-                        
-                        
-                        
-                        */}
-                            {noGithubLinkError && (
-                                <div className={style.Error}>
-                                    You need to add at least one GitHub repo for
-                                    your project
-                                </div>
-                            )}
-                            {urlNotValidError && (
-                                <div className={style.Error}>
-                                    The URL is not valid
-                                </div>
-                            )}
-                            {maxGithubLinkError && (
-                                <div className={style.Error}>
-                                    You have reached the limit of 3 repos
-                                </div>
-                            )}
-                            <div
+                            <button
                                 onClick={appendGithubInputField}
                                 className={style.AddRepoButton}
+                                disabled={buttonDisabled}
                             >
                                 <span className={style.AddRepo}>+</span>
                                 add another repo
-                            </div>
+                            </button>
+                            {maxGithubLinkError && (
+                                <Error>You already added 3 fields</Error>
+                            )}
                         </label>
                     </div>
 
-                    <div className={style.LabelAndInput}>
-                        <label>
+                    <div id="second column">
+                        <label htmlFor="techStack">
                             Tech Stack
                             <ul>
-                                {techStack.map((item) => (
-                                    <li>
+                                {techStack.map((item, index) => (
+                                    <li key={index.toString()}>
                                         <input
                                             type="checkbox"
                                             name={item}
                                             id={item}
                                             ref={register}
                                         />
-                                        <label for={item}>
+                                        <label htmlFor={item}>
                                             {item.split(".")[1]}
                                         </label>
                                     </li>
                                 ))}
                             </ul>
                         </label>
-                        {/*---------------------------------------- file --- */}
+
                         <label htmlFor="file">
-                            Upload Logo
-                            {logoPreview ? (
-                                <Fragment>
-                                    <div className={style.PreviewContainer}>
-                                        <img
-                                            src={logoPreview}
-                                            alt="logo preview"
+                            <div style={{ height: "190px" }}>
+                                Upload Logo
+                                {!logoPreview ? (
+                                    <div className={style.UploadLogoInput}>
+                                        <BsCloudUpload
+                                            size={30}
+                                            color={"grey"}
                                         />
+                                        <div
+                                            className={style.UploadLogo}
+                                            onClick={() =>
+                                                setGeneralError(false)
+                                            }
+                                        >
+                                            choose image to upload
+                                        </div>
                                     </div>
-                                    <div
-                                        className={style.UploadLogo}
-                                        onClick={() => setGeneralError(false)}
-                                    >
-                                        {logoPreview
-                                            ? "choose a different image"
-                                            : "choose image to upload"}
+                                ) : loadingLogo ? (
+                                    <div className={style.SpinnerContainer}>
+                                        <LoadingSpinner size={20} />
                                     </div>
-                                </Fragment>
-                            ) : (
-                                <div className={style.UploadLogoInput}>
-                                    <BsCloudUpload size={30} color={"grey"} />
-                                    <div
-                                        className={style.UploadLogo}
-                                        onClick={() => setGeneralError(false)}
-                                    >
-                                        {logoPreview
-                                            ? "choose a different image"
-                                            : "choose image to upload"}
-                                    </div>
-                                </div>
-                            )}
-                            <input
-                                onChange={createSelectedImagePreview}
-                                type="file"
-                                name="file"
-                                accept="image/*"
-                                id="file"
-                                hidden="hidden"
-                            />
-                            <div className={style.LogoPreview}></div>
+                                ) : (
+                                    <Fragment>
+                                        <div className={style.PreviewContainer}>
+                                            <img
+                                                src={logoPreview}
+                                                alt="logo preview"
+                                            />
+                                        </div>
+                                        <div
+                                            className={style.UploadLogo}
+                                            onClick={() =>
+                                                setGeneralError(false)
+                                            }
+                                        >
+                                            choose a different image
+                                        </div>
+                                    </Fragment>
+                                )}
+                                <input
+                                    onChange={createPreviewSelectedImage}
+                                    type="file"
+                                    name="file"
+                                    accept="image/*"
+                                    id="file"
+                                    hidden="hidden"
+                                />
+                                <div className={style.LogoPreview}></div>
+                            </div>
                         </label>
 
-                        <label>
+                        <label htmlFor="password">
                             Password
                             <input
                                 type="password"
@@ -392,6 +432,7 @@ const CreateProject = () => {
                                 </div>
                             )}
                         </label>
+
                         <div className={style.CreateButton}>
                             <input type="submit" value="create" />
                         </div>
@@ -403,14 +444,23 @@ const CreateProject = () => {
 };
 
 export default CreateProject;
-
+/*
+ *
+ *
+ *
+ *
+ *
+ *
+ * helper functions & data
+ *
+ */
 function filterTrueTechStackLabels(obj) {
     return (obj = Object.entries(obj)
         .map((item) => (item[1] ? item[0] : null))
         .filter((item) => item != null));
 }
 function checkValidURL(url) {
-    const regEx = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
+    const regEx = /(^http[s]?:\/{2})|(^www)|(^\/{1,2})/;
     return url && url !== "" ? (regEx.test(url) ? true : false) : false;
 }
 function prependHTTP(url) {
@@ -420,7 +470,6 @@ function prependHTTP(url) {
             : "https://" + url;
     return fullURL;
 }
-
 const techStack = [
     "techStack.vanilla JS",
     "techStack.typescript",
