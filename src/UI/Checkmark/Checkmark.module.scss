@@ -1,0 +1,62 @@
+svg {
+    width: 100px;
+    display: block;
+    margin: 40px auto 0;
+}
+
+.path {
+    stroke-dasharray: 10000;
+    stroke-dashoffset: 0;
+    &.circle {
+        -webkit-animation: dash 2s ease-in-out;
+        animation: dash 2s ease-in-out;
+        stroke: #4cb0ee;
+    }
+    &.line {
+        stroke-dashoffset: 1000;
+        -webkit-animation: dash 2s 0.35s ease-in-out forwards;
+        animation: dash 2s 0.35s ease-in-out forwards;
+    }
+    &.check {
+        stroke-dashoffset: -100;
+        -webkit-animation: dash-check 2s 0.35s ease-in-out forwards;
+        animation: dash-check 2s 0.35s ease-in-out forwards;
+        stroke: #49adeb;
+    }
+}
+
+@-webkit-keyframes dash {
+    0% {
+        stroke-dashoffset: 1000;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dashoffset: 1000;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@-webkit-keyframes dash-check {
+    0% {
+        stroke-dashoffset: -100;
+    }
+    100% {
+        stroke-dashoffset: 900;
+    }
+}
+
+@keyframes dash-check {
+    0% {
+        stroke-dashoffset: -100;
+    }
+    100% {
+        stroke-dashoffset: 900;
+    }
+}

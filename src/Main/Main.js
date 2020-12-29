@@ -15,6 +15,9 @@ const Main = ({ timeline }) => {
         setDarkMode((prevDarkMode) => !prevDarkMode);
         localStorage.setItem("darkMode", JSON.stringify(darkMode));
     };
+    const passProjectToState = (arg) => {
+        console.log("ARG from Main", arg);
+    };
 
     return (
         <div
@@ -34,7 +37,9 @@ const Main = ({ timeline }) => {
                     zIndex: "999",
                 }}
             >
-                <CreateProjectForm />
+                <CreateProjectForm
+                    passProjectToState={(arg) => passProjectToState(arg)}
+                />
             </div>
             <div
                 style={{
