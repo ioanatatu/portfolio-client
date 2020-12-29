@@ -2,7 +2,7 @@
 
 .FormContainer {
     width: 800px;
-    min-height: 650px;
+    min-height: 700px;
     background-color: #f8fafa;
     padding: 50px 80px 55px 80px;
     border-radius: 8px;
@@ -14,9 +14,27 @@
     font-family: $sa;
     font-family: $gt;
 
+    .CloseButton {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        font-size: 20px;
+
+        svg {
+            color: rgb(107, 110, 111);
+        }
+
+        &:hover {
+            svg {
+                cursor: pointer;
+                color: rgb(31, 33, 35);
+            }
+        }
+    }
+
     .CheckmarkContainer {
         width: 100%;
-        height: 400px;
+        height: 450px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -45,6 +63,12 @@
         outline: none;
         border: none;
         background: none;
+
+        &:hover {
+            box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px,
+                rgba(0, 0, 0, 0.05) 0px 1px 4px 0px,
+                rgba(0, 0, 0, 0.05) 0px 2px 8px 0px;
+        }
     }
 
     h1 {
@@ -90,6 +114,11 @@
             margin-top: 10px;
             // justify-content: center;
 
+            &:hover {
+                background: #9cd6ff;
+                transition: background 0.15s linear;
+            }
+
             .AddRepo {
                 font-size: 22px;
                 font-weight: 500;
@@ -134,10 +163,14 @@
                 border-radius: 3px;
                 background: #f8fafa;
                 margin-top: 4px;
-                outline: none;
                 padding: 0 10px;
                 color: #1869ff;
                 font-family: $dm;
+                outline: none;
+
+                &:focus {
+                    border: 1.7px solid #35a9f1;
+                }
             }
 
             textarea {
@@ -239,6 +272,16 @@
                 text-align: center;
                 width: 170px;
                 border-radius: 3px;
+                transition: background 0.15s linear;
+
+                &:hover {
+                    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px,
+                        rgba(0, 0, 0, 0.05) 0px 1px 4px 0px,
+                        rgba(0, 0, 0, 0.05) 0px 2px 8px 0px;
+                    background: #9cd6ff;
+                    transition: background 0.15s linear;
+                    border-color: #5cbbff;
+                }
             }
         }
         .CreateButton {
@@ -258,6 +301,9 @@
 
                 &:hover {
                     background-color: #5e9ef7;
+                    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px,
+                        rgba(0, 0, 0, 0.05) 0px 1px 4px 0px,
+                        rgba(0, 0, 0, 0.05) 0px 2px 8px 0px;
                 }
             }
         }

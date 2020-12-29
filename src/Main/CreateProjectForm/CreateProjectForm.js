@@ -11,11 +11,12 @@ import Checkmark from "../../UI/Checkmark/Checkmark";
 import LoadingSpinner from "../../UI/LoadingSpinner";
 import { BsCloudUpload } from "react-icons/bs";
 import { BiTrashAlt } from "react-icons/bi";
+import { MdClear } from "react-icons/md";
 
 // Axios
 import axios from "axios";
 
-const CreateProject = ({ passProjectToState }) => {
+const CreateProject = ({ passProjectToState, toggleProjectFormIsVisible }) => {
     // state
     const { register, handleSubmit } = useForm();
     const [logoPreview, setLogoPreview] = useState(null);
@@ -30,13 +31,9 @@ const CreateProject = ({ passProjectToState }) => {
     const [generalError, setGeneralError] = useState(false);
     const [noTitleError, setNoTitleError] = useState(false);
     const [titleExistsError, setTitleExistsError] = useState(false);
-    const [invalidExternalLinkError, setInvalidExternalLinkError] = useState(
-        false
-    );
+    const [invalidExternalLinkError, setInvalidExternalLinkError] = useState(false);
     const [noGithubLinkError, setNoGithubLinkError] = useState(false);
-    const [invalidGithubLinkErrors, setInvalidGithubLinkErrors] = useState(
-        new Set()
-    );
+    const [invalidGithubLinkErrors, setInvalidGithubLinkErrors] = useState(new Set());
     const [invalidPasswordError, setInvalidPasswordError] = useState(false);
     const [maxGithubLinkError, setMaxGithubLinkError] = useState(false);
     const [noImageError, setNoImageError] = useState(false);
@@ -145,16 +142,25 @@ const CreateProject = ({ passProjectToState }) => {
                         }
                     );
                     if (res.status === 401) {
-                        console.log("_____401");
                         setInvalidPasswordError(true);
+                        setLoadingData(false);
                     } else if (res.status === 409) {
                         setTitleExistsError(true);
+                        setLoadingData(false);
                     } else if (res.status === 200) {
                         console.log("___DATA FROM API", res.data);
+                        passProjectToState(res.data);
+                        setTimeout(() => {
+                            setTimeout(() => {
+                                console.log("\n\n______CLOSE MODAL____\n");
+                            }, 2000);
+                            setLoadingData(false);
+                            setCheckmark(true);
+                        }, 800);
                     } else {
                         setGeneralError(true);
+                        setLoadingData(false);
                     }
-                    setLoadingData(false);
                 } catch (err) {
                     console.log(JSON.stringify(err));
                 }
@@ -165,14 +171,19 @@ const CreateProject = ({ passProjectToState }) => {
             passProjectToState(data);
             setTimeout(() => {
                 setTimeout(() => {
-                    console.log("\n\n______CLOSE MODAL____\n");
+                    toggleProjectFormIsVisible();
                 }, 2000);
                 setLoadingData(false);
                 setCheckmark(true);
             }, 800);
         }
     };
-
+    /*
+     *
+     *
+     * handlers
+     *
+     */
     const appendGithubInputField = (e) => {
         e.preventDefault();
 
@@ -201,9 +212,7 @@ const CreateProject = ({ passProjectToState }) => {
         setInvalidGithubLinkErrors(
             (prev) =>
                 new Set(
-                    [...prev].filter(
-                        (err) => parseInt(e.target.id) !== parseInt(err)
-                    )
+                    [...prev].filter((err) => parseInt(e.target.id) !== parseInt(err))
                 )
         );
     };
@@ -243,9 +252,12 @@ const CreateProject = ({ passProjectToState }) => {
                 <Fragment>
                     {loadingData && (
                         <div className={style.SpinnerContainerLarge}>
-                            <LoadingSpinner size={120} border={8} />
+                            <LoadingSpinner size={110} border={8} />
                         </div>
                     )}
+                    <span className={style.CloseButton}>
+                        <MdClear onClick={toggleProjectFormIsVisible} />
+                    </span>
 
                     <h1>Create New Project</h1>
 
@@ -255,11 +267,11 @@ const CreateProject = ({ passProjectToState }) => {
                         </Error>
                     )}
                     <h4>
-                        As visitor, you can add a project to the frontend for
-                        demo purposes. React will update the state, but no
-                        request will be sent to the backend. When refreshing the
-                        page, the data you entered will be lost. Entering an
-                        incorrect password will throw an error.
+                        As visitor, you can add a project to the frontend for demo
+                        purposes. React will update the state, but no request will be
+                        sent to the backend. When refreshing the page, the data you
+                        entered will be lost. Entering an incorrect password will
+                        throw an error.
                     </h4>
 
                     <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
@@ -277,9 +289,7 @@ const CreateProject = ({ passProjectToState }) => {
                                     }}
                                 />
                                 {noTitleError ? (
-                                    <Error>
-                                        You have to enter a project name
-                                    </Error>
+                                    <Error>You have to enter a project name</Error>
                                 ) : titleExistsError ? (
                                     <Error>Project name must be unique</Error>
                                 ) : null}
@@ -302,9 +312,7 @@ const CreateProject = ({ passProjectToState }) => {
                                     name="externalLink"
                                     id="externalLink"
                                     ref={register}
-                                    onClick={() =>
-                                        setInvalidExternalLinkError(false)
-                                    }
+                                    onClick={() => setInvalidExternalLinkError(false)}
                                 />
                                 {invalidExternalLinkError && (
                                     <Error>The URL is not valid</Error>
@@ -312,8 +320,7 @@ const CreateProject = ({ passProjectToState }) => {
                             </label>
 
                             <label htmlFor="githubLinks">
-                                GitHub Repo{" "}
-                                <span>you can add up to 3 repos</span>
+                                GitHub Repo <span>you can add up to 3 repos</span>
                                 <input
                                     type="text"
                                     name={`githubLinks.githubLink${0}`}
@@ -327,8 +334,8 @@ const CreateProject = ({ passProjectToState }) => {
                                 />
                                 {noGithubLinkError ? (
                                     <Error>
-                                        You need to add at least one GitHub repo
-                                        to your project
+                                        You need to add at least one GitHub repo to
+                                        your project
                                     </Error>
                                 ) : invalidGithubLinkErrors.has(0) ? (
                                     <Error>Invalid github link</Error>
@@ -370,9 +377,7 @@ const CreateProject = ({ passProjectToState }) => {
                                                 <BiTrashAlt />
                                             </button>
                                         </div>
-                                        {invalidGithubLinkErrors.has(
-                                            index + 1
-                                        ) ? (
+                                        {invalidGithubLinkErrors.has(index + 1) ? (
                                             <Error>Invalid github link</Error>
                                         ) : null}
                                     </Fragment>
@@ -416,10 +421,7 @@ const CreateProject = ({ passProjectToState }) => {
                                     Upload Logo
                                     {!logoPreview ? (
                                         <div className={style.UploadLogoInput}>
-                                            <BsCloudUpload
-                                                size={30}
-                                                color={"grey"}
-                                            />
+                                            <BsCloudUpload size={30} color={"grey"} />
                                             <div
                                                 className={style.UploadLogo}
                                                 onClick={() => {
@@ -436,11 +438,7 @@ const CreateProject = ({ passProjectToState }) => {
                                         </div>
                                     ) : (
                                         <Fragment>
-                                            <div
-                                                className={
-                                                    style.PreviewContainer
-                                                }
-                                            >
+                                            <div className={style.PreviewContainer}>
                                                 <img
                                                     src={logoPreview}
                                                     alt="logo preview"
@@ -469,8 +467,7 @@ const CreateProject = ({ passProjectToState }) => {
                                 </div>
                                 {noImageError ? (
                                     <Error>
-                                        You have to upload an image for the
-                                        project
+                                        You have to upload an image for the project
                                     </Error>
                                 ) : null}
                             </label>
@@ -481,9 +478,7 @@ const CreateProject = ({ passProjectToState }) => {
                                     type="password"
                                     name="password"
                                     ref={register}
-                                    onClick={() =>
-                                        setInvalidPasswordError(false)
-                                    }
+                                    onClick={() => setInvalidPasswordError(false)}
                                 />
                                 {invalidPasswordError && (
                                     <div className={style.Error}>
@@ -515,9 +510,9 @@ export default CreateProject;
  *
  */
 function filterTrueTechStackLabels(obj) {
-    return (obj = Object.entries(obj)
+    return Object.entries(obj)
         .map((item) => (item[1] ? item[0] : null))
-        .filter((item) => item != null));
+        .filter((item) => item != null);
 }
 function checkValidURL(url) {
     const regEx = /(^http[s]?:\/{2})|(^www)|(^\/{1,2})/;
@@ -525,9 +520,7 @@ function checkValidURL(url) {
 }
 function prependHTTP(url) {
     const fullURL =
-        url.startsWith("http") || url.startsWith("http")
-            ? url
-            : "https://" + url;
+        url.startsWith("http") || url.startsWith("http") ? url : "https://" + url;
     return fullURL;
 }
 const techStack = [

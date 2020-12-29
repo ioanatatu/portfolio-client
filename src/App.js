@@ -24,10 +24,12 @@ const App = () => {
     const [journalData, setJournalData] = useState({});
 
     useEffect(() => {
-        (async function anyNameFunction() {
-            const data = await axios.get("/journal");
-            setJournalData(data.data);
-        })();
+        // (async () => {
+        //     const data = await axios.get(
+        //         "https://0ryd02k588.execute-api.eu-west-1.amazonaws.com/dev/journal"
+        //     );
+        //     setJournalData(data.data);
+        // })();
     }, []);
 
     return (

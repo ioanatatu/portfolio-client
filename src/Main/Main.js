@@ -10,6 +10,7 @@ import CreateProjectForm from "./CreateProjectForm/CreateProjectForm";
 
 const Main = ({ timeline }) => {
     const [darkMode, setDarkMode] = useState(false);
+    const [projectFormIsVisible, setProjectFormIsVisible] = useState(false);
 
     const toggleDarkMode = () => {
         setDarkMode((prevDarkMode) => !prevDarkMode);
@@ -17,6 +18,9 @@ const Main = ({ timeline }) => {
     };
     const passProjectToState = (arg) => {
         console.log("ARG from Main", arg);
+    };
+    const toggleProjectFormIsVisible = () => {
+        setProjectFormIsVisible((prev) => !prev);
     };
 
     return (
@@ -37,9 +41,12 @@ const Main = ({ timeline }) => {
                     zIndex: "999",
                 }}
             >
-                <CreateProjectForm
-                    passProjectToState={(arg) => passProjectToState(arg)}
-                />
+                {projectFormIsVisible && (
+                    <CreateProjectForm
+                        passProjectToState={(arg) => passProjectToState(arg)}
+                        toggleProjectFormIsVisible={toggleProjectFormIsVisible}
+                    />
+                )}
             </div>
             <div
                 style={{
@@ -66,7 +73,7 @@ const Main = ({ timeline }) => {
                 />
             </div>
 
-            <Welcome />
+            <Welcome toggleProjectFormIsVisible={toggleProjectFormIsVisible} />
 
             <Projects />
 

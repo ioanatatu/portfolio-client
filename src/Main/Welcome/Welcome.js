@@ -13,7 +13,7 @@ import Card from "./Card/Card";
 import Line from "../../UI/Line";
 import Arrow from "../../UI/Arrow";
 
-const Welcome = () => {
+const Welcome = ({ toggleProjectFormIsVisible }) => {
     const { width } = useViewport();
     const breakpoint = 699;
 
@@ -21,7 +21,7 @@ const Welcome = () => {
         width: "100%",
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
-        gap: "40px",
+        gap: "55px",
         marginTop: "60px",
     };
     if (width < breakpoint) {
@@ -41,37 +41,49 @@ const Welcome = () => {
 
                 <div
                     style={{
-                        width: "70%",
+                        width: "74%",
                         height: "100%",
-                        // backgroundColor: "yellowgreen",
                     }}
                 >
                     <div className={style.Heading}>
                         <h1>I am Ioana</h1>
                         <h1>and this is my portfolio</h1>
                     </div>
+
                     <div className={style.Line}>
                         <Line />
                     </div>
 
                     <div style={styleCardsContainer}>
-                        <Card title={"projects"}>
-                            The buttons below are linked to the projects I am
-                            currently developing.
-                        </Card>
+                        <span>
+                            <Card title={"projects"}>
+                                The buttons below are linked to the projects I am
+                                currently developing.
+                            </Card>
+                            <button
+                                onClick={toggleProjectFormIsVisible}
+                                className={style.AddProject}
+                            >
+                                add new project
+                            </button>
+                        </span>
                         <Card title={"timeline"}>
-                            The links on the right will take you to the entries
-                            of my web development "journal", to give you an
-                            overview of what I'm working on every day and how
-                            each project is unfolding.\n It's worth mentioning
-                            that, while the initial intention for this project
-                            was to build a sort of a productivity tool, where I
-                            could keep track of my daily tasks and give a
-                            potential employer a feel for my skills, it is now
-                            developing into a blog-like project, where I am also
-                            adding links to other resources and basically
-                            documenting what I am working on, reading, learning
-                            and researching.
+                            <p style={{ marginBottom: "15px" }}>
+                                The links on the right will take you to the entries of
+                                my web development "journal", to give you an overview
+                                of what I'm working on every day and how each project
+                                is unfolding.
+                            </p>
+                            <p>
+                                It's worth mentioning that, while the initial
+                                intention for this project was to build a sort of a
+                                productivity tool, where I could keep track of my
+                                daily tasks and give a potential employer a feel for
+                                my skills, it is now developing into a blog-like
+                                project, where I am also adding links to other
+                                resources and basically documenting what I am working
+                                on, reading, learning and researching.
+                            </p>
                         </Card>
                     </div>
                 </div>
@@ -85,7 +97,7 @@ const Welcome = () => {
                     offset={2}
                     duration={500}
                 >
-                    <Arrow size={40} fontSize={22} />
+                    <Arrow size={30} fontSize={20} />
                 </Link>
             </div>
         </div>
