@@ -235,7 +235,7 @@
             }
             .PreviewContainer {
                 height: 120px;
-                width: 100%;
+                max-width: 100%;
                 text-align: center;
                 margin: 15px auto 10px auto;
                 border-radius: 4px;
@@ -244,7 +244,8 @@
                 img {
                     object-fit: contain;
                     height: 100%;
-                    border-radius: 4px;
+                    max-width: 100%;
+                    border-radius: 4px; 
                 }
             }
             .UploadLogoInput {

@@ -23,7 +23,7 @@ const Arrow = ({ size, fontSize, color, background, paddingTop }) => {
                 cursor: "pointer",
             }}
         >
-            <FaChevronDown color={col} />
+            <FaChevronDown color={col} fontSize={4} />
         </div>
     );
 };

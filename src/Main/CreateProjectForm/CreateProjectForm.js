@@ -239,7 +239,6 @@ const CreateProject = ({ passProjectToState, toggleProjectFormIsVisible }) => {
         }
 
         setTimeout(() => setLoadingLogo(false), 500);
-        // console.log(file);
     };
 
     return (
