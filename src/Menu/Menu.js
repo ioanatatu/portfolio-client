@@ -2,12 +2,13 @@
 import style from "./Menu.module.scss";
 
 // React
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-scroll";
 
 // Components
 import TimelineLinks from "./TimelineLinks";
 import Count from "./Count";
+import Line from "../UI/Line";
 
 const Menu = ({ timeline }) => {
     // for this function add a button
@@ -17,51 +18,56 @@ const Menu = ({ timeline }) => {
 
     return (
         <div className={style.Menu}>
-            <div>
-                <Link
-                    activeClass="active"
-                    to="intro"
-                    spy={true}
-                    smooth={true}
-                    offset={0}
-                    duration={500}
-                    // onClick={scrollToTop}
-                >
-                    welcome
-                </Link>
-            </div>
+            <div className={style.Cont}>
+                <div className={style.VerticalLine}>
+                    <Line width={"3px"} height={"100%"} color={"#d7d8d8"} />
+                </div>
+                <div>
+                    <Link
+                        activeClass="active"
+                        to="intro"
+                        spy={true}
+                        smooth={true}
+                        offset={0}
+                        duration={500}
+                        // onClick={scrollToTop}
+                    >
+                        welcome
+                    </Link>
+                </div>
 
-            <div>
-                <Link
-                    activeClass="active"
-                    to="projects"
-                    spy={true}
-                    smooth={true}
-                    offset={2}
-                    duration={500}
-                >
-                    projects
-                </Link>
-            </div>
-            <div>
-                <Link
-                    activeClass="active"
-                    to="timeline"
-                    spy={true}
-                    smooth={true}
-                    offset={0}
-                    duration={500}
-                >
-                    timeline
-                </Link>
-            </div>
+                <div>
+                    <Link
+                        activeClass="active"
+                        to="projects"
+                        spy={true}
+                        smooth={true}
+                        offset={2}
+                        duration={500}
+                    >
+                        projects
+                    </Link>
+                </div>
+                <div>
+                    <Link
+                        activeClass="active"
+                        to="timeline"
+                        spy={true}
+                        smooth={true}
+                        offset={0}
+                        duration={500}
+                    >
+                        timeline
+                    </Link>
+                </div>
 
-            <div>
-                <TimelineLinks timeline={timeline} />
-            </div>
+                <div>
+                    <TimelineLinks timeline={timeline} />
+                </div>
 
-            <div className={style.Count}>
-                <Count days={timeline.length} />
+                <div className={style.Count}>
+                    <Count days={timeline.length} />
+                </div>
             </div>
         </div>
     );

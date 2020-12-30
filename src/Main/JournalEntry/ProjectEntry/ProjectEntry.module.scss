@@ -15,6 +15,29 @@
         // background-color: #fff;
         max-height: 100%;
 
+        .NewTaskButton {
+            outline: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 12px;
+            margin-left: 15px;
+
+            svg {
+                margin: 0;
+                width: auto;
+                color: grey;
+            }
+            &:hover {
+                svg {
+                    color: #1869ff;
+                }
+            }
+        }
+
         .Categories {
             padding-right: 20px;
             background-color: #e7eaf0;

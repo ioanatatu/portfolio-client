@@ -1,3 +1,5 @@
+@import "variables.scss";
+
 .JournalEntryWrapper {
     height: 100vh;
     padding: 3.5% 10%;
@@ -17,6 +19,15 @@
         padding-right: 9.1%;
         // background-color: rgb(220, 213, 213);
 
+        .Greeting {
+            margin-top: -10px;
+            font-family: $sa-l;
+            color: $fc-secondary-l;
+            font-size: 14px;
+            align-self: flex-start;
+            text-align: left;
+        }
+
         .ProjectsNavbar {
             width: 100%;
             display: grid;
@@ -25,6 +36,37 @@
             margin: 30px 0;
             height: 30px;
             // background-color: rgb(189, 98, 117);
+
+            .StandardButton {
+                outline: none;
+                padding: 4px 10px;
+                height: 32px;
+                font-family: $gt;
+                cursor: pointer;
+                border-radius: 5px;
+                border: 1.5px solid #28292a;
+                background: white;
+                transition: background 0.2s linear;
+                // box-shadow: 3px 3px 1px #1869ff;
+
+                &:hover {
+                    color: #1869ff;
+                    border-color: #1869ff;
+                    transition: all 0.2s linear;
+                }
+                span {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    svg {
+                        font-size: 22px;
+                        width: auto;
+                        margin: 0;
+                        margin-right: 5px;
+                    }
+                }
+            }
         }
         ul {
             list-style: none;

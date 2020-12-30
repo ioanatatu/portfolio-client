@@ -1,3 +1,6 @@
+// temporary, for testing purposes
+import journal from "../../journal";
+
 // React
 import React, { Fragment } from "react";
 // import { Switch, Route } from "react-router-dom";
@@ -5,12 +8,13 @@ import React, { Fragment } from "react";
 // Components
 import JournalEntry from "../JournalEntry/JournalEntry";
 
-const Timeline = ({ timeline }) => {
+const Timeline = () => {
+    console.log("JOURNAL", journal);
     return (
         <Fragment>
-            {timeline && (
+            {journal && journal.timeline && (
                 <div className="JournalEntries" id="timeline">
-                    <JournalEntry day={timeline[0]} />
+                    <JournalEntry day={journal.timeline[3]} />
                 </div>
             )}
         </Fragment>

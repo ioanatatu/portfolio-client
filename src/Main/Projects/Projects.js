@@ -1,6 +1,5 @@
 // Style
 import style from "./Projects.module.scss";
-import "./horScroll.css";
 
 // React
 import React, { Fragment, useEffect, useState } from "react";
@@ -46,7 +45,6 @@ import API_URL from "../../util/secrets";
 import axios from "axios";
 
 const Projects = ({ newProject, toggleProjectFormIsVisible }) => {
-    console.log("___newProject ", newProject);
     const [projects, setProjects] = useState([]);
     const [noProjectsMessage, setNoProjectsMessage] = useState(false);
     const [selectedProject, setSelectedProject] = useState(0);
@@ -91,7 +89,6 @@ const Projects = ({ newProject, toggleProjectFormIsVisible }) => {
             setNoProjectsMessage(false);
             setProjects((prev) => [newProject, ...prev]);
         }
-        console.log("___newProject ", newProject);
     }, [newProject]);
 
     useEffect(() => {
@@ -120,7 +117,7 @@ const Projects = ({ newProject, toggleProjectFormIsVisible }) => {
                 <h6 className={style.Greeting}>
                     {noProjectsMessage
                         ? "Looks like there are no projects at the moment..."
-                        : "These are the projects I'm currently developing"}
+                        : "These are the projects I'm currently developing:"}
                 </h6>
                 {noProjectsMessage ? (
                     <div className={style.NoProjectsMessage}>...</div>
@@ -192,16 +189,26 @@ const Projects = ({ newProject, toggleProjectFormIsVisible }) => {
                                 </div>
                                 {projects && projects[selectedProject] && (
                                     <div className={style.Description}>
-                                        {splitSentencesInArray(
-                                            projects[selectedProject].description
-                                        ).map((sentence) => (
-                                            <p
-                                                key={uuid()}
-                                                style={{ marginBottom: "18px" }}
-                                            >
-                                                {sentence}
-                                            </p>
-                                        ))}
+                                        {projects[selectedProject].description
+                                            .length === "" ? (
+                                            <div></div>
+                                        ) : (
+                                            <Fragment>
+                                                {splitSentencesInArray(
+                                                    projects[selectedProject]
+                                                        .description
+                                                ).map((sentence) => (
+                                                    <p
+                                                        key={uuid()}
+                                                        style={{
+                                                            marginBottom: "18px",
+                                                        }}
+                                                    >
+                                                        {sentence}
+                                                    </p>
+                                                ))}
+                                            </Fragment>
+                                        )}
                                     </div>
                                 )}
                             </div>

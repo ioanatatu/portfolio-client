@@ -9,6 +9,7 @@ import DarkModeToggler from "../UI/DarkModeToggler";
 import CreateProjectForm from "./CreateProjectForm/CreateProjectForm";
 
 const Main = ({ timeline }) => {
+    console.log("timeline", timeline);
     const [darkMode, setDarkMode] = useState(false);
     const [projectFormIsVisible, setProjectFormIsVisible] = useState(false);
     const [newProject, setNewProject] = useState(null);
@@ -84,7 +85,7 @@ const Main = ({ timeline }) => {
                 toggleProjectFormIsVisible={toggleProjectFormIsVisible}
             />
 
-            <Timeline timeline={timeline} />
+            <Timeline />
         </div>
     );
 };

@@ -19,17 +19,8 @@ const ProjectEntry = ({ project }) => {
                 <div>
                     <span style={{ display: "flex" }}>
                         <h1>Tasks</h1>
-                        <button
-                            style={{
-                                marginLeft: "20px",
-                                outline: "none",
-                                background: "none",
-                                border: "none",
-                                marginTop: "-10px",
-                                cursor: "pointer",
-                            }}
-                        >
-                            <BiAddToQueue color={"grey"} size={"20px"} />
+                        <button className={style.NewTaskButton}>
+                            <BiAddToQueue size={"20px"} />
                         </button>
                     </span>
                     <ul className={style.Categories}>
@@ -61,9 +52,7 @@ const ProjectEntry = ({ project }) => {
                 >
                     <Stats tasks={project.tasks.done} />
                     <ProjectGallery />
-                    <ProjectRandomIdeas
-                        ideas={project.tasks.projectRandomIdeas}
-                    />
+                    <ProjectRandomIdeas ideas={project.tasks.projectRandomIdeas} />
                 </div>
             </div>
         </div>
