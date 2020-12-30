@@ -153,6 +153,7 @@ const CreateProject = ({ passProjectToState, toggleProjectFormIsVisible }) => {
                         setTimeout(() => {
                             setTimeout(() => {
                                 console.log("\n\n______CLOSE MODAL____\n");
+                                toggleProjectFormIsVisible();
                             }, 2000);
                             setLoadingData(false);
                             setCheckmark(true);
@@ -543,4 +544,5 @@ const techStack = [
     "techStack.GraphQL",
     "techStack.chartJS",
     "techStack.JSON schema",
+    "techStack.firebase",
 ];

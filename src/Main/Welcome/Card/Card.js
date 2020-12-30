@@ -10,7 +10,7 @@ const Card = (props) => {
 
     const textAlign = width > breakpoint ? "left" : "center";
     const direction = width > breakpoint ? "row" : "column";
-    console.log("direction ", direction);
+    // console.log("direction ", direction);
     const fontSizeTitle = width > breakpoint ? "12px" : "10px";
     const fontSizeParagraph = width > breakpoint ? "15px" : "13px";
 
@@ -22,9 +22,7 @@ const Card = (props) => {
             <div className={style.Card} style={{ textAlign: `${textAlign}` }}>
                 <h4 style={{ fontSize: `${fontSizeTitle}` }}>{props.title}</h4>
                 <div className={style.L}></div>
-                <p style={{ fontSize: `${fontSizeParagraph}` }}>
-                    {props.children}
-                </p>
+                <p style={{ fontSize: `${fontSizeParagraph}` }}>{props.children}</p>
             </div>
         </div>
     );

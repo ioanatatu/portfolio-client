@@ -20,7 +20,7 @@ const Welcome = ({ toggleProjectFormIsVisible }) => {
     let styleCardsContainer = {
         width: "100%",
         display: "grid",
-        gridTemplateColumns: "1fr 1fr",
+        gridTemplateColumns: "1fr 1.5fr",
         gap: "55px",
         marginTop: "60px",
     };
@@ -68,13 +68,13 @@ const Welcome = ({ toggleProjectFormIsVisible }) => {
                             </button>
                         </span>
                         <Card title={"timeline"}>
-                            <p style={{ marginBottom: "15px" }}>
+                            <span style={{ marginBottom: "15px" }}>
                                 The links on the right will take you to the entries of
                                 my web development "journal", to give you an overview
                                 of what I'm working on every day and how each project
                                 is unfolding.
-                            </p>
-                            <p>
+                            </span>
+                            <span>
                                 It's worth mentioning that, while the initial
                                 intention for this project was to build a sort of a
                                 productivity tool, where I could keep track of my
@@ -83,7 +83,7 @@ const Welcome = ({ toggleProjectFormIsVisible }) => {
                                 project, where I am also adding links to other
                                 resources and basically documenting what I am working
                                 on, reading, learning and researching.
-                            </p>
+                            </span>
                         </Card>
                     </div>
                 </div>

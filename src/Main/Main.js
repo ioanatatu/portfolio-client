@@ -1,5 +1,5 @@
 // React
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // Components
 import Welcome from "./Welcome/Welcome";
@@ -11,6 +11,7 @@ import CreateProjectForm from "./CreateProjectForm/CreateProjectForm";
 const Main = ({ timeline }) => {
     const [darkMode, setDarkMode] = useState(false);
     const [projectFormIsVisible, setProjectFormIsVisible] = useState(false);
+    const [newProject, setNewProject] = useState(null);
 
     const toggleDarkMode = () => {
         setDarkMode((prevDarkMode) => !prevDarkMode);
@@ -18,10 +19,13 @@ const Main = ({ timeline }) => {
     };
     const passProjectToState = (arg) => {
         console.log("ARG from Main", arg);
+        setNewProject(arg);
     };
     const toggleProjectFormIsVisible = () => {
         setProjectFormIsVisible((prev) => !prev);
     };
+
+    useEffect(() => {}, [newProject]);
 
     return (
         <div
@@ -75,7 +79,10 @@ const Main = ({ timeline }) => {
 
             <Welcome toggleProjectFormIsVisible={toggleProjectFormIsVisible} />
 
-            <Projects />
+            <Projects
+                newProject={newProject}
+                toggleProjectFormIsVisible={toggleProjectFormIsVisible}
+            />
 
             <Timeline timeline={timeline} />
         </div>

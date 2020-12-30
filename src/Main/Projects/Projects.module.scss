@@ -4,7 +4,7 @@
     height: 100vh;
     width: 100vw;
     padding: 3.5% 8%;
-    background-color: rgb(231, 236, 238);
+    background-color: rgb(242, 245, 247);
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -13,37 +13,156 @@
     flex-direction: column;
     justify-content: space-between;
     position: relative;
-}
-.Projects {
-    width: 100%;
-    padding-right: 8%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: beige;
 
-    .Greeting {
-        margin-top: -10px;
-        font-family: $sa-l;
-        color: $fc-secondary-l;
-        font-size: 14px;
-        align-self: flex-start;
-        text-align: left;
-    }
-    .Heading {
-        text-align: center;
-        margin-top: 10%;
-        display: flex;
+    .Projects {
         width: 100%;
-        background-color: rgb(164, 204, 164);
-        position: relative;
+        padding-right: 8%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // background-color: beige;
 
-        .ProjectCircle {
-            background-color: white;
-            width: 135px;
-            height: 135px;
-            margin: 20px 25px;
-            border-radius: 50%;
+        .Greeting {
+            margin-top: -10px;
+            font-family: $sa-l;
+            color: $fc-secondary-l;
+            font-size: 14px;
+            align-self: flex-start;
+            text-align: left;
+        }
+        .Heading {
+            text-align: center;
+            margin-top: 10%;
+            margin-bottom: 90px;
+            display: flex;
+            width: 100%;
+            // background-color: rgb(164, 204, 164);
+            position: relative;
+
+            .ChevIcon {
+                position: absolute;
+                bottom: 4%;
+                left: 45.6%;
+
+                svg {
+                    transform: rotate(90deg);
+                    margin: 0;
+                    width: 30px;
+                    height: 30px;
+                    padding: 4px;
+                    border-radius: 50%;
+                    background-color: rgb(80, 81, 81);
+                    padding-top: 6px;
+                    transition: background-color 0.3s linear;
+
+                    &:hover {
+                        background-color: black;
+                        transition: background-color 0.3s linear;
+                    }
+                }
+            }
+
+            .ProjectCircle {
+                background-color: white;
+                width: 130px;
+                height: 130px;
+                margin: 20px 25px;
+                border-radius: 50%;
+            }
+        }
+        .ProjectDetails {
+            .LogoContainer {
+                height: 50px;
+                overflow: hidden;
+
+                img {
+                    height: 100%;
+                    object-fit: contain;
+                }
+            }
+            .Description {
+                font-family: $gt;
+            }
+            .LastUpdated {
+                font-family: $gt;
+                font-weight: 500;
+                font-size: 12px;
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 3px;
+            }
+            h6 {
+                font-family: $dm;
+                font-weight: 600;
+                font-size: 13px;
+                margin-top: 10px;
+            }
+            .IconsWrapper {
+                display: flex;
+                max-width: 100%;
+                flex-wrap: wrap;
+                margin-top: 10px;
+                justify-content: space-between;
+
+                span {
+                    padding: 0;
+                    font-size: 34px;
+                    margin-right: 10px;
+                    margin-bottom: 12px;
+
+                    svg {
+                        margin: 0;
+                        padding: 0;
+                        width: auto;
+                    }
+                }
+            }
+            .ProjectButtons {
+                display: flex;
+                justify-content: space-between;
+
+                .StandardButton {
+                    outline: none;
+                    margin-top: 15px;
+                    padding: 4px 10px;
+                    width: 130px;
+                    font-family: $gt;
+                    cursor: pointer;
+                    border-radius: 5px;
+                    border: 1.5px solid #28292a;
+                    background: white;
+                    transition: background 0.2s linear;
+                    box-shadow: 3px 3px 1px #1869ff;
+
+                    span {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        svg {
+                            font-size: 18px;
+                            margin: 0 0 1px 5px;
+                            width: auto;
+                        }
+                    }
+
+                    &:hover {
+                        color: #1869ff;
+                        border-color: #1869ff;
+                        transition: all 0.2s linear;
+                    }
+                }
+            }
+        }
+        .NoProjectsMessage {
+            height: 100%;
+            font-family: $gt;
+            font-weight: 600;
+            color: rgba(158, 162, 162, 0.5);
+            font-size: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 }
