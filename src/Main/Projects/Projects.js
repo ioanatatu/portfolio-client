@@ -7,6 +7,7 @@ import React, { Fragment, useEffect, useState } from "react";
 // Packages
 // import ScrollMenu from "react-horizontal-scrolling-menu";
 import { v4 as uuid } from "uuid";
+import { ExternalLink } from "react-external-link";
 
 // React Custom Hook
 import { useViewport } from "../../CustomHooks/ViewportProvider";
@@ -236,17 +237,25 @@ const Projects = ({ newProject, toggleProjectFormIsVisible }) => {
                                         <LoadingSpinner size={50} />
                                     </div>
                                 )}
-                                <div className={style.ProjectButtons}>
-                                    <button className={style.StandardButton}>
-                                        <span>
-                                            got to GitHub
-                                            <SiGithub />
-                                        </span>
-                                    </button>
-                                    <button className={style.StandardButton}>
-                                        go to webpage
-                                    </button>
-                                </div>
+                                {projects && projects[0] && projects[0].githubLinks && (
+                                    <div className={style.ProjectButtons}>
+                                        <ExternalLink
+                                            href={projects[0].githubLinks[0]}
+                                        >
+                                            <button className={style.StandardButton}>
+                                                <span>
+                                                    got to GitHub
+                                                    <SiGithub />
+                                                </span>
+                                            </button>
+                                        </ExternalLink>
+                                        <ExternalLink href={projects[0].externalLink}>
+                                            <button className={style.StandardButton}>
+                                                go to webpage
+                                            </button>
+                                        </ExternalLink>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -269,8 +278,12 @@ export default Projects;
  */
 function splitSentencesInArray(text) {
     const sentences = text.split(".");
-    sentences[0] = sentences[0] + ".";
-    return sentences;
+    sentences.forEach((s, i) => {
+        if (s === "") {
+            sentences.splice(i, 1);
+        }
+    });
+    return sentences.map((sentence) => sentence.trim() + ".");
 }
 
 const techStackFonticons = {
