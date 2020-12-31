@@ -540,6 +540,9 @@
 .react-datepicker__quarter-text,
 .react-datepicker__year-text {
     cursor: pointer;
+    /* --------------------------------------- added line ----------- */
+    outline: none;
+    /* --------------------------------------- added line ----------- */
 }
 
 .react-datepicker__day:hover,

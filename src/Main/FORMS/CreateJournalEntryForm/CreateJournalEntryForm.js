@@ -3,7 +3,7 @@ import style from "./CreateJournalEntryForm.module.scss";
 import "./react-datepicker.css";
 
 // React
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState } from "react";
 
 // Packages
 import DatePicker from "react-datepicker";
@@ -24,14 +24,16 @@ const CreateJournalEntry = ({
     // state
     const [startDate, setStartDate] = useState(new Date());
     const [selectedProject, setSelectedProject] = useState(null);
+    const [password, setPassword] = useState(null);
 
     // errors
     const [generalError, setGeneralError] = useState(false);
 
-    useEffect(() => {}, []);
-
-    const handleSubmit = async (data) => {
-        console.log("DATA__", data, new Date(startDate).toISOString());
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log("DATE__", new Date(startDate).toISOString());
+        console.log("PROJECT__", selectedProject);
+        console.log("PASS__", password);
         /* 
         try {
             const res = await axios.post(
@@ -50,7 +52,9 @@ const CreateJournalEntry = ({
     };
     const selectProject = (e) => {
         setSelectedProject(e.currentTarget.id);
-        // console.log(selectedProject);
+    };
+    const handleChange = (e) => {
+        setPassword(e.target.value);
     };
 
     return (
@@ -59,7 +63,7 @@ const CreateJournalEntry = ({
                 <MdClear onClick={toggleJournalEntryFormIsVisible} />
             </span>
 
-            <h1>Create New Journal Entry {selectedProject}</h1>
+            <h1>Create New Journal Entry</h1>
 
             {generalError && (
                 <Error fontSize={"12px"} marginLeft={3}>
@@ -95,18 +99,19 @@ const CreateJournalEntry = ({
                                 {projects &&
                                     projects.map((project) => (
                                         <li key={project.ID}>
-                                            <label htmlFor={project.title}>
-                                                {project.title}
-                                            </label>
                                             <input
                                                 type="radio"
                                                 name={project.title}
                                                 id={project.title}
                                                 onClick={selectProject}
-                                                checked={
+                                                defaultChecked={
                                                     selectedProject === project.title
                                                 }
+                                                className={style.SelectProject}
                                             />
+                                            <label htmlFor={project.title}>
+                                                {project.title}
+                                            </label>
                                         </li>
                                     ))}
                             </ul>
@@ -117,6 +122,7 @@ const CreateJournalEntry = ({
                                 <input
                                     type="password"
                                     name="password"
+                                    onChange={handleChange}
                                     // onClick={() => setInvalidPasswordError(false)}
                                 />
                                 {/*invalidPasswordError && (
