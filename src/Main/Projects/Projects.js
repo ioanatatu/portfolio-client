@@ -44,7 +44,11 @@ import { MdExplicit } from "react-icons/md";
 import API_URL from "../../util/secrets";
 import axios from "axios";
 
-const Projects = ({ newProject, toggleProjectFormIsVisible }) => {
+const Projects = ({
+    newProject,
+    toggleProjectFormIsVisible,
+    liftProjectsStateToMain,
+}) => {
     const [projects, setProjects] = useState([]);
     const [noProjectsMessage, setNoProjectsMessage] = useState(false);
     const [selectedProject, setSelectedProject] = useState(0);
@@ -78,6 +82,7 @@ const Projects = ({ newProject, toggleProjectFormIsVisible }) => {
                 !fetchedProjects.length
                     ? setNoProjectsMessage(true)
                     : setProjects([...fetchedProjects]);
+                liftProjectsStateToMain(fetchedProjects);
             } catch (err) {
                 console.log(err);
             }
@@ -87,6 +92,7 @@ const Projects = ({ newProject, toggleProjectFormIsVisible }) => {
     useEffect(() => {
         if (newProject) {
             setNoProjectsMessage(false);
+            liftProjectsStateToMain([newProject, ...projects]);
             setProjects((prev) => [newProject, ...prev]);
         }
     }, [newProject]);

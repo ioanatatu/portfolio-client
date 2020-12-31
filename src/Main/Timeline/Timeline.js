@@ -8,13 +8,13 @@ import React, { Fragment } from "react";
 // Components
 import JournalEntry from "../JournalEntry/JournalEntry";
 
-const Timeline = () => {
+const Timeline = ({ projects }) => {
     console.log("JOURNAL", journal);
     return (
         <Fragment>
             {journal && journal.timeline && (
                 <div className="JournalEntries" id="timeline">
-                    <JournalEntry day={journal.timeline[3]} />
+                    <JournalEntry day={journal.timeline[3]} projects={projects} />
                 </div>
             )}
         </Fragment>

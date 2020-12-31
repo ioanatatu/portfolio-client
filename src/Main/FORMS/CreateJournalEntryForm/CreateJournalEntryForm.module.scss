@@ -1,0 +1,142 @@
+@import "../../variables.scss";
+
+.FormContainer {
+    width: 650px;
+    // height: 550px;
+    background-color: #f8fafa;
+    padding: 50px 80px 55px 80px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px 0 rgba(199, 205, 216, 0.5);
+    border: 0.2px solid #1869ffbb;
+    position: relative;
+
+    font-family: $po;
+    font-family: $sa;
+    font-family: $gt;
+
+    .CloseButton {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        font-size: 20px;
+
+        svg {
+            color: rgb(107, 110, 111);
+        }
+
+        &:hover {
+            svg {
+                cursor: pointer;
+                color: rgb(31, 33, 35);
+            }
+        }
+    }
+    h4 {
+        font-family: $dm;
+        font-weight: 400;
+        font-size: 12px;
+        background-color: #e8edf1e0;
+        padding: 12px 25px;
+        margin: 10px 0;
+        border-radius: 3px;
+        margin-bottom: 20px;
+    }
+    .ProjectDateWrapper {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 60px;
+        font-size: 12px;
+
+        h3 {
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+        ul {
+            list-style: none;
+
+            li {
+                position: relative;
+                height: 30px;
+                margin: 8px 0;
+
+                label {
+                    border-radius: 3px;
+                    position: absolute;
+                    top: 5px;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    font-weight: 400;
+                    font-size: 15px;
+                    background-color: white;
+                    border: 0.5px solid rgb(198, 202, 208);
+                    cursor: pointer;
+                    transition: all 0.2s linear;
+                    text-align: center;
+
+                    &:hover {
+                        box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px,
+                            rgba(0, 0, 0, 0.05) 0px 1px 4px 0px,
+                            rgba(0, 0, 0, 0.05) 0px 2px 8px 0px;
+                        background-color: #9cd6ff;
+                        transition: background-color 0.15s linear;
+                        border-color: #5cbbff;
+                    }
+                }
+                input[type="radio"] {
+                    // display: none;
+                }
+                input[type="radio"]:checked + label {
+                    background-color: #35a9f1;
+                    color: white;
+                }
+            }
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            input {
+                height: 30px;
+                width: 100%;
+                border: 0.5px solid rgb(198, 202, 208);
+                border-radius: 3px;
+                background: #f8fafa;
+                margin-top: 4px;
+                padding: 0 10px;
+                color: #1869ff;
+                font-family: $dm;
+                outline: none;
+
+                &:focus {
+                    border: 1.7px solid #35a9f1;
+                }
+            }
+        }
+        .CreateButton {
+            text-align: center;
+
+            input[type="submit"] {
+                background-color: #3180ee;
+                border: none;
+                color: white;
+                font-size: 15px;
+                font-family: $gt;
+                padding: 7px 60px;
+                border-radius: 3px;
+                margin: 0 auto;
+                outline: none;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #5e9ef7;
+                    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px,
+                        rgba(0, 0, 0, 0.05) 0px 1px 4px 0px,
+                        rgba(0, 0, 0, 0.05) 0px 2px 8px 0px;
+                }
+            }
+        }
+    }
+}

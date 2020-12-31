@@ -37,6 +37,47 @@ const journal = {
     ],
     timeline: [
         {
+            date: "2020-12-31",
+            projects: [
+                {
+                    name: "portfolio",
+                    tasks: {
+                        done: [
+                            {
+                                description:
+                                    "Think about <CreateNewJournalEntryForm/> component, what state it needs, how it communicates with the other components.",
+                                duration: 60,
+                                image: "",
+                                tags: ["mongoDB"],
+                                status: "just started",
+                                links: [
+                                    "https://seed.run/docs/serverless-errors/cannot-perform-more-than-one-gsi-creation-or-deletion-in-a-single-update",
+                                ],
+                            },
+                            {
+                                description: "Install react-datepicker package.",
+                                duration: 60,
+                                image: "",
+                                tags: ["mongoDB"],
+                                status: "just started",
+                                links: [
+                                    "https://www.npmjs.com/package/react-datepicker",
+                                ],
+                            },
+                        ],
+                        projectRandomIdeas: [
+                            {
+                                idea:
+                                    "Problem: more than one modal can be opened at the same time. Find a solution for that - possibly global state with Redux or look into React Context again.",
+                                check: false,
+                            },
+                        ],
+                    },
+                    images: [],
+                },
+            ],
+        },
+        {
             date: "2020-12-24",
             projects: [
                 {
@@ -69,8 +110,7 @@ const journal = {
                     tasks: {
                         done: [
                             {
-                                description:
-                                    "Created cluster on MongoDB Atlas.",
+                                description: "Created cluster on MongoDB Atlas.",
                                 duration: 60,
                                 image: "",
                                 tags: ["mongoDB"],
@@ -167,8 +207,7 @@ const journal = {
                         ],
                         projectRandomIdeas: [
                             {
-                                idea:
-                                    "Build a custom 404 page not found component.",
+                                idea: "Build a custom 404 page not found component.",
                                 check: false,
                             },
                         ],
@@ -289,8 +328,7 @@ const journal = {
                                 status: "",
                             },
                             {
-                                description:
-                                    "Built the <JournalEntry/> component.",
+                                description: "Built the <JournalEntry/> component.",
                                 duration: 40,
                                 image: "final",
                                 tags: ["react", "scss"],
@@ -305,8 +343,7 @@ const journal = {
                                 status: "work in progress",
                             },
                             {
-                                description:
-                                    "Built the <WorkingTime/> component.",
+                                description: "Built the <WorkingTime/> component.",
                                 duration: 50,
                                 image: "",
                                 tags: ["react", "scss"],
@@ -467,8 +504,7 @@ const journal = {
                                 status: "final",
                             },
                             {
-                                description:
-                                    "plan and code components architecture",
+                                description: "plan and code components architecture",
                                 duration: 180,
                                 image: "2020-12-11_5.png",
                                 tags: ["architecture", "react"],

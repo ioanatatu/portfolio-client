@@ -6,13 +6,15 @@ import Welcome from "./Welcome/Welcome";
 import Projects from "./Projects/Projects";
 import Timeline from "./Timeline/Timeline";
 import DarkModeToggler from "../UI/DarkModeToggler";
-import CreateProjectForm from "./CreateProjectForm/CreateProjectForm";
+import CreateProjectForm from "./FORMS/CreateProjectForm/CreateProjectForm";
 
 const Main = ({ timeline }) => {
     console.log("timeline", timeline);
+    // state
     const [darkMode, setDarkMode] = useState(false);
     const [projectFormIsVisible, setProjectFormIsVisible] = useState(false);
     const [newProject, setNewProject] = useState(null);
+    const [projects, setProjects] = useState([]);
 
     const toggleDarkMode = () => {
         setDarkMode((prevDarkMode) => !prevDarkMode);
@@ -26,7 +28,11 @@ const Main = ({ timeline }) => {
         setProjectFormIsVisible((prev) => !prev);
     };
 
-    useEffect(() => {}, [newProject]);
+    const liftProjectsStateToMain = (projectsFromProjectsComponent) => {
+        setProjects(projectsFromProjectsComponent);
+    };
+
+    useEffect(() => {}, [newProject, projects]);
 
     return (
         <div
@@ -83,9 +89,10 @@ const Main = ({ timeline }) => {
             <Projects
                 newProject={newProject}
                 toggleProjectFormIsVisible={toggleProjectFormIsVisible}
+                liftProjectsStateToMain={liftProjectsStateToMain}
             />
 
-            <Timeline />
+            <Timeline projects={projects} />
         </div>
     );
 };

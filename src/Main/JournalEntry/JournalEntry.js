@@ -8,11 +8,11 @@ import React, { useState } from "react";
 import { AiOutlineFolderAdd } from "react-icons/ai";
 
 // Components
-import CreateJournalEntryForm from "../CreateJournalEntryForm/CreateJournalEntryForm";
+import CreateJournalEntryForm from "../FORMS/CreateJournalEntryForm/CreateJournalEntryForm";
 import ProjectsButtons from "./ProjectsButtons/ProjectsButtons";
 import ProjectEntry from "./ProjectEntry/ProjectEntry";
 
-const JournalEntry = ({ day }, props) => {
+const JournalEntry = ({ day, projects }, props) => {
     const [project, setProject] = useState(0);
     const [journalEntryFormIsVisible, setJournalEntryFormIsVisible] = useState(true);
 
@@ -29,7 +29,24 @@ const JournalEntry = ({ day }, props) => {
 
     return (
         <div className={style.JournalEntryWrapper} id={day.date}>
-            {journalEntryFormIsVisible && <CreateJournalEntryForm />}
+            <div
+                style={{
+                    position: "fixed",
+                    top: "5%",
+                    left: "50%",
+                    transform: "translate(-50%, 0)",
+                    zIndex: "999",
+                }}
+            >
+                {journalEntryFormIsVisible && (
+                    <CreateJournalEntryForm
+                        toggleJournalEntryFormIsVisible={
+                            toggleJournalEntryFormIsVisible
+                        }
+                        projects={projects}
+                    />
+                )}
+            </div>
             <div className={style.JournalEntry}>
                 <h6 className={style.Greeting}>{formatDate(new Date(day.date))}</h6>
                 <div className={style.ProjectsNavbar}>

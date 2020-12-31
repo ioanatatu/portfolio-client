@@ -1,14 +1,14 @@
 // Style
-import style from "./CreateJournalEntryForm.module.scss";
+import style from "./CreateProjectForm.module.scss";
 
 // React
 import React, { Fragment, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 // Components
-import Error from "../../UI/Error";
-import Checkmark from "../../UI/Checkmark/Checkmark";
-import LoadingSpinner from "../../UI/LoadingSpinner";
+import Error from "../../../UI/Error";
+import Checkmark from "../../../UI/Checkmark/Checkmark";
+import LoadingSpinner from "../../../UI/LoadingSpinner";
 import { BsCloudUpload } from "react-icons/bs";
 import { BiTrashAlt } from "react-icons/bi";
 import { MdClear } from "react-icons/md";
