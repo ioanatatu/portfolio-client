@@ -14,7 +14,7 @@ import ProjectEntry from "./ProjectEntry/ProjectEntry";
 
 const JournalEntry = ({ day, projects }, props) => {
     const [project, setProject] = useState(0);
-    const [journalEntryFormIsVisible, setJournalEntryFormIsVisible] = useState(true);
+    const [journalEntryFormIsVisible, setJournalEntryFormIsVisible] = useState(false);
 
     // use this in the Date Component
     console.log("match", props.params);

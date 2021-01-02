@@ -8,8 +8,8 @@ import Timeline from "./Timeline/Timeline";
 import DarkModeToggler from "../UI/DarkModeToggler";
 import CreateProjectForm from "./FORMS/CreateProjectForm/CreateProjectForm";
 
-const Main = ({ timeline }) => {
-    console.log("timeline", timeline);
+const Main = ({ journalEntries }) => {
+    console.log("journalEntries", journalEntries);
     // state
     const [darkMode, setDarkMode] = useState(false);
     const [projectFormIsVisible, setProjectFormIsVisible] = useState(false);

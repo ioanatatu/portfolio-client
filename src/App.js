@@ -22,24 +22,25 @@ import PageNotFound from "./UI/PageNotFound";
 
 const App = () => {
     const [journalData, setJournalData] = useState({});
+    const [timeline, setTimeline] = useState([]);
 
     useEffect(() => {
-        // (async () => {
-        //     const data = await axios.get(
-        //         "https://0ryd02k588.execute-api.eu-west-1.amazonaws.com/dev/journal"
-        //     );
-        //     setJournalData(data.data);
-        // })();
+        (async () => {
+            const data = await axios.get(
+                "https://0ryd02k588.execute-api.eu-west-1.amazonaws.com/dev/journal-entries"
+            );
+            console.log("FROM DB..... ", data.data);
+            setJournalData(data.data);
+
+            const timeline = data.data.map((day) => day.ID);
+            setTimeline(timeline);
+        })();
     }, []);
 
     return (
         <ViewportProvider>
             <div className={style.App}>
-                <Route
-                    exact
-                    path="/"
-                    render={() => <Menu timeline={journal.timeline} />}
-                />
+                <Route exact path="/" render={() => <Menu timeline={timeline} />} />
 
                 <Switch>
                     <Route
@@ -48,7 +49,7 @@ const App = () => {
                         render={() => (
                             <Main
                                 // projects={journal.projects}
-                                timeline={journalData && journalData.timeline}
+                                journalEntries={journalData}
                             />
                         )}
                     />

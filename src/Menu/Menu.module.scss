@@ -1,17 +1,17 @@
 @import "variables.scss";
 
-.Menu {
+.MenuWrapper {
     height: 100vh;
     width: 10%;
     position: fixed;
     right: 0;
     top: 0;
     z-index: 999;
-    padding-top: 3.8%;
+    padding-top: 3%;
     padding-right: 3.5vw;
     text-align: right;
 
-    .Cont {
+    .Menu {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -22,44 +22,83 @@
             height: 100%;
             position: absolute;
             top: 0;
-            right: -30px;
-        }
+            right: -20px;
 
-        a {
-            font-family: $sa;
-            font-family: $po;
-            letter-spacing: 0.5px;
-            font-size: 12px;
-            color: $fc-primary-l;
-            border-right: 2px solid red;
+            &::before {
+                content: "";
+                height: 40px;
+                width: 5px;
+                position: absolute;
+                background-color: rgb(25, 26, 29);
+                bottom: 0;
+                right: -1px;
+            }
+        }
+        #FirstLink {
+            padding-top: 0;
+        }
+        .TimelineLink {
+            margin-top: -2px;
+            height: 50px;
+            cursor: pointer;
+            transition: color 0.2s linear;
+            text-align: right;
+
+            .Active {
+                color: $blue-l;
+                position: relative;
+                transition: color 0.3s linear;
+            }
+            .Active::before {
+                transition: background-color 3s linear;
+                content: "";
+                position: absolute;
+                right: -20.2px;
+                top: -8px;
+                width: 3.5px;
+                height: 40px;
+                background-color: $blue-l;
+            }
+
+            a {
+                font-family: $sa;
+                font-family: $po;
+                font-family: $dm;
+                font-size: 14px;
+                font-weight: 500;
+                color: $fc-primary-l;
+
+                &:hover {
+                    color: #1869ff;
+                    transition: color 0.2s linear;
+                }
+            }
         }
 
         .Timeline {
             display: flex;
             flex-direction: column;
             align-items: right;
-            color: rgba(92, 92, 92, 0.61);
             font-family: "DM Sans";
             ul {
                 list-style: none;
-            }
+                li {
+                    text-align: right;
+                    cursor: pointer;
 
-            li {
-                text-align: right;
-                cursor: pointer;
-
-                a {
-                    font-size: 12px;
+                    a {
+                        color: black;
+                        font-size: 12px;
+                    }
                 }
             }
-            .Timeline h3 {
-                margin: 3px 0;
-            }
         }
+
         .Count {
             font-family: "DM Sans";
             font-size: 10px;
             margin-top: auto;
+            margin-bottom: 28px;
         }
     }
 }

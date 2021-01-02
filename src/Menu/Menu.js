@@ -2,7 +2,7 @@
 import style from "./Menu.module.scss";
 
 // React
-import React, { Fragment } from "react";
+import React from "react";
 import { Link } from "react-scroll";
 
 // Components
@@ -16,52 +16,61 @@ const Menu = ({ timeline }) => {
         scroll.scrollToTop();
     }; */
 
+    console.log("TIMELINE from Menu ", timeline);
+    const handleSetActive = () => {
+        console.log("example");
+    };
+
     return (
-        <div className={style.Menu}>
-            <div className={style.Cont}>
+        <div className={style.MenuWrapper}>
+            <div className={style.Menu}>
                 <div className={style.VerticalLine}>
                     <Line width={"3px"} height={"100%"} color={"#d7d8d8"} />
                 </div>
-                <div>
+
+                <div className={style.TimelineLink} id={style.FirstLink}>
                     <Link
-                        activeClass="active"
+                        activeClass={style.Active}
                         to="intro"
                         spy={true}
                         smooth={true}
                         offset={0}
                         duration={500}
+                        onSetActive={handleSetActive}
                         // onClick={scrollToTop}
                     >
                         welcome
                     </Link>
                 </div>
 
-                <div>
+                <div className={style.TimelineLink}>
                     <Link
-                        activeClass="active"
+                        activeClass={style.Active}
                         to="projects"
                         spy={true}
                         smooth={true}
-                        offset={2}
+                        offset={1}
                         duration={500}
+                        onSetActive={handleSetActive}
                     >
                         projects
                     </Link>
                 </div>
-                <div>
+                <div className={style.TimelineLink}>
                     <Link
-                        activeClass="active"
+                        activeClass={style.Active}
                         to="timeline"
                         spy={true}
                         smooth={true}
-                        offset={0}
+                        offset={1}
                         duration={500}
+                        onSetActive={handleSetActive}
                     >
                         timeline
                     </Link>
                 </div>
 
-                <div>
+                <div className={style.Timeline}>
                     <TimelineLinks timeline={timeline} />
                 </div>
 
