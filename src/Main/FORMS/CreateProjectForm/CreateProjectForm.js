@@ -481,9 +481,7 @@ const CreateProject = ({ passProjectToState, toggleProjectFormIsVisible }) => {
                                     onClick={() => setInvalidPasswordError(false)}
                                 />
                                 {invalidPasswordError && (
-                                    <div className={style.Error}>
-                                        Invalid password
-                                    </div>
+                                    <Error>Invalid password</Error>
                                 )}
                             </label>
 

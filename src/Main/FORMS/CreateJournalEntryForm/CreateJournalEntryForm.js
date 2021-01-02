@@ -10,6 +10,7 @@ import DatePicker from "react-datepicker";
 
 // Components
 import Error from "../../../UI/Error";
+import LoadingSpinner from "../../../UI/LoadingSpinner";
 import { MdClear } from "react-icons/md";
 
 // Axios
@@ -24,37 +25,52 @@ const CreateJournalEntry = ({
     // state
     const [startDate, setStartDate] = useState(new Date());
     const [selectedProject, setSelectedProject] = useState(null);
-    const [password, setPassword] = useState(null);
+    const [password, setPassword] = useState("");
 
     // errors
     const [generalError, setGeneralError] = useState(false);
+    const [projectExistsError, setProjectExistsError] = useState(false);
+    const [noProjectSelectedError, setNoProjectSelectedError] = useState(false);
+    const [invalidPasswordError, setInvalidPasswordError] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("DATE__", new Date(startDate).toISOString());
-        console.log("PROJECT__", selectedProject);
-        console.log("PASS__", password);
-        /* 
-        try {
-            const res = await axios.post(
-                "https://0ryd02k588.execute-api.eu-west-1.amazonaws.com/dev/project",
-                data,
-                {
-                    validateStatus: function (status) {
-                        return status;
-                    },
-                }
-            );
-        } catch (err) {
-            console.log(JSON.stringify(err));
+
+        if (!selectedProject) {
+            setNoProjectSelectedError(true);
         }
-        */
+        if (password !== "") {
+            const data = {
+                date: new Date(startDate).toISOString(),
+                project: selectedProject,
+                password,
+            };
+            try {
+                const res = await axios.post(
+                    "https://0ryd02k588.execute-api.eu-west-1.amazonaws.com/dev/journal-entry",
+                    data,
+                    {
+                        validateStatus: function (status) {
+                            return status;
+                        },
+                    }
+                );
+                if (res.status === 401) {
+                    setInvalidPasswordError(true);
+                } else if (res.status === 409) {
+                    setProjectExistsError(true);
+                }
+            } catch (err) {
+                console.log(JSON.stringify(err));
+            }
+        }
     };
     const selectProject = (e) => {
         setSelectedProject(e.currentTarget.id);
     };
     const handleChange = (e) => {
         setPassword(e.target.value);
+        setInvalidPasswordError(false);
     };
 
     return (
@@ -70,6 +86,13 @@ const CreateJournalEntry = ({
                     Oops, something went wrong. Try again later.
                 </Error>
             )}
+            {projectExistsError && (
+                <Error fontSize={"12px"} marginLeft={3}>
+                    Project already exists in this journal entry.
+                    <br /> Choose a different project or go to the journal entry of{" "}
+                    {formatDate(startDate)} and add tasks.
+                </Error>
+            )}
             <h4>
                 The idea from Create Project Form applies here as well: without
                 entering a password, the state will be updated only on the
@@ -78,10 +101,13 @@ const CreateJournalEntry = ({
             <form onSubmit={handleSubmit} autoComplete="off">
                 <div className={style.ProjectDateWrapper}>
                     <div>
-                        <h3>For which day?</h3>
+                        <h3 style={{ marginBottom: "10px" }}>For which day?</h3>
                         <DatePicker
                             selected={startDate}
-                            onChange={(date) => setStartDate(date)}
+                            onChange={(date) => {
+                                setStartDate(date);
+                                setProjectExistsError(false);
+                            }}
                             dateFormat="MMMM d, yyyy"
                             inline
                         />
@@ -95,16 +121,23 @@ const CreateJournalEntry = ({
                     >
                         <span>
                             <h3>For which project?</h3>
-                            <ul>
-                                {projects &&
-                                    projects.map((project) => (
+                            {noProjectSelectedError && (
+                                <Error>You have to select a project</Error>
+                            )}
+                            {projects && projects.length !== 0 ? (
+                                <ul>
+                                    {projects.map((project) => (
                                         <li key={project.ID}>
                                             <input
                                                 type="radio"
                                                 name={project.title}
                                                 id={project.title}
-                                                onClick={selectProject}
-                                                defaultChecked={
+                                                onClick={(e) => {
+                                                    selectProject(e);
+                                                    setNoProjectSelectedError(false);
+                                                    setProjectExistsError(false);
+                                                }}
+                                                checked={
                                                     selectedProject === project.title
                                                 }
                                                 className={style.SelectProject}
@@ -114,7 +147,17 @@ const CreateJournalEntry = ({
                                             </label>
                                         </li>
                                     ))}
-                            </ul>
+                                </ul>
+                            ) : (
+                                <div
+                                    style={{
+                                        textAlign: "center",
+                                        marginTop: "50px",
+                                    }}
+                                >
+                                    <LoadingSpinner size={50} />
+                                </div>
+                            )}
                         </span>
                         <span>
                             <label htmlFor="password">
@@ -123,11 +166,10 @@ const CreateJournalEntry = ({
                                     type="password"
                                     name="password"
                                     onChange={handleChange}
-                                    // onClick={() => setInvalidPasswordError(false)}
                                 />
-                                {/*invalidPasswordError && (
-                                <div className={style.Error}>Invalid password</div>
-                            )*/}
+                                {invalidPasswordError && (
+                                    <Error>Invalid password</Error>
+                                )}
                             </label>
                             <div className={style.CreateButton}>
                                 <input type="submit" value="create" />
@@ -148,6 +190,27 @@ export default CreateJournalEntry;
  *
  *
  *
- * helper functions & data
+ * helper functions
  *
  */
+function formatDate(input) {
+    const month = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+    ];
+    const date = new Date(input).toISOString();
+    const newDate = date.split("T")[0];
+    const arr = newDate.split("-");
+    const dateString = `${month[new Date(date).getMonth()]} ${arr[2]}, ${arr[0]}`;
+    return dateString;
+}

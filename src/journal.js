@@ -37,6 +37,36 @@ const journal = {
     ],
     timeline: [
         {
+            date: "2021-01-02",
+            projects: [
+                {
+                    name: "portfolio",
+                    tasks: {
+                        done: [
+                            {
+                                description:
+                                    "Configure yml file for journal-entries-table -> learn a bit more about yml syntax and how to acces the value of an array element.",
+                                duration: 60,
+                                image: "",
+                                tags: ["mongoDB"],
+                                status: "just started",
+                                links: [
+                                    "https://www.youtube.com/watch?v=1uFVr15xDGg&ab_channel=TechWorldwithNana",
+                                ],
+                            },
+                        ],
+                        projectRandomIdeas: [
+                            {
+                                idea: "",
+                                check: false,
+                            },
+                        ],
+                    },
+                    images: [],
+                },
+            ],
+        },
+        {
             date: "2020-12-31",
             projects: [
                 {
