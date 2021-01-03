@@ -1,23 +1,21 @@
+// Style
 import style from "./Menu.module.scss";
+
+// Packages
+import { v4 as uuid } from "uuid";
 
 // React Router
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Timeline = ({ timeline }) => {
-    const [timelineReversed, setTimelineReversed] = useState();
+    console.log("_____timeline ", timeline);
 
-    useEffect(() => {
-        if (timeline) {
-            let tln = timeline;
-            tln.reverse();
-            setTimelineReversed(tln);
-        }
-    }, [timeline]);
+    useEffect(() => {}, [timeline]);
 
     return (
         <div className={style.Timeline}>
-            <ul>{timelineReversed && mapDatesToTimeline(timelineReversed)}</ul>
+            <ul>{timeline && mapDatesToTimeline(timeline)}</ul>
         </div>
     );
 };
@@ -66,22 +64,47 @@ function mapDatesToTimeline(a) {
         result[year][month].push(day);
     });
 
-    return array.map((day, i) => {
-        const year = day.split("-")[0];
+    return Object.keys(result).map((y) => {
         return (
-            <li key={day.toString()}>
-                <Link
-                    to={`/timeline/:${day.date}`}
-                    // activeClass="active"
-                    // to={day.date}
-                    // spy={true}
-                    // smooth={true}
-                    // offset={0}
-                    // duration={500}
-                >
-                    {day}
-                </Link>
+            <li key={uuid()}>
+                <div>
+                    {y}
+                    {Object.keys(result[y]).map((m) => {
+                        return (
+                            <div
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                }}
+                            >
+                                {month[parseInt(m) - 1].toLowerCase().substring(0, 3)}
+                                {result[y][m].sort().map((d) => (
+                                    <Link
+                                        to={`/timeline/:${y}-${m}-${d}`}
+                                        activeClass={style.Active}
+                                    >
+                                        {d}
+                                    </Link>
+                                ))}
+                            </div>
+                        );
+                    })}
+                </div>
             </li>
         );
     });
 }
+/* return (
+    <li key={uuid()}>
+        <Link
+            to={`/timeline/:${k.date}`}
+            // to={day.date}
+            // spy={true}
+            // smooth={true}
+            // offset={0}
+            // duration={500}
+        >
+            {k}
+        </Link>
+    </li>
+); */

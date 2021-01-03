@@ -6,8 +6,14 @@
     background-color: #f8fafa;
     padding: 50px 80px 55px 80px;
     border-radius: 8px;
-    box-shadow: 0 4px 12px 0 rgba(199, 205, 216, 0.5);
-    border: 0.2px solid #1869ffbb;
+    box-shadow: 0 4px 20px 0 rgba(199, 205, 216, 0.7);
+    box-shadow: 0 4px 0 4px rgb(174, 178, 186);
+    box-shadow: 5px 5px 1px rgba(52, 53, 56, 0.3);
+    box-shadow: 3px 3px 1px #1869ff;
+    box-shadow: 3px 3px 3px 0px #1869ff9a;
+    box-shadow: 0 4px 10px 0 rgba(85, 87, 91, 0.4);
+
+    border: 1px solid rgb(213, 217, 218);
     position: relative;
 
     font-family: $po;
@@ -18,16 +24,18 @@
         position: absolute;
         top: -10px;
         right: -10px;
-        font-size: 20px;
+        font-size: 24px;
+        font-weight: bold;
 
         svg {
-            color: rgb(107, 110, 111);
+            font-weight: bold;
+            color: black;
         }
 
         &:hover {
             svg {
                 cursor: pointer;
-                color: rgb(31, 33, 35);
+                color: #1869ff;
             }
         }
     }
@@ -74,13 +82,13 @@
     h1 {
         margin: 0;
         padding: 0;
-        font-size: 24px;
+        font-size: 26px;
     }
 
     h4 {
         font-family: $dm;
         font-weight: 400;
-        font-size: 12px;
+        font-size: 14px;
         background-color: #e8edf1e0;
         padding: 12px 25px;
         margin: 10px 0;

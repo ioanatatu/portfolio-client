@@ -2,7 +2,7 @@
 
 .FormContainer {
     width: 650px;
-    // height: 550px;
+    height: 550px;
     background-color: #f8fafa;
     padding: 50px 80px 55px 80px;
     border-radius: 8px;
@@ -13,6 +13,19 @@
     font-family: $po;
     font-family: $sa;
     font-family: $gt;
+
+    .LoadingSpinnerContainer {
+        position: absolute;
+        top: 2%;
+        left: 5%;
+        height: 90%;
+        width: 90%;
+        background-color: #f8fafaad;
+        z-index: 999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
     .CloseButton {
         position: absolute;
@@ -33,7 +46,7 @@
     }
     h4 {
         font-family: $dm;
-        font-weight: 400;
+        font-weight: 600;
         font-size: 12px;
         background-color: #e8edf1e0;
         padding: 12px 25px;

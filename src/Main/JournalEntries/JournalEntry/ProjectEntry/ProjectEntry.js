@@ -9,7 +9,7 @@ import Tasks from "../Tasks/Tasks";
 import Stats from "../Stats/Stats";
 import ProjectGallery from "../Stats/ProjectGallery";
 import ProjectRandomIdeas from "../Stats/ProjectRandomIdeas";
-import Line from "../../../UI/Line";
+import Line from "../../../../UI/Line";
 import { BiAddToQueue } from "react-icons/bi";
 
 const ProjectEntry = ({ project }) => {
@@ -50,7 +50,7 @@ const ProjectEntry = ({ project }) => {
                         gap: "3%",
                     }}
                 >
-                    <Stats tasks={project.tasks.done} />
+                    {/*<Stats tasks={project.tasks.done} />*/}
                     <ProjectGallery />
                     <ProjectRandomIdeas ideas={project.tasks.projectRandomIdeas} />
                 </div>

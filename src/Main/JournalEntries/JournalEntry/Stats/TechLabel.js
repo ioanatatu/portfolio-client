@@ -2,7 +2,7 @@ import React from "react";
 import { Circle } from "rc-progress";
 
 // Components
-import Line from "../../../UI/Line";
+import Line from "../../../../UI/Line";
 
 const TechLabel = ({ tech }) => {
     console.log("tech", tech);

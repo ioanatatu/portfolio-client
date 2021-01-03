@@ -20,6 +20,7 @@
         flex-direction: column;
         align-items: center;
         // background-color: beige;
+        cursor: context-menu;
 
         .Greeting {
             margin-top: -10px;
@@ -30,33 +31,87 @@
             text-align: left;
         }
         .Heading {
-            text-align: center;
-            margin-top: 17%;
-            h1 {
-                font-family: $dm;
-                font-size: 35px;
-                // font-weight: 600;
-                text-align: center;
-                line-height: 35px;
+            margin-top: 7%;
+            display: flex;
+            // align-items: flex-end;
+            // justify-content: flex-end;
+
+            .WelcomeMessage {
+                font-family: $po;
+                h1 {
+                    line-height: 37px;
+                    color: $fc-secondary-l;
+
+                    span {
+                        // color: #1869ff;
+                        font-weight: 600;
+                    }
+                }
+                h4 {
+                    margin-top: 15px;
+                    font-size: 12px;
+                    font-weight: 500;
+                    color: rgb(179, 183, 184);
+                }
+            }
+            .ProfilePic {
+                height: 180px;
+                width: 180px;
+                border-radius: 50%;
+                border: 1px solid rgb(229, 226, 226);
+                overflow: hidden;
+
+                img {
+                    width: 110%;
+                }
             }
         }
         .Line {
-            margin-top: 6%;
+            margin-top: 5%;
+        }
+        .CardsContainer {
+            margin-top: 30px;
+
+            p.Instructions {
+                margin-top: 25px;
+                font-family: $gt;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 18px;
+            }
         }
         .AddProject {
             margin-top: 15px;
-            padding: 5px 10px;
             font-family: $gt;
+            font-weight: 500;
             cursor: pointer;
-            border-radius: 3px;
-            border: 0.5px solid #35a9f1;
+            border-radius: 5px;
             background: white;
             transition: background 0.2s linear;
             outline: none;
+            padding: 4px 10px;
+            width: 145px;
+            border: 1.5px solid #28292a;
+            height: 32px;
+            box-shadow: 3px 3px 1px #1869ff;
+            transition: background 0.2s linear;
+
+            span {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                svg {
+                    font-size: 18px;
+                    margin: 0 2px 1px 1px;
+                    width: auto;
+                }
+            }
 
             &:hover {
-                background-color: #35a9f1;
-                transition: background 0.2s linear;
+                color: #1869ff;
+                border-color: #1869ff;
+                transition: all 0.2s linear;
             }
         }
     }
@@ -64,7 +119,7 @@
     .ChevIcon {
         position: absolute;
         bottom: 4%;
-        left: 45.6%;
+        left: 46%;
 
         svg {
             margin: 0;
@@ -72,13 +127,13 @@
             height: 30px;
             padding: 4px;
             border-radius: 50%;
-            background-color: rgb(80, 81, 81);
             padding-top: 6px;
-            transition: background-color 0.3s linear;
+            transition: border-color 0.2s linear;
+            border: 1px solid white;
 
             &:hover {
-                background-color: black;
-                transition: background-color 0.3s linear;
+                border-color: #1869ff;
+                transition: border-color 0.2s linear;
             }
         }
     }

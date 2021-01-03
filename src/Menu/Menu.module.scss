@@ -41,16 +41,19 @@
             margin-top: -2px;
             height: 50px;
             cursor: pointer;
-            transition: color 0.2s linear;
+            transition: all 0.2s linear;
             text-align: right;
+            font-size: 11px;
 
             .Active {
-                color: $blue-l;
+                font-weight: 600;
+                color: $fc-secondary-l;
                 position: relative;
-                transition: color 0.3s linear;
+                transition: all 0.3s linear;
+                font-size: 16px;
             }
             .Active::before {
-                transition: background-color 3s linear;
+                transition: all 3s linear;
                 content: "";
                 position: absolute;
                 right: -20.2px;
@@ -80,15 +83,40 @@
             flex-direction: column;
             align-items: right;
             font-family: "DM Sans";
+
             ul {
                 list-style: none;
+
                 li {
                     text-align: right;
                     cursor: pointer;
+                    font-family: $gt;
+                    font-size: 13px;
+                    margin: 5px 0;
+
+                    .Active {
+                        color: $fc-secondary-l;
+                        position: relative;
+                        transition: color 0.3s linear;
+                    }
+                    .Active::before {
+                        transition: background-color 3s linear;
+                        content: "";
+                        position: absolute;
+                        right: -20.2px;
+                        top: -8px;
+                        width: 3.5px;
+                        height: 40px;
+                        background-color: $blue-l;
+                    }
 
                     a {
-                        color: black;
-                        font-size: 12px;
+                        color: $fc-primary-l;
+
+                        &:hover {
+                            color: #1869ff;
+                            transition: color 0.2s linear;
+                        }
                     }
                 }
             }

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 // Components
 import Welcome from "./Welcome/Welcome";
 import Projects from "./Projects/Projects";
-import Timeline from "./Timeline/Timeline";
+import JournalEntries from "./JournalEntries/JournalEntries";
 import DarkModeToggler from "../UI/DarkModeToggler";
 import CreateProjectForm from "./FORMS/CreateProjectForm/CreateProjectForm";
 
@@ -46,7 +46,7 @@ const Main = ({ journalEntries }) => {
             <div
                 style={{
                     position: "fixed",
-                    top: "5%",
+                    top: "4%",
                     left: "50%",
                     transform: "translate(-50%, 0)",
                     zIndex: "999",
@@ -92,7 +92,7 @@ const Main = ({ journalEntries }) => {
                 liftProjectsStateToMain={liftProjectsStateToMain}
             />
 
-            <Timeline projects={projects} />
+            <JournalEntries projects={projects} />
         </div>
     );
 };

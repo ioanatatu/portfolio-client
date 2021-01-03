@@ -3,7 +3,7 @@ import React, { Fragment } from "react";
 // Components
 import { FaRegEdit } from "react-icons/fa";
 import { BiTrashAlt } from "react-icons/bi";
-import Line from "../../../UI/Line";
+import Line from "../../../../UI/Line";
 
 const Task = ({ task, index }) => {
     return (

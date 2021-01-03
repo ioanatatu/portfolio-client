@@ -17,6 +17,7 @@ const Menu = ({ timeline }) => {
     }; */
 
     console.log("TIMELINE from Menu ", timeline);
+
     const handleSetActive = () => {
         console.log("example");
     };
@@ -25,7 +26,7 @@ const Menu = ({ timeline }) => {
         <div className={style.MenuWrapper}>
             <div className={style.Menu}>
                 <div className={style.VerticalLine}>
-                    <Line width={"3px"} height={"100%"} color={"#d7d8d8"} />
+                    <Line width={"2px"} height={"100%"} color={"#d7d8d8"} />
                 </div>
 
                 <div className={style.TimelineLink} id={style.FirstLink}>

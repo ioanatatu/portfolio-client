@@ -8,7 +8,7 @@ import React, { useState } from "react";
 import { AiOutlineFolderAdd } from "react-icons/ai";
 
 // Components
-import CreateJournalEntryForm from "../FORMS/CreateJournalEntryForm/CreateJournalEntryForm";
+import CreateJournalEntryForm from "../../FORMS/CreateJournalEntryForm/CreateJournalEntryForm";
 import ProjectsButtons from "./ProjectsButtons/ProjectsButtons";
 import ProjectEntry from "./ProjectEntry/ProjectEntry";
 
@@ -26,6 +26,9 @@ const JournalEntry = ({ day, projects }, props) => {
     const toggleJournalEntryFormIsVisible = () => {
         setJournalEntryFormIsVisible((prev) => !prev);
     };
+    const passNewJournalEntryToJournalEntryComponent = (newJournalEntry) => {
+        console.log("newJournalEntry ", newJournalEntry);
+    };
 
     return (
         <div className={style.JournalEntryWrapper} id={day.date}>
@@ -42,6 +45,9 @@ const JournalEntry = ({ day, projects }, props) => {
                     <CreateJournalEntryForm
                         toggleJournalEntryFormIsVisible={
                             toggleJournalEntryFormIsVisible
+                        }
+                        passNewJournalEntryToJournalEntryComponent={
+                            passNewJournalEntryToJournalEntryComponent
                         }
                         projects={projects}
                     />

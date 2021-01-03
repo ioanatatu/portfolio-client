@@ -6,9 +6,9 @@ import React, { Fragment } from "react";
 // import { Switch, Route } from "react-router-dom";
 
 // Components
-import JournalEntry from "../JournalEntry/JournalEntry";
+import JournalEntry from "./JournalEntry/JournalEntry";
 
-const Timeline = ({ projects }) => {
+const JournalEntries = ({ projects }) => {
     console.log("JOURNAL", journal);
     return (
         <Fragment>
@@ -21,4 +21,4 @@ const Timeline = ({ projects }) => {
     );
 };
 
-export default Timeline;
+export default JournalEntries;

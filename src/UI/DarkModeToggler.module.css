@@ -1,6 +1,6 @@
 .Normal label {
     width: 34px;
-    height: 14px;
+    height: 16px;
     position: relative;
     display: inline-block;
     border-radius: 60px;
@@ -10,11 +10,11 @@
     border: 1.5px solid #1869ff;
 }
 .LightMode.Normal label {
-    border: 1.5px solid #1869ff;
+    border: 2px solid #1869ff;
     background-color: white;
 }
 .DarkMode.Normal label {
-    border: 1.5px solid #1869ff;
+    border: 2px solid #1869ff;
     background-color: #1869ff;
 }
 
@@ -29,16 +29,17 @@
 
 .LightMode.Normal label:after {
     background: #1869ff;
-    top: 0.5px;
+    top: 1px;
     left: 1px;
     transition: 0.4s;
 }
 .DarkMode.Normal label:after {
     box-sizing: border-box;
     background: white;
-    border: 0.1px solid #1869ff;
-    top: 0.5px;
-    left: 20px;
+    /* border: 0.2px solid #1869ff; */
+    top: 1px;
+    /* left: 20px; */
+    left: 19px;
 }
 
 .Normal {

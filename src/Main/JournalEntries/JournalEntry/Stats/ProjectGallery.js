@@ -1,5 +1,5 @@
 import React from "react";
-import Arrow from "../../../UI/Arrow";
+import Arrow from "../../../../UI/Arrow";
 
 const ProjectGallery = (props) => {
     return (
