@@ -15,6 +15,7 @@ import { useViewport } from "../../CustomHooks/ViewportProvider";
 import Arrow from "../../UI/Arrow";
 import Line from "../../UI/Line";
 import LoadingSpinner from "../../UI/LoadingSpinner";
+import PasswordModalForm from "../FORMS/PasswordModalForm/PasswordModalForm";
 
 // Font Icons
 import {
@@ -39,6 +40,8 @@ import {
 } from "react-icons/si";
 import { VscJson } from "react-icons/vsc";
 import { MdExplicit } from "react-icons/md";
+import { FaRegEdit } from "react-icons/fa";
+import { BiTrashAlt } from "react-icons/bi";
 
 // others
 import API_URL from "../../util/secrets";
@@ -52,6 +55,7 @@ const Projects = ({
     const [projects, setProjects] = useState([]);
     const [noProjectsMessage, setNoProjectsMessage] = useState(false);
     const [selectedProject, setSelectedProject] = useState(0);
+    const [passwordModalIsVisible, setPasswordModalIsVisible] = useState(false);
 
     // custom hook
     const { width } = useViewport();
@@ -116,6 +120,9 @@ const Projects = ({
         setSelectedProject(index);
         console.log("index ", index);
     };
+    const togglePasswordModal = () => {
+        setPasswordModalIsVisible((prev) => !prev);
+    };
 
     return (
         <div className={style.ProjectsWrapper} id="projects">
@@ -179,17 +186,52 @@ const Projects = ({
                                 <div className={style.ProjectTitle}>
                                     {projects && projects[selectedProject] && (
                                         <div
-                                            className={
-                                                !projects[selectedProject]
-                                                    .horizontalLogo
-                                                    ? style.LogoContainer
-                                                    : style.LogoContainerHorizontal
-                                            }
+                                            style={{
+                                                width: "100%",
+                                                display: "flex",
+                                                justifyContent: "space-between",
+                                                alignItems: "flex-end",
+                                            }}
                                         >
-                                            <img
-                                                src={projects[selectedProject].logo}
-                                                alt="logo"
-                                            ></img>
+                                            <div
+                                                className={
+                                                    !projects[selectedProject]
+                                                        .horizontalLogo
+                                                        ? style.LogoContainer
+                                                        : style.LogoContainerHorizontal
+                                                }
+                                            >
+                                                <img
+                                                    src={
+                                                        projects[selectedProject].logo
+                                                    }
+                                                    alt="logo"
+                                                ></img>
+                                            </div>
+                                            <div className={style.EditDeleteProject}>
+                                                {passwordModalIsVisible && (
+                                                    <div
+                                                        className={
+                                                            style.PasswordModalContainer
+                                                        }
+                                                    >
+                                                        <PasswordModalForm
+                                                        // selectedProjectId={
+                                                        //     projects[
+                                                        //         selectedProject
+                                                        //     ].ID
+                                                        // }
+                                                        // togglePasswordModal={
+                                                        //     togglePasswordModal
+                                                        // }
+                                                        />
+                                                    </div>
+                                                )}
+                                                {/*<FaRegEdit />*/}
+                                                <span onClick={togglePasswordModal}>
+                                                    <BiTrashAlt />
+                                                </span>
+                                            </div>
                                         </div>
                                     )}
                                 </div>
@@ -218,6 +260,7 @@ const Projects = ({
                                     </div>
                                 )}
                             </div>
+
                             <div>
                                 <p style={{ height: "120px" }}></p>
                                 <div className={style.LastUpdated}>
@@ -325,9 +368,24 @@ const techStackFonticons = {
     express: <MdExplicit />,
     mongoDB: <SiMongodb />,
     postgreSQL: <SiPostgresql />,
-    DynamoDB: <SiAmazonaws />,
-    "AWS S3": <SiAmazonaws />,
-    "AWS SES": <SiAmazonaws />,
+    DynamoDB: (
+        <span style={{ display: "flex" }}>
+            <SiAmazonaws />
+            <span style={{ fontSize: "10px", fontWeight: "700" }}>DynamoDB</span>
+        </span>
+    ),
+    "AWS S3": (
+        <span style={{ display: "flex" }}>
+            <SiAmazonaws />
+            <span style={{ fontSize: "10px", fontWeight: "700" }}>S3</span>
+        </span>
+    ),
+    "AWS SES": (
+        <span style={{ display: "flex" }}>
+            <SiAmazonaws />
+            <span style={{ fontSize: "10px", fontWeight: "700" }}>SES</span>
+        </span>
+    ),
     serverless: <SiServerless />,
     socketio: <SiSocketDotIo />,
     GraphQL: <SiGraphql />,

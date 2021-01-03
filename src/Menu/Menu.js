@@ -60,10 +60,10 @@ const Menu = ({ timeline }) => {
                 <div className={style.TimelineLink}>
                     <Link
                         activeClass={style.Active}
-                        to="timeline"
+                        to="journal"
                         spy={true}
                         smooth={true}
-                        offset={1}
+                        offset={2}
                         duration={500}
                         onSetActive={handleSetActive}
                     >

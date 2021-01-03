@@ -5,7 +5,7 @@
     width: 100vw;
     padding: 3.5% 8%;
     background-color: rgb(242, 245, 247);
-    background-color: rgb(221, 225, 228);
+    background-color: rgb(231, 235, 238);
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -97,6 +97,36 @@
                 display: flex;
                 align-items: flex-end;
                 padding-bottom: 20px;
+
+                .EditDeleteProject {
+                    position: relative;
+
+                    span {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        transition: background-color 0.1s linear;
+                        width: 25px;
+                        height: 25px;
+                        border-radius: 3px;
+                        cursor: pointer;
+
+                        &:hover {
+                            background-color: #fff;
+                            transition: background-color 0.1s linear;
+                        }
+
+                        svg {
+                            width: auto;
+                            margin: 0;
+                        }
+                    }
+
+                    .PasswordModalContainer {
+                        position: absolute;
+                        top: -220px;
+                    }
+                }
 
                 .LogoContainer,
                 .LogoContainerHorizontal {

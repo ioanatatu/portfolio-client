@@ -13,8 +13,8 @@ const JournalEntries = ({ projects }) => {
     return (
         <Fragment>
             {journal && journal.timeline && (
-                <div className="JournalEntries" id="timeline">
-                    <JournalEntry day={journal.timeline[3]} projects={projects} />
+                <div className="JournalEntries" id="journal">
+                    <JournalEntry day={journal.timeline[1]} projects={projects} />
                 </div>
             )}
         </Fragment>

@@ -11,10 +11,6 @@ import { ViewportProvider } from "./CustomHooks/ViewportProvider";
 // Axios
 import axios from "axios";
 
-// Data
-import journal from "./journal";
-//don't need it anymore because we are taking the info from the backend
-
 // Components
 import Menu from "./Menu/Menu";
 import Main from "./Main/Main";
@@ -46,12 +42,7 @@ const App = () => {
                     <Route
                         exact
                         path="/"
-                        render={() => (
-                            <Main
-                                // projects={journal.projects}
-                                journalEntries={journalData}
-                            />
-                        )}
+                        render={() => <Main journalEntries={journalData} />}
                     />
                     <Route render={() => <PageNotFound />} />
                 </Switch>
