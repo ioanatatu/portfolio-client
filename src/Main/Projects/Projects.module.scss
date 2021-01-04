@@ -33,8 +33,8 @@
         }
         .Heading {
             text-align: center;
-            margin-top: 10%;
-            margin-bottom: 90px;
+            margin-top: 7%;
+            margin-bottom: 30px;
             display: flex;
             width: 100%;
             // background-color: rgb(164, 204, 164);
@@ -149,6 +149,9 @@
             }
             .Description {
                 font-family: $gt;
+                p {
+                    font-size: 14px;
+                }
             }
             .LastUpdated {
                 font-family: $gt;

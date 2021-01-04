@@ -111,7 +111,6 @@ const Projects = ({
                 const img = new Image();
                 img.onload = function () {
                     project.horizontalLogo = this.width > 400;
-                    console.log(this.width > 400);
                 };
                 img.src = `${project.logo}`;
             });
@@ -411,16 +410,3 @@ const techStackFonticons = {
     "JSON schema": <VscJson />,
     firebase: <SiFirebase />,
 };
-let list = [
-    {
-        name: "thenap",
-        link:
-            "https://portfolio-images-bucket-hsjgh346.s3-eu-west-1.amazonaws.com/projects-logos/2020-12-30T113917.png",
-    },
-    { name: "sinkplant" },
-    { name: "item3" },
-    { name: "item4" },
-    { name: "item5" },
-    { name: "item6" },
-    { name: "item7" },
-];

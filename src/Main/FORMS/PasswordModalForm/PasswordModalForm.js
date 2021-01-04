@@ -57,7 +57,6 @@ const PasswordModalForm = ({
                 // remove project on frontend
                 setTimeout(() => {
                     setTimeout(() => {
-                        console.log("\n\n______CLOSE MODAL____\n");
                         togglePasswordModal();
                     }, 1000);
                     // setLoadingData(false);

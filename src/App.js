@@ -26,7 +26,6 @@ const App = () => {
             const data = await axios.get(
                 "https://0ryd02k588.execute-api.eu-west-1.amazonaws.com/dev/journal-entries"
             );
-            console.log("FROM DB..... ", data.data);
             setJournalData(data.data);
 
             const timeline = data.data.map((day) => day.ID);

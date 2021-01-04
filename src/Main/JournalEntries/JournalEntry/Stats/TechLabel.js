@@ -5,7 +5,6 @@ import { Circle } from "rc-progress";
 import Line from "../../../../UI/Line";
 
 const TechLabel = ({ tech }) => {
-    console.log("tech", tech);
     return (
         <div
             style={{

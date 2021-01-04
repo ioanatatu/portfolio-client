@@ -62,35 +62,39 @@ function mapDatesToTimeline(a) {
         result[year][month].push(day);
     });
 
-    return Object.keys(result).map((y) => {
-        return (
-            <li key={uuid()}>
-                <div>
-                    {y}
-                    {Object.keys(result[y]).map((m) => {
-                        return (
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                }}
-                            >
-                                {month[parseInt(m) - 1].toLowerCase().substring(0, 3)}
-                                {result[y][m].sort().map((d) => (
-                                    <Link
-                                        to={`/timeline/:${y}-${m}-${d}`}
-                                        activeClass={style.Active}
-                                    >
-                                        {d}
-                                    </Link>
-                                ))}
-                            </div>
-                        );
-                    })}
-                </div>
-            </li>
-        );
-    });
+    return Object.keys(result)
+        .reverse()
+        .map((y) => {
+            return (
+                <li key={uuid()}>
+                    <div>
+                        {y}
+                        {Object.keys(result[y]).map((m) => {
+                            return (
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        flexDirection: "column",
+                                    }}
+                                >
+                                    {month[parseInt(m) - 1]
+                                        .toLowerCase()
+                                        .substring(0, 3)}
+                                    {result[y][m].sort().map((d) => (
+                                        <Link
+                                            to={`/timeline/:${y}-${m}-${d}`}
+                                            activeClass={style.Active}
+                                        >
+                                            {d}
+                                        </Link>
+                                    ))}
+                                </div>
+                            );
+                        })}
+                    </div>
+                </li>
+            );
+        });
 }
 /* return (
     <li key={uuid()}>

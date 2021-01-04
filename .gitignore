@@ -25,3 +25,5 @@ yarn-error.log*
 
 # added by me
 /src/util/secrets.js
+/src/_journal.js
+__journal.js

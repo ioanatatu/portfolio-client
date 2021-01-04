@@ -1,5 +1,5 @@
 // temporary, for testing purposes
-import journal from "../../journal";
+import journal from "../../_journal";
 
 // React
 import React, { Fragment } from "react";
@@ -9,7 +9,6 @@ import React, { Fragment } from "react";
 import JournalEntry from "./JournalEntry/JournalEntry";
 
 const JournalEntries = ({ projects }) => {
-    console.log("JOURNAL", journal);
     return (
         <Fragment>
             {journal && journal.timeline && (

@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import Line from "../../../../UI/Line";
 
 const ProjectRandomIdeas = ({ ideas }) => {
-    console.log("ideas", ideas);
     return (
         <div
             style={{

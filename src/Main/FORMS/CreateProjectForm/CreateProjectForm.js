@@ -123,7 +123,6 @@ const CreateProject = ({ passProjectToState, toggleProjectFormIsVisible }) => {
                         setGeneralError(true);
                     } else {
                         data.logo = res.data.imageURL;
-                        console.log("data.logo", data.logo);
                     }
                 } catch (err) {
                     console.log("error from upload image", err);
@@ -149,11 +148,9 @@ const CreateProject = ({ passProjectToState, toggleProjectFormIsVisible }) => {
                         setTitleExistsError(true);
                         setLoadingData(false);
                     } else if (res.status === 200) {
-                        console.log("___DATA FROM API", res.data);
                         passProjectToState(res.data);
                         setTimeout(() => {
                             setTimeout(() => {
-                                console.log("\n\n______CLOSE MODAL____\n");
                                 toggleProjectFormIsVisible();
                             }, 2000);
                             setLoadingData(false);

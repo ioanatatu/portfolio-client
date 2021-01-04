@@ -70,7 +70,6 @@ const CreateJournalEntry = ({
                     passNewJournalEntryToJournalEntryComponent(res.data);
                     setTimeout(() => {
                         setTimeout(() => {
-                            console.log("\n\n______CLOSE MODAL____\n");
                             toggleJournalEntryFormIsVisible();
                         }, 2000);
                         setLoadingData(false);

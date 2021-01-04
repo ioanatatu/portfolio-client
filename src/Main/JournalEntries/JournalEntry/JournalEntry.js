@@ -17,7 +17,7 @@ const JournalEntry = ({ day, projects }, props) => {
     const [journalEntryFormIsVisible, setJournalEntryFormIsVisible] = useState(false);
 
     // use this in the Date Component
-    console.log("match", props.params);
+    // console.log("match", props.params);
 
     const handleSwitchProject = (arg) => {
         setProject(arg);
@@ -27,7 +27,7 @@ const JournalEntry = ({ day, projects }, props) => {
         setJournalEntryFormIsVisible((prev) => !prev);
     };
     const passNewJournalEntryToJournalEntryComponent = (newJournalEntry) => {
-        console.log("newJournalEntry ", newJournalEntry);
+        // console.log("newJournalEntry ", newJournalEntry);
     };
 
     return (
