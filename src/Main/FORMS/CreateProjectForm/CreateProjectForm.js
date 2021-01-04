@@ -3,6 +3,9 @@ import style from "./CreateProjectForm.module.scss";
 
 // React
 import React, { Fragment, useState, useEffect } from "react";
+
+// Packages
+import { v4 as uuid } from "uuid";
 import { useForm } from "react-hook-form";
 
 // Components
@@ -169,6 +172,7 @@ const CreateProject = ({ passProjectToState, toggleProjectFormIsVisible }) => {
         } else {
             // 8. if no password was entered, print data and update general state
             data.logo = logoPreview;
+            data.ID = uuid();
             passProjectToState(data);
             setTimeout(() => {
                 setTimeout(() => {
