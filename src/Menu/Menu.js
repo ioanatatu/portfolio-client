@@ -16,11 +16,7 @@ const Menu = ({ timeline, darkMode }) => {
         scroll.scrollToTop();
     }; */
 
-    console.log("TIMELINE from Menu ", timeline);
-
-    const handleSetActive = () => {
-        console.log("example");
-    };
+    const handleSetActive = () => {};
 
     return (
         <div className={style.MenuWrapper}>

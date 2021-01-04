@@ -44,7 +44,6 @@ const CreateProject = ({ passProjectToState, toggleProjectFormIsVisible }) => {
     useEffect(() => {}, [invalidGithubLinkErrors, githubLinks, loadingLogo]);
 
     const onSubmit = async (data) => {
-        // console.log("DATA__", data);
         // 1. check if title exists
         if (data.title.length === 0) {
             return setNoTitleError(true);
@@ -108,7 +107,6 @@ const CreateProject = ({ passProjectToState, toggleProjectFormIsVisible }) => {
         }
 
         setLoadingData(true);
-
         // 7. do the next steps if user has entered a password
         if (data.password.length !== 0) {
             // 7.1. check if image is valid

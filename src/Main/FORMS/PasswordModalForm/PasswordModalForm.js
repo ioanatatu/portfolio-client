@@ -6,16 +6,41 @@ import React, { useState } from "react";
 
 // Components
 import Error from "../../../UI/Error";
+import Checkmark from "../../../UI/Checkmark/Checkmark";
+import LoadingSpinner from "../../../UI/LoadingSpinner";
 
 // others
 import API_URL from "../../../util/secrets";
 import axios from "axios";
 
-const PasswordModalForm = ({ selectedProjectId, togglePasswordModal }) => {
-    const [invalidPasswordError, setInvalidPasswordError] = useState(false);
+const PasswordModalForm = ({
+    selectedProjectId,
+    selectedProjectTitle,
+    togglePasswordModal,
+    removeProjectFromFrontend,
+}) => {
+    // state
     const [password, setPassword] = useState("");
+    const [loadingData, setLoadingData] = useState(false);
+    const [checkmark, setCheckmark] = useState(false);
+
+    // errors
+    const [invalidPasswordError, setInvalidPasswordError] = useState(false);
 
     const handleSubmit = async () => {
+        setLoadingData(true);
+
+        if (password.trim() === "") {
+            removeProjectFromFrontend(selectedProjectId);
+
+            setTimeout(() => {
+                setTimeout(() => {
+                    togglePasswordModal();
+                }, 1000);
+                setLoadingData(false);
+                setCheckmark(true);
+            }, 500);
+        }
         /*  try {
             const res = await axios.delete(
                 `${API_URL}/project/:${selectedProjectId}`,
@@ -50,6 +75,21 @@ const PasswordModalForm = ({ selectedProjectId, togglePasswordModal }) => {
 
     return (
         <div className={style.PasswordModal}>
+            {loadingData && !checkmark ? (
+                <div className={style.LoadingSpinnerContainer}>
+                    <LoadingSpinner size={50} color={"#fc7284"} />
+                </div>
+            ) : !loadingData && checkmark ? (
+                <div className={style.CheckmarkContainer}>
+                    <Checkmark color={"#fc7284"} />
+                    {/* TODO: useRef hook to get the previous value of the selected project title
+                            <p>{selectedProjectTitle} has been deleted.</p>
+                        
+                        */}
+                    <p>The project has been deleted.</p>
+                </div>
+            ) : null}
+            <h1>Do you really want to delete {selectedProjectTitle}?</h1>
             <h2>
                 If no password is entered, the project will be deleted on the client
                 side only. An incorrect password will throw an error.
@@ -60,7 +100,7 @@ const PasswordModalForm = ({ selectedProjectId, togglePasswordModal }) => {
                 <input
                     type="password"
                     name="password"
-                    onClick={setInvalidPasswordError(false)}
+                    // onClick={setInvalidPasswordError(false)}
                     // onChange={() => onChangeHandler()}
                 />
             </label>

@@ -10,7 +10,7 @@ svg {
     &.circle {
         -webkit-animation: dash 2s ease-in-out;
         animation: dash 2s ease-in-out;
-        stroke: #4cb0ee;
+        // stroke: #4cb0ee;
     }
     &.line {
         stroke-dashoffset: 1000;
@@ -21,7 +21,7 @@ svg {
         stroke-dashoffset: -100;
         -webkit-animation: dash-check 2s 0.35s ease-in-out forwards;
         animation: dash-check 2s 0.35s ease-in-out forwards;
-        stroke: #49adeb;
+        // stroke: #49adeb;
     }
 }
 

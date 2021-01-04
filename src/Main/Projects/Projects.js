@@ -56,6 +56,7 @@ const Projects = ({
     const [projects, setProjects] = useState([]);
     const [noProjectsMessage, setNoProjectsMessage] = useState(false);
     const [selectedProject, setSelectedProject] = useState(0);
+    const [selectedProjectTitle, setSelectedProjectTitle] = useState(0);
     const [passwordModalIsVisible, setPasswordModalIsVisible] = useState(false);
 
     // custom hook
@@ -119,10 +120,15 @@ const Projects = ({
 
     const handleClickedProject = (index) => {
         setSelectedProject(index);
-        console.log("index ", index);
     };
     const togglePasswordModal = () => {
         setPasswordModalIsVisible((prev) => !prev);
+    };
+    const removeProjectFromFrontend = (selectedProjectID) => {
+        setProjects((prev) =>
+            prev.filter((project) => project.ID !== selectedProjectID)
+        );
+        setSelectedProject(0);
     };
 
     return (
@@ -220,14 +226,22 @@ const Projects = ({
                                                         }
                                                     >
                                                         <PasswordModalForm
-                                                        // selectedProjectId={
-                                                        //     projects[
-                                                        //         selectedProject
-                                                        //     ].ID
-                                                        // }
-                                                        // togglePasswordModal={
-                                                        //     togglePasswordModal
-                                                        // }
+                                                            selectedProjectId={
+                                                                projects[
+                                                                    selectedProject
+                                                                ].ID
+                                                            }
+                                                            selectedProjectTitle={
+                                                                projects[
+                                                                    selectedProject
+                                                                ].title
+                                                            }
+                                                            togglePasswordModal={
+                                                                togglePasswordModal
+                                                            }
+                                                            removeProjectFromFrontend={
+                                                                removeProjectFromFrontend
+                                                            }
                                                         />
                                                     </div>
                                                 )}

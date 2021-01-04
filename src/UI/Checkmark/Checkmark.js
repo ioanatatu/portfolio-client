@@ -1,7 +1,9 @@
 import style from "./Checkmark.module.scss";
 import React, { Fragment } from "react";
 
-const Checkmark = () => {
+const Checkmark = ({ color }) => {
+    const c = color || "#4cb0ee";
+
     return (
         <Fragment>
             <svg
@@ -12,7 +14,7 @@ const Checkmark = () => {
                 <circle
                     className={`${style.path} ${style.circle}`}
                     fill="none"
-                    stroke="#35a9f1"
+                    stroke={c}
                     strokeWidth="7"
                     strokeMiterlimit="10"
                     cx="65.1"
@@ -22,7 +24,7 @@ const Checkmark = () => {
                 <polyline
                     className={`${style.path} ${style.check}`}
                     fill="none"
-                    stroke="#35a9f1"
+                    stroke={c}
                     strokeWidth="7"
                     strokeLinecap="round"
                     strokeMiterlimit="10"
