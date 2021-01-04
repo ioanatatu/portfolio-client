@@ -11,14 +11,14 @@ import CreateProjectForm from "./FORMS/CreateProjectForm/CreateProjectForm";
 const Main = ({ journalEntries }) => {
     console.log("journalEntries", journalEntries);
     // state
-    const [darkMode, setDarkMode] = useState(false);
     const [projectFormIsVisible, setProjectFormIsVisible] = useState(false);
     const [newProject, setNewProject] = useState(null);
     const [projects, setProjects] = useState([]);
+    const [darkMode, setDarkMode] = useState(null);
 
     const toggleDarkMode = () => {
+        // change darkMode state
         setDarkMode((prevDarkMode) => !prevDarkMode);
-        localStorage.setItem("darkMode", JSON.stringify(darkMode));
     };
     const passProjectToState = (arg) => {
         console.log("ARG from Main", arg);
@@ -31,6 +31,20 @@ const Main = ({ journalEntries }) => {
     const liftProjectsStateToMain = (projectsFromProjectsComponent) => {
         setProjects(projectsFromProjectsComponent);
     };
+
+    // check if there is a darkMode variable in the local storage when component mounts
+    useEffect(() => {
+        localStorage.getItem("darkMode") === "false"
+            ? setDarkMode(false)
+            : setDarkMode(true);
+    }, []);
+
+    // after darkMode state has been changed by toggling, set it in the local storage
+    useEffect(() => {
+        if (darkMode !== null) {
+            localStorage.setItem("darkMode", JSON.stringify(darkMode));
+        }
+    }, [darkMode]);
 
     useEffect(() => {}, [newProject, projects]);
 
