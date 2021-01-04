@@ -10,7 +10,7 @@ import TimelineLinks from "./TimelineLinks";
 import Count from "./Count";
 import Line from "../UI/Line";
 
-const Menu = ({ timeline }) => {
+const Menu = ({ timeline, darkMode }) => {
     // for this function add a button
     /* const scrollToTop = () => {
         scroll.scrollToTop();
@@ -24,9 +24,13 @@ const Menu = ({ timeline }) => {
 
     return (
         <div className={style.MenuWrapper}>
-            <div className={style.Menu}>
+            <div className={`${style.Menu} ${darkMode ? style.DarkMode : ""}`}>
                 <div className={style.VerticalLine}>
-                    <Line width={"2px"} height={"100%"} color={"#d7d8d8"} />
+                    <Line
+                        width={darkMode ? "1px" : "1.5px"}
+                        height={"100%"}
+                        color={darkMode ? "#6c767c" : "#d7d8d8"}
+                    />
                 </div>
 
                 <div className={style.TimelineLink} id={style.FirstLink}>

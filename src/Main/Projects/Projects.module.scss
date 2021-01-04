@@ -234,3 +234,14 @@
         }
     }
 }
+
+.DarkMode {
+    background-color: #1a1c20;
+    .Projects {
+        .Greeting {
+            color: $fc-primary-d;
+            font-weight: 300;
+            letter-spacing: 0.6px;
+        }
+    }
+}

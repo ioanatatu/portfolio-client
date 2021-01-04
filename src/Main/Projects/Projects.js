@@ -51,6 +51,7 @@ const Projects = ({
     newProject,
     toggleProjectFormIsVisible,
     liftProjectsStateToMain,
+    darkMode,
 }) => {
     const [projects, setProjects] = useState([]);
     const [noProjectsMessage, setNoProjectsMessage] = useState(false);
@@ -125,7 +126,10 @@ const Projects = ({
     };
 
     return (
-        <div className={style.ProjectsWrapper} id="projects">
+        <div
+            className={`${style.ProjectsWrapper} ${darkMode ? style.DarkMode : ""}`}
+            id="projects"
+        >
             <div className={style.Projects}>
                 <h6 className={style.Greeting}>
                     {noProjectsMessage

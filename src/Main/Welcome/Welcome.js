@@ -16,7 +16,7 @@ import Arrow from "../../UI/Arrow";
 // Font Icons
 import { FaFolderOpen } from "react-icons/fa";
 
-const Welcome = ({ toggleProjectFormIsVisible }) => {
+const Welcome = ({ toggleProjectFormIsVisible, darkMode }) => {
     const { width } = useViewport();
     const breakpoint = 699;
 
@@ -36,7 +36,10 @@ const Welcome = ({ toggleProjectFormIsVisible }) => {
     }
 
     return (
-        <div className={style.WelcomeWrapper} id="intro">
+        <div
+            className={`${style.WelcomeWrapper} ${darkMode ? style.DarkMode : ""}`}
+            id="intro"
+        >
             <div className={style.Welcome}>
                 {/* this should eventually be a separate component that renders either the Date or the Greeting, so it receives props*/}
                 <h6 className={style.Greeting}>Hi there dear Visitor,</h6>
@@ -52,10 +55,15 @@ const Welcome = ({ toggleProjectFormIsVisible }) => {
                             <h1>
                                 i'm <span>ioana</span>
                             </h1>
-                            <h1>and this is my...</h1>
-                            <h1>portfolio/</h1>
-                            <h1>dev journal/</h1>
-                            <h1>learning board</h1>
+                            <h1>
+                                and this is my...
+                                <br />
+                                portfolio/
+                                <br />
+                                dev journal/
+                                <br />
+                                learning board
+                            </h1>
                             <h4>work in progress...</h4>
                         </div>
                         <div className={style.ProfilePic}>
@@ -67,12 +75,12 @@ const Welcome = ({ toggleProjectFormIsVisible }) => {
                     </div>
 
                     <div className={style.Line}>
-                        <Line height={"1px"} />
+                        <Line height={"1px"} color={darkMode ? "#6c767c" : null} />
                     </div>
 
                     <div style={styleCardsContainer} className={style.CardsContainer}>
                         <span>
-                            <Card title={"projects"}>
+                            <Card title={"projects"} darkMode={darkMode}>
                                 <p>
                                     Check out the projects I am currently working on,
                                     by sliding to the next page. To add new projects,
@@ -106,7 +114,7 @@ const Welcome = ({ toggleProjectFormIsVisible }) => {
                                 </button>
                             </Link>
                         </span>
-                        <Card title={"timeline"}>
+                        <Card title={"timeline"} darkMode={darkMode}>
                             <p>I developed this project with three things in mind:</p>
                             <p>
                                 <span>#1</span>
@@ -137,7 +145,11 @@ const Welcome = ({ toggleProjectFormIsVisible }) => {
                     offset={2}
                     duration={500}
                 >
-                    <Arrow size={30} fontSize={20} color={"#031b4e"} />
+                    <Arrow
+                        size={30}
+                        fontSize={20}
+                        color={darkMode ? "#bbc2c7" : "#031b4e"}
+                    />
                 </Link>
             </div>
         </div>
@@ -145,5 +157,3 @@ const Welcome = ({ toggleProjectFormIsVisible }) => {
 };
 
 export default Welcome;
-/// potential text
-/* Wanting to look back and see how far you've come is a good incentive for giving your best in each moment*/

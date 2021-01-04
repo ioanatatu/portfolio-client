@@ -19,6 +19,7 @@ import PageNotFound from "./UI/PageNotFound";
 const App = () => {
     const [journalData, setJournalData] = useState({});
     const [timeline, setTimeline] = useState([]);
+    const [darkMode, setDarkMode] = useState(false);
 
     useEffect(() => {
         (async () => {
@@ -33,16 +34,29 @@ const App = () => {
         })();
     }, []);
 
+    const liftDarkModeToApp = (arg) => {
+        setDarkMode(arg);
+    };
+
     return (
         <ViewportProvider>
             <div className={style.App}>
-                <Route exact path="/" render={() => <Menu timeline={timeline} />} />
+                <Route
+                    exact
+                    path="/"
+                    render={() => <Menu timeline={timeline} darkMode={darkMode} />}
+                />
 
                 <Switch>
                     <Route
                         exact
                         path="/"
-                        render={() => <Main journalEntries={journalData} />}
+                        render={() => (
+                            <Main
+                                journalEntries={journalData}
+                                liftDarkModeToApp={liftDarkModeToApp}
+                            />
+                        )}
                     />
                     <Route render={() => <PageNotFound />} />
                 </Switch>

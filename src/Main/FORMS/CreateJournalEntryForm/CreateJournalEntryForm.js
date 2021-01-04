@@ -22,7 +22,6 @@ const CreateJournalEntry = ({
     toggleJournalEntryFormIsVisible,
     projects,
 }) => {
-    console.log("PROJECTS from CreateJournalEntry", projects);
     // state
     const [startDate, setStartDate] = useState(new Date());
     const [selectedProject, setSelectedProject] = useState(null);
@@ -77,6 +76,8 @@ const CreateJournalEntry = ({
                         setLoadingData(false);
                         setCheckmark(true);
                     }, 800);
+                } else {
+                    setGeneralError(true);
                 }
             } catch (err) {
                 console.log(JSON.stringify(err));

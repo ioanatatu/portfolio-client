@@ -7,32 +7,50 @@
             font-family: "Poppins";
             font-family: $gt;
             font-family: $sa;
-            // font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1.2px;
-            color: $blue-l;
             color: $fc-secondary-l;
         }
         .L {
             height: 4px;
             border-radius: 1px;
             width: 30px;
-            background-color: $fc-secondary-l;
             background-color: $blue-l;
-            // margin: 0 auto;
             margin-top: 4px;
             margin-bottom: 10px;
         }
         p {
             font-family: $dm;
             margin-bottom: 10px;
+            font-size: 15px;
 
             span {
-                color: #1869ff;
+                color: $blue-l;
                 font-family: $gt;
                 font-size: 14px;
                 font-weight: 700;
                 margin-right: 5px;
+            }
+        }
+    }
+}
+.DarkMode {
+    .Card {
+        h4 {
+            color: rgb(141, 152, 157);
+            font-weight: 400;
+        }
+        .L {
+            background-color: $blue-l;
+        }
+        div {
+            p {
+                color: #848a91;
+                font-weight: 100;
+                font-size: 14.5px;
+            }
+            span {
+                color: $blue-l;
             }
         }
     }

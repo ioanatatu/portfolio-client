@@ -1,3 +1,6 @@
+// Style
+import style from "./Main.module.scss";
+
 // React
 import React, { useState, useEffect } from "react";
 
@@ -5,11 +8,11 @@ import React, { useState, useEffect } from "react";
 import Welcome from "./Welcome/Welcome";
 import Projects from "./Projects/Projects";
 import JournalEntries from "./JournalEntries/JournalEntries";
-import DarkModeToggler from "../UI/DarkModeToggler";
 import CreateProjectForm from "./FORMS/CreateProjectForm/CreateProjectForm";
+import DarkModeToggler from "../UI/DarkModeToggler";
+import Line from "../UI/Line";
 
-const Main = ({ journalEntries }) => {
-    console.log("journalEntries", journalEntries);
+const Main = ({ journalEntries, liftDarkModeToApp }) => {
     // state
     const [projectFormIsVisible, setProjectFormIsVisible] = useState(false);
     const [newProject, setNewProject] = useState(null);
@@ -17,17 +20,14 @@ const Main = ({ journalEntries }) => {
     const [darkMode, setDarkMode] = useState(null);
 
     const toggleDarkMode = () => {
-        // change darkMode state
         setDarkMode((prevDarkMode) => !prevDarkMode);
     };
     const passProjectToState = (arg) => {
-        console.log("ARG from Main", arg);
         setNewProject(arg);
     };
     const toggleProjectFormIsVisible = () => {
         setProjectFormIsVisible((prev) => !prev);
     };
-
     const liftProjectsStateToMain = (projectsFromProjectsComponent) => {
         setProjects(projectsFromProjectsComponent);
     };
@@ -44,28 +44,14 @@ const Main = ({ journalEntries }) => {
         if (darkMode !== null) {
             localStorage.setItem("darkMode", JSON.stringify(darkMode));
         }
-    }, [darkMode]);
+        liftDarkModeToApp(darkMode);
+    }, [darkMode, liftDarkModeToApp]);
 
     useEffect(() => {}, [newProject, projects]);
 
     return (
-        <div
-            className="Main"
-            style={{
-                width: "100vw",
-                position: "relative",
-                backgroundColor: `${darkMode ? "#031b4e" : "#f7f9f9"}`,
-            }}
-        >
-            <div
-                style={{
-                    position: "fixed",
-                    top: "4%",
-                    left: "50%",
-                    transform: "translate(-50%, 0)",
-                    zIndex: "999",
-                }}
-            >
+        <div className={`${style.MainWrapper} ${darkMode ? style.DarkMode : ""}`}>
+            <div className={style.ProjectFormContainer}>
                 {projectFormIsVisible && (
                     <CreateProjectForm
                         passProjectToState={(arg) => passProjectToState(arg)}
@@ -75,14 +61,17 @@ const Main = ({ journalEntries }) => {
             </div>
             <div
                 style={{
-                    width: "50px",
-                    height: "5px",
-                    backgroundColor: "#031b4e",
                     position: "fixed",
                     marginTop: "3%",
                     zIndex: 999,
                 }}
-            ></div>
+            >
+                <Line
+                    color={darkMode ? "#dae0e8" : "#031b4e"}
+                    height={"5px"}
+                    width={"50px"}
+                />
+            </div>
 
             <div
                 style={{
@@ -98,15 +87,19 @@ const Main = ({ journalEntries }) => {
                 />
             </div>
 
-            <Welcome toggleProjectFormIsVisible={toggleProjectFormIsVisible} />
+            <Welcome
+                toggleProjectFormIsVisible={toggleProjectFormIsVisible}
+                darkMode={darkMode}
+            />
 
             <Projects
                 newProject={newProject}
                 toggleProjectFormIsVisible={toggleProjectFormIsVisible}
                 liftProjectsStateToMain={liftProjectsStateToMain}
+                darkMode={darkMode}
             />
 
-            <JournalEntries projects={projects} />
+            <JournalEntries projects={projects} darkMode={darkMode} />
         </div>
     );
 };

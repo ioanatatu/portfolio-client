@@ -5,12 +5,10 @@ import style from "./Menu.module.scss";
 import { v4 as uuid } from "uuid";
 
 // React Router
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Timeline = ({ timeline }) => {
-    console.log("_____timeline ", timeline);
-
     useEffect(() => {}, [timeline]);
 
     return (
