@@ -1,6 +1,9 @@
 import React, { Fragment } from "react";
 import Line from "../../../../UI/Line";
 
+// Packages
+import { v4 as uuid } from "uuid";
+
 const ProjectRandomIdeas = ({ ideas }) => {
     return (
         <div
@@ -40,9 +43,9 @@ const ProjectRandomIdeas = ({ ideas }) => {
             <Line height={"1px"} />
             <div style={{ maxHeight: "80%", overflowY: "scroll" }}>
                 {ideas.map((idea, index) => (
-                    <Fragment>
+                    <Fragment key={uuid()}>
                         <div
-                            key={index.toString()}
+                            key={uuid()}
                             style={{
                                 display: "grid",
                                 gridTemplateColumns: "80% 15%",

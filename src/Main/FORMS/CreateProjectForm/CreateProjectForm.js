@@ -141,6 +141,7 @@ const CreateProject = ({ passProjectToState, toggleProjectFormIsVisible }) => {
                             },
                         }
                     );
+
                     if (res.status === 401) {
                         setInvalidPasswordError(true);
                         setLoadingData(false);
@@ -276,6 +277,7 @@ const CreateProject = ({ passProjectToState, toggleProjectFormIsVisible }) => {
                     <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
                         <div id="first column">
                             <label htmlFor="title">
+                                <span id={style.ObligatoryFieldMark}>*</span>
                                 Project Name <span>must be unique</span>
                                 <input
                                     type="text"
@@ -319,7 +321,9 @@ const CreateProject = ({ passProjectToState, toggleProjectFormIsVisible }) => {
                             </label>
 
                             <label htmlFor="githubLinks">
-                                GitHub Repo <span>you can add up to 3 repos</span>
+                                GitHub Repo
+                                <span id={style.ObligatoryFieldMarkGit}>*</span>
+                                <span> you can add up to 3 repos</span>
                                 <input
                                     type="text"
                                     name={`githubLinks.githubLink${0}`}
@@ -418,6 +422,7 @@ const CreateProject = ({ passProjectToState, toggleProjectFormIsVisible }) => {
                             <label htmlFor="file">
                                 <div style={{ height: "190px" }}>
                                     Upload Logo
+                                    <span id={style.ObligatoryFieldMarkLogo}>*</span>
                                     {!logoPreview ? (
                                         <div className={style.UploadLogoInput}>
                                             <BsCloudUpload size={30} color={"grey"} />

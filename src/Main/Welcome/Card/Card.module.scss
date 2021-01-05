@@ -4,9 +4,8 @@
     display: flex;
     .Card {
         h4 {
-            font-family: "Poppins";
             font-family: $gt;
-            font-family: $sa;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1.2px;
             color: $fc-secondary-l;

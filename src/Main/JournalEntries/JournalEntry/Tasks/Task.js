@@ -5,7 +5,11 @@ import { FaRegEdit } from "react-icons/fa";
 import { BiTrashAlt } from "react-icons/bi";
 import Line from "../../../../UI/Line";
 
+// Packages
+import { v4 as uuid } from "uuid";
+
 const Task = ({ task, index }) => {
+    const GREY = "#e7eaf0b3";
     return (
         <div
             style={{
@@ -25,7 +29,7 @@ const Task = ({ task, index }) => {
                     justifyContent: "center",
                     alignItems: "center",
                     marginBottom: "100%",
-                    backgroundColor: "#ddd",
+                    backgroundColor: "#e7eaf0",
                     borderRadius: "3.5px",
                     fontFamily: "DM Sans",
                     fontWeight: "600",
@@ -36,7 +40,7 @@ const Task = ({ task, index }) => {
             </div>
             <div
                 style={{
-                    backgroundColor: "#eee",
+                    backgroundColor: GREY,
                     borderTopLeftRadius: "4px",
                     borderBottomLeftRadius: "4px",
                     padding: "8px 10px 9px 13px",
@@ -48,7 +52,6 @@ const Task = ({ task, index }) => {
                         justifyContent: "space-between",
                         height: "16px",
                         marginBottom: "9px",
-                        // backgroundColor: "yellowgreen",
                     }}
                 >
                     <div
@@ -58,9 +61,9 @@ const Task = ({ task, index }) => {
                         }}
                     >
                         {task.tags.map((tag, i) => (
-                            <Fragment>
+                            <Fragment key={uuid()}>
                                 <div
-                                    key={(i + 1001).toString()}
+                                    key={uuid()}
                                     style={{
                                         color: "#1869ff",
                                         textTransform: "capitalize",
@@ -162,7 +165,7 @@ const Task = ({ task, index }) => {
 
             <div
                 style={{
-                    backgroundColor: "#eee",
+                    backgroundColor: GREY,
                     textAlign: "center",
                     paddingTop: "44%",
                 }}
@@ -172,7 +175,7 @@ const Task = ({ task, index }) => {
 
             <div
                 style={{
-                    backgroundColor: "#eee",
+                    backgroundColor: GREY,
                     borderTopRightRadius: "4px",
                     borderBottomRightRadius: "4px",
                     marginRight: "10px",
@@ -200,14 +203,3 @@ const Task = ({ task, index }) => {
 };
 
 export default Task;
-
-//  <div
-//                 style={{
-//                     padding: "2px 10px 4px 10px",
-//                     // height: "auto",
-//                     backgroundColor: "#eee",
-//                     borderRadius: "4px",
-//                     marginRight: "10px",
-//                     width: "100%",
-//                 }}
-//             ></div>

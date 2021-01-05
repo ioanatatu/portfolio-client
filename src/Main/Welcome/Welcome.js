@@ -117,20 +117,19 @@ const Welcome = ({ toggleProjectFormIsVisible, darkMode }) => {
                         <Card title={"timeline"} darkMode={darkMode}>
                             <p>I developed this project with three things in mind:</p>
                             <p>
-                                <span>#1</span>
-                                to learn - new tools, skills, ways of doing things,
-                                technologies, you name it - and to practice and
-                                improve the skills I already have.
+                                <span>#1</span> to learn - new tools, skills,
+                                technologies, ways of doing things, you name it - and
+                                to deepen the knowledge I already have;
                             </p>
                             <p>
-                                <span>#2</span>
-                                to track - I'm a big fan of "journaling" as both a way
-                                to keep track of one's progress, and of storing ideas
-                                and resources that could be reused later.
+                                <span>#2</span> to track - I'm a big fan of
+                                "journaling" as both a way to keep track of one's
+                                progress, and a way of storing ideas and resources
+                                that could be reused later;
                             </p>
                             <p>
-                                <span>#3</span>
-                                to show you what I am working on...
+                                <span>#3</span> to give you - a potential employer -
+                                an idea about my skills and work routine.
                             </p>
                         </Card>
                     </div>

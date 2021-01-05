@@ -22,7 +22,7 @@
 
         .Greeting {
             margin-top: -10px;
-            font-family: $sa-l;
+            font-family: $gt;
             color: $fc-secondary-l;
             font-size: 14px;
             align-self: flex-start;
@@ -30,7 +30,7 @@
         }
 
         .Heading {
-            margin-top: 7%;
+            margin-top: 6%;
             display: flex;
 
             .WelcomeMessage {
@@ -115,7 +115,7 @@
     .ChevIcon {
         position: absolute;
         bottom: 4%;
-        left: 46%;
+        left: 47%;
 
         svg {
             margin: 0;

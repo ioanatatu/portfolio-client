@@ -3,6 +3,7 @@ import style from "./Projects.module.scss";
 
 // React
 import React, { Fragment, useEffect, useState } from "react";
+import { Link } from "react-scroll";
 
 // Packages
 import { v4 as uuid } from "uuid";
@@ -40,7 +41,7 @@ import {
 } from "react-icons/si";
 import { VscJson } from "react-icons/vsc";
 import { MdExplicit } from "react-icons/md";
-import { FaRegEdit } from "react-icons/fa";
+import { FaRegEdit, FaRegSadCry } from "react-icons/fa";
 import { BiTrashAlt } from "react-icons/bi";
 
 // others
@@ -56,7 +57,7 @@ const Projects = ({
     const [projects, setProjects] = useState([]);
     const [noProjectsMessage, setNoProjectsMessage] = useState(false);
     const [selectedProject, setSelectedProject] = useState(0);
-    const [selectedProjectTitle, setSelectedProjectTitle] = useState(0);
+    // const [selectedProjectTitle, setSelectedProjectTitle] = useState(0);
     const [passwordModalIsVisible, setPasswordModalIsVisible] = useState(false);
 
     // custom hook
@@ -68,14 +69,12 @@ const Projects = ({
         display: "grid",
         gridTemplateColumns: "1.65fr 1fr",
         gap: "110px",
-        marginTop: "60px",
     };
     if (width < breakpoint) {
         styleCardsContainer = {
             width: "100%",
             display: "flex",
             flexDirection: "column",
-            marginTop: "60px",
         };
     }
 
@@ -107,6 +106,7 @@ const Projects = ({
         ///////////////////////////// TO FIND A SOLUTION ///////////////////////////
         //////////// how to do this before image is being loaded ?!?!?!  ///////////
         if (projects) {
+            setNoProjectsMessage(false);
             projects.forEach((project) => {
                 const img = new Image();
                 img.onload = function () {
@@ -114,6 +114,10 @@ const Projects = ({
                 };
                 img.src = `${project.logo}`;
             });
+
+            if (!projects.length) {
+                setNoProjectsMessage(true);
+            }
         }
     }, [projects]);
 
@@ -142,7 +146,11 @@ const Projects = ({
                         : "These are the projects I'm currently developing:"}
                 </h6>
                 {noProjectsMessage ? (
-                    <div className={style.NoProjectsMessage}>...</div>
+                    <div className={style.NoProjectsMessage}>
+                        you deleted all the projects...
+                        <br />
+                        <FaRegSadCry size={100} />
+                    </div>
                 ) : (
                     <div
                         style={{
@@ -152,7 +160,7 @@ const Projects = ({
                     >
                         <div className={style.Heading}>
                             <div className={style.ChevIcon} id={style.Left}>
-                                <Arrow size={30} fontSize={12} />
+                                {/*<Arrow size={30} fontSize={12} />*/}
                             </div>
 
                             <div
@@ -161,15 +169,15 @@ const Projects = ({
                                     display: "flex",
                                     justifyContent: "center",
                                     width: "100%",
-                                    // overflowX: "scroll",
                                 }}
                             >
                                 {projects &&
                                     projects.map((project, index) => {
                                         return (
                                             <div
+                                                id={style[project.title]}
                                                 className={style.ProjectCircle}
-                                                key={project.title}
+                                                key={uuid()}
                                                 onClick={() => {
                                                     handleClickedProject(index);
                                                 }}
@@ -183,7 +191,7 @@ const Projects = ({
                                     })}
                             </div>
                             <div className={style.ChevIcon} id={style.Right}>
-                                <Arrow size={30} fontSize={12} />
+                                {/*<Arrow size={30} fontSize={12} />*/}
                             </div>
                         </div>
 
@@ -278,13 +286,14 @@ const Projects = ({
                                 )}
                             </div>
 
-                            <div>
-                                <p style={{ height: "120px" }}></p>
+                            <div className={style.SecondColumn}>
+                                <p style={{ height: "100px" }}></p>
                                 <div className={style.LastUpdated}>
                                     <span>last updated</span>
-                                    <span>December 17, 2020</span>
+                                    <span>January 05, 2021</span>
                                 </div>
                                 <Line color={"black"} height={"1.1px"} />
+
                                 <h6>Built with:</h6>
                                 {projects && projects[selectedProject] ? (
                                     <div className={style.IconsWrapper}>
@@ -320,7 +329,7 @@ const Projects = ({
                                                     className={style.StandardButton}
                                                 >
                                                     <span>
-                                                        got to GitHub
+                                                        go to GitHub
                                                         <SiGithub />
                                                     </span>
                                                 </button>
@@ -343,10 +352,20 @@ const Projects = ({
                                             </ExternalLink>
                                         </div>
                                     )}
+                                <Fragment className={style.Border}></Fragment>
                             </div>
                         </div>
                     </div>
                 )}
+            </div>
+            <div className={style.ChevIcon}>
+                <Link to="journal" spy={true} smooth={true} offset={2} duration={500}>
+                    <Arrow
+                        size={30}
+                        fontSize={20}
+                        color={darkMode ? "#bbc2c7" : "#031b4e"}
+                    />
+                </Link>
             </div>
         </div>
     );

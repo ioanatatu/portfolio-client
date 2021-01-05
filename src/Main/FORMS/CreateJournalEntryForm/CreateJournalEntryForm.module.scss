@@ -7,11 +7,10 @@
     padding: 50px 80px 55px 80px;
     border-radius: 8px;
     box-shadow: 0 4px 12px 0 rgba(199, 205, 216, 0.5);
-    border: 0.2px solid #1869ffbb;
+    // border: 0.2px solid #1869ffbb;
+    border: 1px solid rgb(213, 217, 218);
     position: relative;
-
-    font-family: $po;
-    font-family: $sa;
+    box-shadow: 0 4px 10px 0 rgba(85, 87, 91, 0.4);
     font-family: $gt;
 
     .LoadingSpinnerContainer {
@@ -29,7 +28,7 @@
 
     .CloseButton {
         position: absolute;
-        top: -10px;
+        top: 22px;
         right: -10px;
         font-size: 20px;
 
@@ -40,14 +39,14 @@
         &:hover {
             svg {
                 cursor: pointer;
-                color: rgb(31, 33, 35);
+                color: #1869ff;
             }
         }
     }
     h4 {
         font-family: $dm;
-        font-weight: 600;
-        font-size: 12px;
+        font-weight: 400;
+        font-size: 14px;
         background-color: #e8edf1e0;
         padding: 12px 25px;
         margin: 10px 0;

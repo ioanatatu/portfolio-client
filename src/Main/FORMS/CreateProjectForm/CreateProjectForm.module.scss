@@ -15,14 +15,11 @@
 
     border: 1px solid rgb(213, 217, 218);
     position: relative;
-
-    font-family: $po;
-    font-family: $sa;
     font-family: $gt;
 
     .CloseButton {
         position: absolute;
-        top: -10px;
+        top: 22px;
         right: -10px;
         font-size: 24px;
         font-weight: bold;
@@ -159,6 +156,7 @@
             font-size: 13px;
             font-weight: 600;
             margin-bottom: 12px;
+            position: relative;
 
             span {
                 color: rgb(169, 176, 187);
@@ -166,6 +164,22 @@
                 font-size: 11px;
                 margin-left: 10px;
                 font-family: $dm;
+            }
+
+            #ObligatoryFieldMark,
+            #ObligatoryFieldMarkGit,
+            #ObligatoryFieldMarkLogo {
+                position: absolute;
+                color: #1869ff;
+                font-size: 14px;
+                left: 70px;
+                font-weight: bold;
+            }
+            #ObligatoryFieldMarkGit {
+                left: 67px;
+            }
+            #ObligatoryFieldMarkLogo {
+                left: 65px;
             }
 
             input {

@@ -10,7 +10,7 @@ const Card = (props) => {
 
     const textAlign = width > breakpoint ? "left" : "center";
     const direction = width > breakpoint ? "row" : "column";
-    const fontSizeTitle = width > breakpoint ? "14px" : "10px";
+    const fontSizeTitle = width > breakpoint ? "17px" : "10px";
     const fontSizeParagraph = width > breakpoint ? "15px" : "13px";
 
     return (

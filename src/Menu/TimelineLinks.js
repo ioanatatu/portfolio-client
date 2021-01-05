@@ -1,19 +1,26 @@
 // Style
 import style from "./Menu.module.scss";
 
+// React
+import React, { useEffect } from "react";
+
 // Packages
 import { v4 as uuid } from "uuid";
+import { Link } from "react-scroll";
 
-// React Router
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-
-const Timeline = ({ timeline }) => {
+const Timeline = ({ timeline, liftSelectedJournalDateToApp }) => {
     useEffect(() => {}, [timeline]);
+
+    const selectJournalEntryDate = (arg) => {
+        console.log("arg", arg);
+        liftSelectedJournalDateToApp(arg);
+    };
 
     return (
         <div className={style.Timeline}>
-            <ul>{timeline && mapDatesToTimeline(timeline)}</ul>
+            <ul>
+                {timeline && mapDatesToTimeline(timeline, selectJournalEntryDate)}
+            </ul>
         </div>
     );
 };
@@ -44,7 +51,7 @@ const month = [
     "December",
 ];
 
-function mapDatesToTimeline(a) {
+function mapDatesToTimeline(a, selectJournalEntryDate) {
     const b = a.map((el) => el.split("-"));
     let result = {};
 
@@ -76,18 +83,31 @@ function mapDatesToTimeline(a) {
                                         display: "flex",
                                         flexDirection: "column",
                                     }}
+                                    key={uuid()}
                                 >
                                     {month[parseInt(m) - 1]
                                         .toLowerCase()
                                         .substring(0, 3)}
-                                    {result[y][m].sort().map((d) => (
-                                        <Link
-                                            to={`/timeline/:${y}-${m}-${d}`}
-                                            activeClass={style.Active}
-                                        >
-                                            {d}
-                                        </Link>
-                                    ))}
+                                    {result[y][m]
+                                        .sort((a, b) => b - a)
+                                        .map((d) => (
+                                            <Link
+                                                key={uuid()}
+                                                to="journal"
+                                                spy={true}
+                                                smooth={true}
+                                                offset={2}
+                                                duration={500}
+                                                activeclass={style.Active}
+                                                onClick={() =>
+                                                    selectJournalEntryDate(
+                                                        `${y}-${m}-${d}`
+                                                    )
+                                                }
+                                            >
+                                                {d}
+                                            </Link>
+                                        ))}
                                 </div>
                             );
                         })}
@@ -96,17 +116,3 @@ function mapDatesToTimeline(a) {
             );
         });
 }
-/* return (
-    <li key={uuid()}>
-        <Link
-            to={`/timeline/:${k.date}`}
-            // to={day.date}
-            // spy={true}
-            // smooth={true}
-            // offset={0}
-            // duration={500}
-        >
-            {k}
-        </Link>
-    </li>
-); */
