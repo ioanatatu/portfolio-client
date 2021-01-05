@@ -37,7 +37,7 @@ const ProjectEntry = ({ project }) => {
                     <Tasks project={project} />
                 </div>
 
-                <Line />
+                <Line height={"1.6px"} color={"silver"} />
             </div>
 
             <div className={style.ColSecondary}>

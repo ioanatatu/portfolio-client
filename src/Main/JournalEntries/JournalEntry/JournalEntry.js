@@ -2,7 +2,7 @@
 import style from "./JournalEntry.module.scss";
 
 // React
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // Font Icons
 import { AiOutlineFolderAdd } from "react-icons/ai";
@@ -12,9 +12,11 @@ import CreateJournalEntryForm from "../../FORMS/CreateJournalEntryForm/CreateJou
 import ProjectsButtons from "./ProjectsButtons/ProjectsButtons";
 import ProjectEntry from "./ProjectEntry/ProjectEntry";
 
-const JournalEntry = ({ day, projects }, props) => {
+const JournalEntry = ({ projects, journalEntry }, props) => {
+    // state
     const [project, setProject] = useState(0);
     const [journalEntryFormIsVisible, setJournalEntryFormIsVisible] = useState(false);
+    const [journalEntryDate, setJournalEntryDate] = useState("");
 
     // use this in the Date Component
     // console.log("match", props.params);
@@ -22,16 +24,20 @@ const JournalEntry = ({ day, projects }, props) => {
     const handleSwitchProject = (arg) => {
         setProject(arg);
     };
-
     const toggleJournalEntryFormIsVisible = () => {
         setJournalEntryFormIsVisible((prev) => !prev);
     };
     const passNewJournalEntryToJournalEntryComponent = (newJournalEntry) => {
         // console.log("newJournalEntry ", newJournalEntry);
     };
+    useEffect(() => {
+        if (journalEntry) {
+            setJournalEntryDate(formatDate(journalEntry.date));
+        }
+    }, [journalEntry]);
 
     return (
-        <div className={style.JournalEntryWrapper} id={day.date}>
+        <div className={style.JournalEntryWrapper}>
             <div
                 style={{
                     position: "fixed",
@@ -54,10 +60,10 @@ const JournalEntry = ({ day, projects }, props) => {
                 )}
             </div>
             <div className={style.JournalEntry}>
-                <h6 className={style.Greeting}>{formatDate(new Date(day.date))}</h6>
+                <h6 className={style.Greeting}>{journalEntryDate}</h6>
                 <div className={style.ProjectsNavbar}>
                     <ProjectsButtons
-                        projects={day.projects}
+                        projects={journalEntry.projects}
                         click={handleSwitchProject}
                     />
                     <span>
@@ -73,7 +79,9 @@ const JournalEntry = ({ day, projects }, props) => {
                     </span>
                 </div>
 
-                <ProjectEntry project={day.projects[project]} />
+                {journalEntry && (
+                    <ProjectEntry project={journalEntry.projects[project]} />
+                )}
             </div>
         </div>
     );
@@ -90,7 +98,7 @@ export default JournalEntry;
  * helper functions
  *
  */
-function formatDate() {
+function formatDate(d) {
     const month = [
         "January",
         "February",
@@ -105,7 +113,7 @@ function formatDate() {
         "November",
         "December",
     ];
-    const date = new Date().toISOString();
+    const date = new Date(d).toISOString();
     const newDate = date.split("T")[0];
     const arr = newDate.split("-");
     const dateString = `${month[new Date(date).getMonth()]} ${arr[2]}, ${arr[0]}`;

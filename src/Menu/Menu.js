@@ -10,7 +10,7 @@ import TimelineLinks from "./TimelineLinks";
 import Count from "./Count";
 import Line from "../UI/Line";
 
-const Menu = ({ timeline, darkMode }) => {
+const Menu = ({ timeline, darkMode, liftSelectedJournalDateToApp }) => {
     // for this function add a button
     /* const scrollToTop = () => {
         scroll.scrollToTop();
@@ -31,7 +31,7 @@ const Menu = ({ timeline, darkMode }) => {
 
                 <div className={style.TimelineLink} id={style.FirstLink}>
                     <Link
-                        activeClass={style.Active}
+                        activeclass={style.Active}
                         to="intro"
                         spy={true}
                         smooth={true}
@@ -46,7 +46,7 @@ const Menu = ({ timeline, darkMode }) => {
 
                 <div className={style.TimelineLink}>
                     <Link
-                        activeClass={style.Active}
+                        activeclass={style.Active}
                         to="projects"
                         spy={true}
                         smooth={true}
@@ -59,7 +59,7 @@ const Menu = ({ timeline, darkMode }) => {
                 </div>
                 <div className={style.TimelineLink}>
                     <Link
-                        activeClass={style.Active}
+                        activeclass={style.Active}
                         to="journal"
                         spy={true}
                         smooth={true}
@@ -72,7 +72,10 @@ const Menu = ({ timeline, darkMode }) => {
                 </div>
 
                 <div className={style.Timeline}>
-                    <TimelineLinks timeline={timeline} />
+                    <TimelineLinks
+                        timeline={timeline}
+                        liftSelectedJournalDateToApp={liftSelectedJournalDateToApp}
+                    />
                 </div>
 
                 <div className={style.Count}>

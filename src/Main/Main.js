@@ -1,8 +1,9 @@
 // Style
 import style from "./Main.module.scss";
 
-// React
+// React and React Router
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // Components
 import Welcome from "./Welcome/Welcome";

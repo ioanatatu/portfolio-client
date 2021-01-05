@@ -38,6 +38,10 @@ const App = () => {
     const liftDarkModeToApp = (arg) => {
         setDarkMode(arg);
     };
+    // TODO: refactor and use redux or react context for this
+    const liftSelectedJournalDateToApp = (arg) => {
+        setLatestProject(arg);
+    };
 
     return (
         <ViewportProvider>
@@ -45,7 +49,15 @@ const App = () => {
                 <Route
                     exact
                     path="/"
-                    render={() => <Menu timeline={timeline} darkMode={darkMode} />}
+                    render={() => (
+                        <Menu
+                            timeline={timeline}
+                            darkMode={darkMode}
+                            liftSelectedJournalDateToApp={
+                                liftSelectedJournalDateToApp
+                            }
+                        />
+                    )}
                 />
 
                 <Switch>

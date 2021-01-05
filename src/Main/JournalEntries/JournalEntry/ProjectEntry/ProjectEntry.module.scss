@@ -6,13 +6,11 @@
     grid-template-columns: 67% 29%;
     gap: 4%;
     margin-bottom: 0;
-    // background-color: rgb(116, 152, 147);
     height: calc(100% - 90px);
 
     .ColMain {
         display: flex;
         flex-direction: column;
-        // background-color: #fff;
         max-height: 100%;
 
         .NewTaskButton {
@@ -48,11 +46,11 @@
             font-family: $dm;
             font-weight: 600;
             font-size: 12.5px;
-            margin-bottom: 15px;
+            margin-bottom: 7px;
         }
         .TasksContainer {
-            // height: 100%;
             overflow: hidden;
+            height: 500px;
         }
     }
     .ColSecondary {
@@ -65,7 +63,7 @@
         font-size: 24px;
         font-weight: 600;
         letter-spacing: 1.1px;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
         height: 28px;
     }
 }
