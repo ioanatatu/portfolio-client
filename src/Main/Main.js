@@ -12,7 +12,7 @@ import CreateProjectForm from "./FORMS/CreateProjectForm/CreateProjectForm";
 import DarkModeToggler from "../UI/DarkModeToggler";
 import Line from "../UI/Line";
 
-const Main = ({ journalEntries, liftDarkModeToApp }) => {
+const Main = ({ liftDarkModeToApp, latestProject }) => {
     // state
     const [projectFormIsVisible, setProjectFormIsVisible] = useState(false);
     const [newProject, setNewProject] = useState(null);
@@ -32,14 +32,14 @@ const Main = ({ journalEntries, liftDarkModeToApp }) => {
         setProjects(projectsFromProjectsComponent);
     };
 
-    // check if there is a darkMode variable in the local storage when component mounts
+    // check if there is a darkMode variable in local storage when component mounts
     useEffect(() => {
         localStorage.getItem("darkMode") === "false"
             ? setDarkMode(false)
             : setDarkMode(true);
     }, []);
 
-    // after darkMode state has been changed by toggling, set it in the local storage
+    // after darkMode state has been changed by toggling, set it in local storage
     useEffect(() => {
         if (darkMode !== null) {
             localStorage.setItem("darkMode", JSON.stringify(darkMode));
@@ -59,13 +59,8 @@ const Main = ({ journalEntries, liftDarkModeToApp }) => {
                     />
                 )}
             </div>
-            <div
-                style={{
-                    position: "fixed",
-                    marginTop: "3%",
-                    zIndex: 999,
-                }}
-            >
+
+            <div className={style.LineContainer}>
                 <Line
                     color={darkMode ? "#dae0e8" : "#031b4e"}
                     height={"5px"}
@@ -73,14 +68,7 @@ const Main = ({ journalEntries, liftDarkModeToApp }) => {
                 />
             </div>
 
-            <div
-                style={{
-                    position: "fixed",
-                    marginTop: "3%",
-                    right: "16.1%",
-                    zIndex: 999,
-                }}
-            >
+            <div className={style.DarkModeButtonWrapper}>
                 <DarkModeToggler
                     darkMode={darkMode}
                     toggleDarkMode={toggleDarkMode}
@@ -99,7 +87,11 @@ const Main = ({ journalEntries, liftDarkModeToApp }) => {
                 darkMode={darkMode}
             />
 
-            <JournalEntries projects={projects} darkMode={darkMode} />
+            <JournalEntries
+                projects={projects}
+                darkMode={darkMode}
+                latestProject={latestProject}
+            />
         </div>
     );
 };
