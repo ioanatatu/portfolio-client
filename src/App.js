@@ -9,6 +9,7 @@ import { Switch, Route } from "react-router-dom";
 import { ViewportProvider } from "./CustomHooks/ViewportProvider";
 
 // Axios
+import API_URL from "./util/secrets";
 import axios from "axios";
 
 // Components
@@ -17,18 +18,19 @@ import Main from "./Main/Main";
 import PageNotFound from "./UI/PageNotFound";
 
 const App = () => {
-    const [journalData, setJournalData] = useState({});
+    const [latestProject, setLatestProject] = useState(null);
     const [timeline, setTimeline] = useState([]);
     const [darkMode, setDarkMode] = useState(false);
 
     useEffect(() => {
         (async () => {
-            const data = await axios.get(
-                "https://0ryd02k588.execute-api.eu-west-1.amazonaws.com/dev/journal-entries"
-            );
-            setJournalData(data.data);
+            // get all journal entry dates to map them on the timeline in <Menu/> component
+            const data = await axios.get(`${API_URL}/journal-entries`);
 
-            const timeline = data.data.map((day) => day.ID);
+            const timeline = data.data.map((day) => day.date);
+            timeline.sort((a, b) => b - a);
+
+            setLatestProject(timeline[0]);
             setTimeline(timeline);
         })();
     }, []);
@@ -52,7 +54,7 @@ const App = () => {
                         path="/"
                         render={() => (
                             <Main
-                                journalEntries={journalData}
+                                latestProject={latestProject}
                                 liftDarkModeToApp={liftDarkModeToApp}
                             />
                         )}
