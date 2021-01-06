@@ -3,7 +3,10 @@ import style from "./Welcome.module.scss";
 
 // React
 import React from "react";
+
+// Packages
 import { Link } from "react-scroll";
+import ReactTooltip from "react-tooltip";
 
 // React Custom Hook
 import { useViewport } from "../../CustomHooks/ViewportProvider";
@@ -53,7 +56,33 @@ const Welcome = ({ toggleProjectFormIsVisible, darkMode }) => {
                     <div className={style.Heading} style={styleCardsContainer}>
                         <div className={style.WelcomeMessage}>
                             <h1>
-                                i'm <span>ioana</span>
+                                i'm{" "}
+                                <span
+                                    className={style.MyName}
+                                    data-tip
+                                    data-for="pronounciation"
+                                >
+                                    ioana
+                                </span>
+                                <ReactTooltip
+                                    id="pronounciation"
+                                    effect="solid"
+                                    delayHide={1000}
+                                    className={style.TooltipVisibleWhenHover}
+                                >
+                                    <div style={{ lineHeight: "12px" }}>
+                                        <h5>
+                                            TODO: embed audio with name pronounciation
+                                        </h5>
+                                        <p style={{ fontSize: "12px" }}>
+                                            make this separate component
+                                        </p>
+                                        <ul style={{ fontSize: "10px" }}>
+                                            <li>text...</li>
+                                            <li>text...</li>
+                                        </ul>
+                                    </div>
+                                </ReactTooltip>
                             </h1>
                             <h1>
                                 and this is my...

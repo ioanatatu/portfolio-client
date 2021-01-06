@@ -39,8 +39,26 @@
                     line-height: 37px;
                     color: $fc-secondary-l;
 
-                    span {
+                    .MyName {
                         font-weight: 600;
+                        position: relative;
+                        cursor: pointer;
+                        transition: background-color 0.3s ease-out;
+                        padding: 0 5px;
+                        border-radius: 3px;
+
+                        &:hover {
+                            transition: background-color 0.3s ease-in;
+                            background-color: rgb(226, 234, 238);
+                            background-color: #1869ff1f;
+                        }
+                    }
+                    .TooltipVisibleWhenHover {
+                        pointer-events: auto !important;
+                        &:hover {
+                            visibility: visible !important;
+                            opacity: 1 !important;
+                        }
                     }
                 }
                 h4 {
