@@ -4,6 +4,9 @@ import style from "./ProjectEntry.module.scss";
 //React
 import React from "react";
 
+// Packages
+import ReactTooltip from "react-tooltip";
+
 // Components
 import Tasks from "../Tasks/Tasks";
 import Stats from "../Stats/Stats";
@@ -19,9 +22,13 @@ const ProjectEntry = ({ project }) => {
                 <div>
                     <span style={{ display: "flex" }}>
                         <h1>Tasks</h1>
-                        <button className={style.NewTaskButton}>
+                        <button
+                            className={style.NewTaskButton}
+                            data-tip="this button is work in progress"
+                        >
                             <BiAddToQueue size={"20px"} />
                         </button>
+                        <ReactTooltip effect="solid" />
                     </span>
                     <ul className={style.Categories}>
                         <li>Nr.</li>
@@ -49,10 +56,13 @@ const ProjectEntry = ({ project }) => {
                         gridTemplateRows: "35% 23% 36%",
                         gap: "3%",
                     }}
+                    data-tip="coming soon"
+                    data-for="stats"
                 >
                     {/*<Stats tasks={project.tasks.done} />*/}
                     <ProjectGallery />
                     <ProjectRandomIdeas ideas={project.tasks.projectRandomIdeas} />
+                    <ReactTooltip id="stats" />
                 </div>
             </div>
         </div>

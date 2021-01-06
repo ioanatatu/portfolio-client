@@ -7,6 +7,7 @@ import React, { Fragment, useState } from "react";
 
 // Packages
 import DatePicker from "react-datepicker";
+import ReactTooltip from "react-tooltip";
 
 // Components
 import Error from "../../../UI/Error";
@@ -98,7 +99,13 @@ const CreateJournalEntry = ({
     };
 
     return (
-        <div className={style.FormContainer}>
+        <div
+            className={style.FormContainer}
+            data-tip="backend functionality working, need to work on updating state on frontend"
+            data-for="fe"
+        >
+            <ReactTooltip id="fe" />
+
             {checkmark ? (
                 <div className={style.CheckmarkContainer}>
                     <Checkmark />

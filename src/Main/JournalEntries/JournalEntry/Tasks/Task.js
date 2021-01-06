@@ -7,6 +7,7 @@ import Line from "../../../../UI/Line";
 
 // Packages
 import { v4 as uuid } from "uuid";
+import ReactTooltip from "react-tooltip";
 
 const Task = ({ task, index }) => {
     const GREY = "#e7eaf0b3";
@@ -100,6 +101,7 @@ const Task = ({ task, index }) => {
                             justifyContent: "space-between",
                             cursor: "pointer",
                         }}
+                        data-tip="these buttons are work in progress"
                     >
                         <FaRegEdit color={"grey"} />
                         <BiTrashAlt
@@ -109,6 +111,7 @@ const Task = ({ task, index }) => {
                                 paddingBottom: "1px",
                             }}
                         />
+                        <ReactTooltip effect="solid" />
                     </div>
                 </div>
 
