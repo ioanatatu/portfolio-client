@@ -32,20 +32,18 @@ const PasswordModalForm = ({
         setLoadingData(true);
 
         if (password.trim() === "") {
-            removeProjectFromFrontend(selectedProjectId);
-
             setTimeout(() => {
                 setTimeout(() => {
+                    removeProjectFromFrontend(selectedProjectId);
                     togglePasswordModal();
                 }, 1000);
                 setLoadingData(false);
                 setCheckmark(true);
             }, 500);
         } else {
-            console.log("pass", password);
             try {
                 const res = await axios.delete(
-                    `https://0ryd02k588.execute-api.eu-west-1.amazonaws.com/dev/project/${selectedProjectId}`,
+                    `${API_URL}/${selectedProjectId}`,
                     { data: { password } },
                     {
                         validateStatus: function (status) {
@@ -60,7 +58,6 @@ const PasswordModalForm = ({
                     setLoadingData(false);
                     return setInvalidPasswordError(true);
                 } else if (res.status === 200) {
-                    // remove project on frontend
                     removeProjectFromFrontend(selectedProjectId);
                     setTimeout(() => {
                         setTimeout(() => {
@@ -83,7 +80,6 @@ const PasswordModalForm = ({
                 const mess = err.message;
 
                 if (mess.includes("401")) {
-                    console.log("IN HERE");
                     setLoadingData(false);
                     return setInvalidPasswordError(true);
                 }
