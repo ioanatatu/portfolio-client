@@ -15,6 +15,7 @@ import { useViewport } from "../../CustomHooks/ViewportProvider";
 import Card from "./Card/Card";
 import Line from "../../UI/Line";
 import Arrow from "../../UI/Arrow";
+import Player from "../../UI/Player/Player";
 
 // Font Icons
 import { FaFolderOpen } from "react-icons/fa";
@@ -46,7 +47,6 @@ const Welcome = ({ toggleProjectFormIsVisible, darkMode }) => {
             <div className={style.Welcome}>
                 {/* this should eventually be a separate component that renders either the Date or the Greeting, so it receives props*/}
                 <h6 className={style.Greeting}>Hi there dear Visitor,</h6>
-
                 <div
                     style={{
                         width: "74%",
@@ -67,20 +67,14 @@ const Welcome = ({ toggleProjectFormIsVisible, darkMode }) => {
                                 <ReactTooltip
                                     id="pronounciation"
                                     effect="solid"
-                                    delayHide={1000}
+                                    delayHide={500}
                                     className={style.TooltipVisibleWhenHover}
+                                    type="light"
+                                    backgroundColor={"#bbdcfa"}
                                 >
-                                    <div style={{ lineHeight: "12px" }}>
-                                        <h5>
-                                            TODO: embed audio with name pronounciation
-                                        </h5>
-                                        <p style={{ fontSize: "12px" }}>
-                                            make this separate component
-                                        </p>
-                                        <ul style={{ fontSize: "10px" }}>
-                                            <li>text...</li>
-                                            <li>text...</li>
-                                        </ul>
+                                    <div className={style.TooltipContent}>
+                                        <Player src={"../../../name.ogg"} />
+                                        <p>Listen to how my name is pronounced</p>
                                     </div>
                                 </ReactTooltip>
                             </h1>
@@ -185,3 +179,11 @@ const Welcome = ({ toggleProjectFormIsVisible, darkMode }) => {
 };
 
 export default Welcome;
+
+/*<iframe
+    title="myUniqueTitle"
+    frameborder="0"
+    width="400"
+    height="200"
+    src="https://drive.google.com/file/d/1NKEtpCsO-qQEmNiXkeK2nzoXGCRcdG_V/preview"
+></iframe>*/

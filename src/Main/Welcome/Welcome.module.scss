@@ -43,21 +43,38 @@
                         font-weight: 600;
                         position: relative;
                         cursor: pointer;
-                        transition: background-color 0.3s ease-out;
+                        transition: border-color 0.3s ease-out;
                         padding: 0 5px;
                         border-radius: 3px;
 
                         &:hover {
-                            transition: background-color 0.3s ease-in;
-                            background-color: rgb(226, 234, 238);
-                            background-color: #1869ff1f;
+                            color: black;
+                            transition: border-color 0.3s ease-in;
                         }
                     }
                     .TooltipVisibleWhenHover {
                         pointer-events: auto !important;
+                        color: #090f18;
+                        padding: 10px;
+
                         &:hover {
                             visibility: visible !important;
                             opacity: 1 !important;
+                        }
+
+                        .TooltipContent {
+                            max-width: 170px;
+                            padding: 5px 0px;
+                            display: flex;
+                            justify-content: space-between;
+
+                            p {
+                                font-size: 13;
+                                font-family: $dm;
+                                font-weight: 400;
+                                line-height: 15px;
+                                margin-left: 10px;
+                            }
                         }
                     }
                 }

@@ -1,0 +1,29 @@
+.PlayerWrapper {
+    height: 25px;
+    width: 25px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid white;
+    cursor: pointer;
+    font-size: 18px;
+
+    svg {
+        fill: white;
+    }
+    &:hover {
+        border-color: #1869ff95;
+
+        svg {
+            fill: #1869ff95;
+        }
+    }
+}
+.Playing {
+    background-color: white;
+    border-color: #1869ff;
+    svg {
+        fill: #1869ff;
+    }
+}
