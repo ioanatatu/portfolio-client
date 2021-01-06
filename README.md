@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+<h1 align="center" style="font-size: 30px">This repo contains the client side code for the portfolio project</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### I am using the `Create React App` and the following packages:
 
-## Available Scripts
+#### `react-hook-form` &#8212; `react-datepicker` &#8212; `react-external-link` &#8212; `react-scroll` &#8212; `react-tooltip` `react-icons` &#8212; `axios`
 
-In the project directory, you can run:
+#
 
-### `npm start`
+**2021/01/06** feature &#8212; **embedded audio file with name pronounciation**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<div align="center">
+<img src="https://media.giphy.com/media/3RTGo5YQ6WeltjVyO5/giphy.gif" width="60%"/></div>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+#
 
-### `npm test`
+See also backend repo: https://github.com/ioanatatu/portfolio-aws-backend \
+Or visit the webpage: https://ioanatatu.com
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<hr style="margin-bottom: 40px">
+<h1 align="center" style="font-size: 30px">What is this project about?</h1>
 
-### `npm run build`
+**&#8212;** I am - what you would call in German - a "Quereinsteiger" in this
+profession and therefore take learning very seriously. I have a daily routine of
+coding and work on different projects, but nothing is fully finished at the moment.
+This is why I wanted to build a project where I could log the tasks that I am working
+on every day, their resources (images, links with articles etc), how long I spend on
+each one and how much time I use working with a particular technology (react, nodeJS,
+styling...). And because this app tracks my coding progress, I would also be using it
+as a portfolio, to showcase my skills to potential enployers.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**&#8212;** As a first step, I developed the React component architecture, tracked my
+tasks in a json object and was importing that in React. I decided I needed a backend
+and database, where I could store data properly and where my client could make
+requests to. I chose the **RESTful API** approach and **AWS**, so I could learn more
+about these topics. Becoming familiar with (a tiny part of) the AWS ecosystem was a
+nightmare, but every step forward felt like the sweetest victory.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**&#8212;** At the moment I have the **projects** and **journal-entries** tables in my
+DynamoDB and I can perform **create, read and remove operations** on them from the
+client-side. I am using these features to add my projects and journal entries (these
+are the tasks I am working on every day) and validate the input with forms I built in
+React. At the same time I also wanted to demo these features to visitors, without
+really deleting data from the database. I decided to mimick these actions on the
+client-side (create and delete) if no password would be entered. No password - no
+request to the backend. However, if a password is entered, it will be validated on the
+backend and very likely - I hope... :) - will throw an error as I am the only holder
+of the magic key. 🔑
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**&#8212;** An interesting challenge I am facing is switching between the different
+technologies and perspectives, jumping from configuring the serverless yaml file for
+the backend, to setting state for a tiny button in React, when the audio file has
+finished playing. It's a trip and I'm loving it 👩🏻‍💻
