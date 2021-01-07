@@ -121,19 +121,27 @@
                 }
             }
             #sinkplant {
-                margin-top: -21px;
+                margin-top: -19px;
+                margin-right: 80px;
+
                 img {
                     height: 116%;
                 }
             }
             #nap {
-                margin-right: 40px;
+                margin-right: 20px;
             }
             #portfolio {
-                margin-top: -11px;
+                margin-top: -10px;
                 margin-right: 0;
                 img {
                     height: 54%;
+                }
+            }
+            #lifetracker {
+                margin-top: -6px;
+                img {
+                    height: 52%;
                 }
             }
         }
@@ -143,6 +151,10 @@
                 display: flex;
                 align-items: flex-end;
                 // padding-bottom: 10px;
+
+                #lifetracker {
+                    height: 40px;
+                }
 
                 .EditDeleteProject {
                     position: relative;

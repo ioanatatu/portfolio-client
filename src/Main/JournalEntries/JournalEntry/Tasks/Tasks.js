@@ -10,12 +10,14 @@ import { v4 as uuid } from "uuid";
 // Components
 import Task from "./Task";
 
-const Tasks = (props) => {
+const Tasks = ({ project }) => {
     return (
         <div className={style.Tasks}>
-            {props.project.tasks.done.map((task, index) => (
-                <Task task={task} index={index} key={uuid()} />
-            ))}
+            {project &&
+                project.tasks &&
+                project.tasks.done.map((task, index) => (
+                    <Task task={task} index={index} key={uuid()} />
+                ))}
         </div>
     );
 };

@@ -1,3 +1,6 @@
+// Style
+import style from "./Task.module.scss";
+
 import React, { Fragment } from "react";
 
 // Components
@@ -10,6 +13,7 @@ import { v4 as uuid } from "uuid";
 import ReactTooltip from "react-tooltip";
 
 const Task = ({ task, index }) => {
+    console.log("task.image", task.image);
     const GREY = "#e7eaf0b3";
     return (
         <div
@@ -61,37 +65,38 @@ const Task = ({ task, index }) => {
                             display: "flex",
                         }}
                     >
-                        {task.tags.map((tag, i) => (
-                            <Fragment key={uuid()}>
-                                <div
-                                    key={uuid()}
-                                    style={{
-                                        color: "#1869ff",
-                                        textTransform: "capitalize",
-                                        fontSize: "12.5px",
-                                        fontWeight: "600",
-                                        marginRight: "5px",
-                                    }}
-                                >
-                                    {tag}
-                                </div>
-                                <span
-                                    style={{
-                                        marginRight: "8px",
-                                        marginLeft: "3px",
-                                        marginTop: "1px",
-                                    }}
-                                >
-                                    {i !== task.tags.length - 1 && (
-                                        <Line
-                                            height={"14px"}
-                                            width={"1.5px"}
-                                            color={"silver"}
-                                        />
-                                    )}
-                                </span>
-                            </Fragment>
-                        ))}
+                        {task &&
+                            task.tags.map((tag, i) => (
+                                <Fragment key={uuid()}>
+                                    <div
+                                        key={uuid()}
+                                        style={{
+                                            color: "#1869ff",
+                                            textTransform: "capitalize",
+                                            fontSize: "12.5px",
+                                            fontWeight: "600",
+                                            marginRight: "5px",
+                                        }}
+                                    >
+                                        {tag}
+                                    </div>
+                                    <span
+                                        style={{
+                                            marginRight: "8px",
+                                            marginLeft: "3px",
+                                            marginTop: "1px",
+                                        }}
+                                    >
+                                        {i !== task.tags.length - 1 && (
+                                            <Line
+                                                height={"14px"}
+                                                width={"1.5px"}
+                                                color={"silver"}
+                                            />
+                                        )}
+                                    </span>
+                                </Fragment>
+                            ))}
                     </div>
                     <div
                         style={{
@@ -185,20 +190,16 @@ const Task = ({ task, index }) => {
                     paddingTop: "23%",
                 }}
             >
-                <div
-                    style={{
-                        width: "50px",
-                        height: "50px",
-                        borderRadius: "50%",
-                        backgroundColor: "white",
-                        overflow: "hidden",
-                    }}
-                >
-                    <img
-                        src={`../images/journal/2020-12-11/portfolio/${task.image}`}
-                        alt=""
-                        style={{ width: "100%" }}
-                    ></img>
+                <div className={style.ImageContainer}>
+                    {task && task.image ? (
+                        <img src={task.image} alt="" style={{ width: "100%" }}></img>
+                    ) : (
+                        <img
+                            src={`../images/journal/2020-12-11/portfolio/${task.image}`}
+                            alt=""
+                            style={{ width: "100%" }}
+                        ></img>
+                    )}
                 </div>
             </div>
         </div>

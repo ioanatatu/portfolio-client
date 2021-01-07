@@ -43,6 +43,7 @@ import { VscJson } from "react-icons/vsc";
 import { MdExplicit } from "react-icons/md";
 import { FaRegEdit, FaRegSadCry } from "react-icons/fa";
 import { BiTrashAlt } from "react-icons/bi";
+import { AiOutlineAreaChart } from "react-icons/ai";
 
 // others
 import API_URL from "../../util/secrets";
@@ -217,6 +218,11 @@ const Projects = ({
                                                         ? style.LogoContainer
                                                         : style.LogoContainerHorizontal
                                                 }
+                                                id={`${
+                                                    style[
+                                                        `${projects[selectedProject].title}`
+                                                    ]
+                                                }`}
                                             >
                                                 <img
                                                     src={
@@ -270,13 +276,20 @@ const Projects = ({
                                                 {splitSentencesInArray(
                                                     projects[selectedProject]
                                                         .description
-                                                ).map((sentence) => (
+                                                ).map((sentence, i) => (
                                                     <p
                                                         key={uuid()}
                                                         style={{
                                                             marginBottom: "18px",
                                                         }}
                                                     >
+                                                        {i === 0 && (
+                                                            <Fragment>
+                                                                <strong>
+                                                                    &#8212;{" "}
+                                                                </strong>
+                                                            </Fragment>
+                                                        )}
                                                         {sentence}
                                                     </p>
                                                 ))}
@@ -425,7 +438,12 @@ const techStackFonticons = {
     serverless: <SiServerless />,
     socketio: <SiSocketDotIo />,
     GraphQL: <SiGraphql />,
-    chartJS: "chartJS",
+    chartJS: (
+        <span style={{ display: "flex" }}>
+            <AiOutlineAreaChart />
+            <span style={{ fontSize: "10px", fontWeight: "700" }}>ChartJS</span>
+        </span>
+    ),
     "JSON schema": <VscJson />,
     firebase: <SiFirebase />,
 };
