@@ -59,7 +59,7 @@ const ProjectEntry = ({ project }) => {
                     data-tip="coming soon"
                     data-for="stats"
                 >
-                    {/*<Stats tasks={project.tasks.done} />*/}
+                    <Stats tasks={project && project.tasks && project.tasks.done} />
                     <ProjectGallery />
                     <ProjectRandomIdeas ideas={project.tasks.projectRandomIdeas} />
                     <ReactTooltip id="stats" />

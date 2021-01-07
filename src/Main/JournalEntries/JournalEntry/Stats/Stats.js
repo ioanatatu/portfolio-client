@@ -14,25 +14,25 @@ const Stats = ({ tasks }) => {
 
     ////////////////////////////////////////////// to refactor /////////////////////
     ////////////////////////////////////////////////////////////////////////////////
-    tasks.forEach((task) => {
-        const time = task.tags.length
-            ? (task.duration / task.tags.length).toFixed(2)
-            : 0;
+    // tasks.forEach((task) => {
+    //     const time = task.tags.length
+    //         ? (task.duration / task.tags.length).toFixed(2)
+    //         : 0;
 
-        if (!allTags.length) {
-            task.tags.forEach((tag) => {
-                allTags.push({ name: tag, time: time });
-            });
-        } else {
-            allTags.forEach((tag) => {
-                task.tags.forEach((t) => {
-                    tag.name.toLowerCase() === t.toLowerCase
-                        ? (tag.duration += time)
-                        : allTags.push({ name: t, time: time });
-                });
-            });
-        }
-    });
+    //     if (!allTags.length) {
+    //         task.tags.forEach((tag) => {
+    //             allTags.push({ name: tag, time: time });
+    //         });
+    //     } else {
+    //         allTags.forEach((tag) => {
+    //             task.tags.forEach((t) => {
+    //                 tag.name.toLowerCase() === t.toLowerCase
+    //                     ? (tag.duration += time)
+    //                     : allTags.push({ name: t, time: time });
+    //             });
+    //         });
+    //     }
+    // });
 
     return (
         <div>
@@ -55,9 +55,9 @@ const Stats = ({ tasks }) => {
                     gap: "6%",
                 }}
             >
-                {allTags.map((tag, i) => (
+                {/*allTags.map((tag, i) => (
                     <TechLabel key={(i + 9000).toString()} tech={tag} />
-                ))}
+                ))*/}
             </div>
         </div>
     );

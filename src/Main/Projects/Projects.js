@@ -151,6 +151,9 @@ const Projects = ({
                         you deleted all the projects...
                         <br />
                         <FaRegSadCry size={100} />
+                        but don't panic
+                        <br />
+                        refresh
                     </div>
                 ) : (
                     <div
