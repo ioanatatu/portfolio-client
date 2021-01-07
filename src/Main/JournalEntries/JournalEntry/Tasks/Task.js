@@ -222,6 +222,7 @@ const Task = ({ task, index }) => {
                                     src={task.image}
                                     alt=""
                                     style={{ width: "100%" }}
+                                    id={style.HoverImage}
                                 ></img>
                             ) : (
                                 <p>
@@ -230,7 +231,7 @@ const Task = ({ task, index }) => {
                                 </p>
                             )}
                         </div>
-                        <span></span>
+                        <span className={`${imageLink ? style.HoverImage : ""}`}></span>
                     </span>
                 </div>
             </div>
