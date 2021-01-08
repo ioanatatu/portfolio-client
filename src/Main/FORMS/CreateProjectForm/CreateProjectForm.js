@@ -11,10 +11,12 @@ import { useForm } from "react-hook-form";
 // Components
 import Error from "../../../UI/Error";
 import Checkmark from "../../../UI/Checkmark/Checkmark";
+import CloseButton from "../../../UI/CloseButton/CloseButton";
 import LoadingSpinner from "../../../UI/LoadingSpinner";
+
+// React Icons
 import { BsCloudUpload } from "react-icons/bs";
 import { BiTrashAlt } from "react-icons/bi";
-import { MdClear } from "react-icons/md";
 
 // Axios
 import axios from "axios";
@@ -256,7 +258,7 @@ const CreateProject = ({ passProjectToState, toggleProjectFormIsVisible }) => {
                         </div>
                     )}
                     <span className={style.CloseButton}>
-                        <MdClear onClick={toggleProjectFormIsVisible} />
+                        <CloseButton click={toggleProjectFormIsVisible} />
                     </span>
 
                     <h1>Create New Project</h1>

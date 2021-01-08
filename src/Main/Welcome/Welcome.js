@@ -103,7 +103,7 @@ const Welcome = ({ toggleProjectFormIsVisible, darkMode }) => {
 
                     <div style={styleCardsContainer} className={style.CardsContainer}>
                         <span>
-                            <Card title={"projects"} darkMode={darkMode}>
+                            <Card title={"my projects"} darkMode={darkMode}>
                                 <p>
                                     Check out the projects I am currently working on,
                                     by sliding to the next page. To add new projects,
@@ -137,7 +137,7 @@ const Welcome = ({ toggleProjectFormIsVisible, darkMode }) => {
                                 </button>
                             </Link>
                         </span>
-                        <Card title={"timeline"} darkMode={darkMode}>
+                        <Card title={"dev journal"} darkMode={darkMode}>
                             <p>I developed this project with three things in mind:</p>
                             <p>
                                 <span>#1</span> to learn - new tools, skills,

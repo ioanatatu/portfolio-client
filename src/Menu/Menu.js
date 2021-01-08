@@ -67,7 +67,7 @@ const Menu = ({ timeline, darkMode, liftSelectedJournalDateToApp }) => {
                         duration={500}
                         onSetActive={handleSetActive}
                     >
-                        timeline
+                        journal
                     </Link>
                 </div>
 

@@ -35,7 +35,12 @@ const Task = ({ task, index }) => {
 
     return (
         <Fragment>
-            {imageModalIsVisible && <ImageModal imageLink={imageLink} />}
+            {imageModalIsVisible && (
+                <ImageModal
+                    imageLink={imageLink}
+                    toggleImageModal={toggleImageModal}
+                />
+            )}
             <div
                 style={{
                     width: "100%",

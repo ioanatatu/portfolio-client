@@ -61,7 +61,13 @@ const ProjectEntry = ({ project }) => {
                 >
                     <Stats tasks={project && project.tasks && project.tasks.done} />
                     <ProjectGallery />
-                    <ProjectRandomIdeas ideas={project.tasks.projectRandomIdeas} />
+                    <ProjectRandomIdeas
+                        ideas={
+                            project &&
+                            project.tasks &&
+                            project.tasks.projectRandomIdeas
+                        }
+                    />
                     <ReactTooltip id="stats" />
                 </div>
             </div>

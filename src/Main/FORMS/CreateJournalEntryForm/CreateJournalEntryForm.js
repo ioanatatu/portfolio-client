@@ -13,7 +13,7 @@ import ReactTooltip from "react-tooltip";
 import Error from "../../../UI/Error";
 import LoadingSpinner from "../../../UI/LoadingSpinner";
 import Checkmark from "../../../UI/Checkmark/Checkmark";
-import { MdClear } from "react-icons/md";
+import CloseButton from "../../../UI/CloseButton/CloseButton";
 
 // Axios
 import axios from "axios";
@@ -114,7 +114,7 @@ const CreateJournalEntry = ({
             ) : (
                 <Fragment>
                     <span className={style.CloseButton}>
-                        <MdClear onClick={toggleJournalEntryFormIsVisible} />
+                        <CloseButton click={toggleJournalEntryFormIsVisible} />
                     </span>
 
                     <h1>Create New Journal Entry</h1>

@@ -9,7 +9,8 @@ const Stats = ({ tasks }) => {
     // console.log("tags", tasks[0].tags.length);
     // console.log("duration", tasks[0].duration);
 
-    const totalWorkTime = calculateWorkingTime(tasks);
+    let totalWorkTime = {};
+    if (tasks) totalWorkTime = calculateWorkingTime(tasks);
     const allTags = [];
 
     ////////////////////////////////////////////// to refactor /////////////////////
