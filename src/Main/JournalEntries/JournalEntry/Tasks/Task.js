@@ -210,8 +210,10 @@ const Task = ({ task, index }) => {
                         paddingTop: "23%",
                     }}
                 >
-                    <span
-                        className={style.ImageAndBorderContainer}
+                    <div
+                        className={`${style.ImageAndBorderContainer} ${
+                            imageLink ? style.HoverImage : ""
+                        }`}
                         onClick={() => {
                             if (imageLink) toggleImageModal(task.image);
                         }}
@@ -231,8 +233,7 @@ const Task = ({ task, index }) => {
                                 </p>
                             )}
                         </div>
-                        <span className={`${imageLink ? style.HoverImage : ""}`}></span>
-                    </span>
+                    </div>
                 </div>
             </div>
         </Fragment>

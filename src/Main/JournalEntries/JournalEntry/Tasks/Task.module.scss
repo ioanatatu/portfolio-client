@@ -1,25 +1,21 @@
+.HoverImage {
+    &:hover {
+        cursor: pointer;
+        border-color: rgb(170, 173, 174);
+        border-color: white;
+        border-color: #cacfd6;
+        transition: border-color 0.2s ease-in;
+    }
+}
 .ImageAndBorderContainer {
-    position: relative;
-
-    span {
-        top: -3.5px;
-        left: -3.5px;
-        position: absolute;
-        width: 57px;
-        height: 57px;
-        border-radius: 50%;
-        border: 2px solid rgba(0, 0, 255, 0);
-        border: 1px solid rgba(0, 0, 255, 0);
-    }
-    .HoverImage {
-        &:hover {
-            cursor: pointer;
-            border-color: rgb(170, 173, 174);
-            border-color: white;
-            border-color: #cacfd6;
-            transition: border-color 0.2s ease-in;
-        }
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 57px;
+    height: 57px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 255, 0);
+    border: 1px solid rgba(0, 0, 255, 0);
 
     .ImageContainer {
         width: 50px;
