@@ -4,7 +4,7 @@ import style from "./Projects.module.scss";
 // React
 import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-scroll";
-
+    
 // Packages
 import { v4 as uuid } from "uuid";
 import { ExternalLink } from "react-external-link";
@@ -55,7 +55,7 @@ const Projects = ({
     liftProjectsStateToMain,
     darkMode,
 }) => {
-    const [projects, setProjects] = useState([]);
+    const [projects, setProjects] = useState(null);
     const [noProjectsMessage, setNoProjectsMessage] = useState(false);
     const [selectedProject, setSelectedProject] = useState(0);
     // const [selectedProjectTitle, setSelectedProjectTitle] = useState(0);
@@ -151,9 +151,10 @@ const Projects = ({
                         you deleted all the projects...
                         <br />
                         <FaRegSadCry size={100} />
+                        <br />
                         but don't panic
                         <br />
-                        refresh
+                        just refresh
                     </div>
                 ) : (
                     <div

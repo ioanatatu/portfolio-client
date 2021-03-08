@@ -12,6 +12,9 @@ import CreateJournalEntryForm from "../../FORMS/CreateJournalEntryForm/CreateJou
 import ProjectsButtons from "./ProjectsButtons/ProjectsButtons";
 import ProjectEntry from "./ProjectEntry/ProjectEntry";
 
+// Helper Functions
+import formatDate from "../../../util/helperFunctions/formatDate";
+
 const JournalEntry = ({ projects, journalEntry }, props) => {
     // state
     const [project, setProject] = useState(0);
@@ -80,7 +83,10 @@ const JournalEntry = ({ projects, journalEntry }, props) => {
                 </div>
 
                 {journalEntry && (
-                    <ProjectEntry project={journalEntry.projects[project]} />
+                    <ProjectEntry
+                        project={journalEntry.projects[project]}
+                        date={journalEntryDate}
+                    />
                 )}
             </div>
         </div>
@@ -88,34 +94,3 @@ const JournalEntry = ({ projects, journalEntry }, props) => {
 };
 
 export default JournalEntry;
-/*
- *
- *
- *
- *
- *
- *
- * helper functions
- *
- */
-function formatDate(d) {
-    const month = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
-    ];
-    const date = new Date(d).toISOString();
-    const newDate = date.split("T")[0];
-    const arr = newDate.split("-");
-    const dateString = `${month[new Date(date).getMonth()]} ${arr[2]}, ${arr[0]}`;
-    return dateString;
-}

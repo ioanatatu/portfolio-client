@@ -15,7 +15,7 @@ import ProjectRandomIdeas from "../Stats/ProjectRandomIdeas";
 import Line from "../../../../UI/Line";
 import { BiAddToQueue } from "react-icons/bi";
 
-const ProjectEntry = ({ project }) => {
+const ProjectEntry = ({ project, date }) => {
     return (
         <div className={style.ProjectEntry}>
             <div className={style.ColMain}>
@@ -41,7 +41,7 @@ const ProjectEntry = ({ project }) => {
                 </div>
 
                 <div className={style.TasksContainer}>
-                    <Tasks project={project} />
+                    <Tasks project={project} date={date} />
                 </div>
 
                 <Line height={"1.6px"} color={"silver"} />

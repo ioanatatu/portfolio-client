@@ -14,13 +14,14 @@ import ImageModal from "./ImageModal";
 import { v4 as uuid } from "uuid";
 import ReactTooltip from "react-tooltip";
 
-const Task = ({ task, index }) => {
+const Task = ({ task, index, date, imageName }) => {
     const [imageModalIsVisible, setImageModalIsVisible] = useState(false);
     const [imageLink, setImageLink] = useState(null);
 
     console.log("task.image", task.image);
 
     ///////////////////////////////// MAJOR REFACTOR NEEDED //////////////////////////
+    // too much inline styling; TODO: transfer it to the Task.module.css
     const GREY = "#e7eaf0b3";
     //////////////////////////////////////////////////////////////////////////////////
 
@@ -39,6 +40,8 @@ const Task = ({ task, index }) => {
                 <ImageModal
                     imageLink={imageLink}
                     toggleImageModal={toggleImageModal}
+                    date={date}
+                    imageName={imageName}
                 />
             )}
             <div
@@ -166,6 +169,7 @@ const Task = ({ task, index }) => {
                         <span
                             style={{
                                 position: "relative",
+                                zIndex: 0,
                             }}
                         >
                             Status

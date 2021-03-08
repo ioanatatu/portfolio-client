@@ -5,13 +5,19 @@ import React from "react";
 
 import CloseButton from "../../../../UI/CloseButton/CloseButton";
 
-const ImageModal = ({ imageLink, toggleImageModal }) => {
+const ImageModal = ({ imageLink, toggleImageModal, imageName, date }) => {
     return (
         <div className={style.WithBackdrop}>
             <div className={style.ImageModalWrapper}>
-                <span className={style.CloseButton}>
-                    <CloseButton click={toggleImageModal} />
-                </span>
+                <div>
+                    <p className={style.ImageName}>
+                        {imageName ? imageName : "This image has no title"}
+                    </p>
+                    {date && <p className={style.ImageDate}>{date}</p>}
+                    <span className={style.CloseButton}>
+                        <CloseButton click={toggleImageModal} />
+                    </span>
+                </div>
                 <div className={style.TaskImageContainer}>
                     {imageLink && <img src={imageLink} alt="task"></img>}
                 </div>
