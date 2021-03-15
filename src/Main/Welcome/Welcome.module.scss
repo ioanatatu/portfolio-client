@@ -12,6 +12,74 @@
     justify-content: space-between;
     position: relative;
 
+    .CookieModalWrapper {
+        position: fixed;
+        top: 0;
+        height: 100vh;
+        width: 100vw;
+        background-color: #0a0b0f84;
+        z-index: 999;
+
+        .CookieModal {
+            position: absolute;
+            height: 320px;
+            width: 360px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            z-index: 1000;
+            border-radius: 5px;
+            padding: 45px 40px;
+            font-family: $gt;
+            color: rgb(17, 18, 22);
+            font-size: 30px;
+            box-shadow: rgba(19, 23, 29, 0.1) 0px 10px 50px 50px,
+                rgba(13, 16, 22, 0.1) 0px 10px 10px 2px;
+            font-weight: 600;
+            line-height: 35px;
+
+            a {
+                color: #1869ff;
+            }
+
+            .Underline {
+                border-bottom: 6px solid #1869ff;
+            }
+            .Text {
+                margin-top: 30px;
+                margin-bottom: 10px;
+                color: rgba(44, 45, 52, 0.857);
+                font-family: $dm;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 17px;
+            }
+            .AddProject {
+                margin-top: 20px;
+                font-family: $gt;
+                font-weight: 600;
+                cursor: pointer;
+                border-radius: 5px;
+                background: white;
+                transition: background 0.2s linear;
+                outline: none;
+                padding: 4px 10px;
+                width: 145px;
+                border: 1.5px solid #28292a;
+                height: 32px;
+                box-shadow: 3px 3px 1px #1869ff;
+                transition: background 0.2s linear;
+
+                &:hover {
+                    color: #1869ff;
+                    border-color: #1869ff;
+                    transition: all 0.2s linear;
+                }
+            }
+        }
+    }
+
     .Welcome {
         width: 100%;
         padding-right: 8%;

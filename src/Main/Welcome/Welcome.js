@@ -2,7 +2,7 @@
 import style from "./Welcome.module.scss";
 
 // React
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 // Packages
 import { Link } from "react-scroll";
@@ -20,7 +20,19 @@ import Player from "../../UI/Player/Player";
 // Font Icons
 import { FaFolderOpen } from "react-icons/fa";
 
-const Welcome = ({ toggleProjectFormIsVisible, darkMode }) => {
+const Welcome = ({ toggleProjectFormIsVisible, darkMode, cookieModal }) => {
+    const [cookieModalIsVisible, setCookieModalIsVisible] = useState(cookieModal);
+
+    useEffect(() => {
+        if (cookieModal) {
+            setTimeout(() => {
+                setCookieModalIsVisible(true);
+            }, 800);
+            // disable scrolling when modal is open
+            document.body.style.overflow = "hidden";
+        }
+    }, [cookieModal]);
+
     const { width } = useViewport();
     const breakpoint = 699;
 
@@ -44,6 +56,38 @@ const Welcome = ({ toggleProjectFormIsVisible, darkMode }) => {
             className={`${style.WelcomeWrapper} ${darkMode ? style.DarkMode : ""}`}
             id="intro"
         >
+            {cookieModalIsVisible && (
+                <div className={style.CookieModalWrapper}>
+                    <div className={style.CookieModal}>
+                        <div>
+                            This website uses{" "}
+                            <span className={style.Underline}>cookies</span>
+                        </div>
+                        <div className={style.Text}>
+                            But don't be alarmed! According to{" "}
+                            <a
+                                href="https://www.datadrivenu.com/gdpr-ip-addresses-google-analytics/"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                this
+                            </a>
+                            , because I am not tracking your IP address, using Google
+                            Analytics to monitor traffic on my web page is GDPR
+                            compliant.
+                        </div>
+                        <button
+                            onClick={() => {
+                                setCookieModalIsVisible(false);
+                            }}
+                            className={style.AddProject}
+                        >
+                            Alright, got it!
+                        </button>
+                    </div>
+                </div>
+            )}
+
             <div className={style.Welcome}>
                 {/* this should eventually be a separate component that renders either the Date or the Greeting, so it receives props*/}
                 <h6 className={style.Greeting}>Hi there dear Visitor,</h6>

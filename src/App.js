@@ -17,10 +17,26 @@ import Menu from "./Menu/Menu";
 import Main from "./Main/Main";
 import PageNotFound from "./UI/PageNotFound";
 
+// Packages
+import AppConfig from "./App.config";
+import ReactGA from "react-ga";
+
 const App = () => {
     const [latestProject, setLatestProject] = useState(null);
     const [timeline, setTimeline] = useState([]);
     const [darkMode, setDarkMode] = useState(false);
+    const [cookieModal, setCookieModal] = useState(false);
+
+    useEffect(() => {
+        if (!!document.cookie.split("=").indexOf("_ga")) {
+            setCookieModal(true);
+
+            ReactGA.initialize(AppConfig.GOOGLE.GA_MEASUREMENT_ID, { debug: true });
+            ReactGA.ga("set", "anonymizeIp", true);
+        }
+    }, []);
+
+    useEffect(() => {}, [cookieModal]);
 
     useEffect(() => {
         (async () => {
@@ -38,6 +54,7 @@ const App = () => {
     const liftDarkModeToApp = (arg) => {
         setDarkMode(arg);
     };
+
     // TODO: refactor and use redux or react context for this
     const liftSelectedJournalDateToApp = (arg) => {
         setLatestProject(arg);
@@ -68,6 +85,7 @@ const App = () => {
                             <Main
                                 latestProject={latestProject}
                                 liftDarkModeToApp={liftDarkModeToApp}
+                                cookieModal={cookieModal}
                             />
                         )}
                     />

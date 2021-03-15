@@ -3,7 +3,6 @@ import style from "./Main.module.scss";
 
 // React and React Router
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // Components
 import Welcome from "./Welcome/Welcome";
@@ -13,7 +12,7 @@ import CreateProjectForm from "./FORMS/CreateProjectForm/CreateProjectForm";
 import DarkModeToggler from "../UI/DarkModeToggler";
 import Line from "../UI/Line";
 
-const Main = ({ liftDarkModeToApp, latestProject }) => {
+const Main = ({ liftDarkModeToApp, latestProject, cookieModal }) => {
     // state
     const [projectFormIsVisible, setProjectFormIsVisible] = useState(false);
     const [newProject, setNewProject] = useState(null);
@@ -33,18 +32,20 @@ const Main = ({ liftDarkModeToApp, latestProject }) => {
         setProjects(projectsFromProjectsComponent);
     };
 
-    // check if there is a darkMode variable in local storage when component mounts
     useEffect(() => {
-        localStorage.getItem("darkMode") === "false"
+        // check if there is a darkMode variable in local storage when component mounts
+        localStorage.getItem("darkMode") === null
             ? setDarkMode(false)
-            : setDarkMode(true);
+            : localStorage.getItem("darkMode") === "true"
+            ? setDarkMode(true)
+            : setDarkMode(false);
     }, []);
 
-    // after darkMode state has been changed by toggling, set it in local storage
     useEffect(() => {
-        if (darkMode !== null) {
+        // after darkMode state has been changed by toggling, set it in local storage
+        if (darkMode !== null)
             localStorage.setItem("darkMode", JSON.stringify(darkMode));
-        }
+
         liftDarkModeToApp(darkMode);
     }, [darkMode, liftDarkModeToApp]);
 
@@ -79,6 +80,7 @@ const Main = ({ liftDarkModeToApp, latestProject }) => {
             <Welcome
                 toggleProjectFormIsVisible={toggleProjectFormIsVisible}
                 darkMode={darkMode}
+                cookieModal={cookieModal}
             />
 
             <Projects
