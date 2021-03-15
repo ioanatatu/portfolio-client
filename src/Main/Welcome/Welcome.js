@@ -51,6 +51,11 @@ const Welcome = ({ toggleProjectFormIsVisible, darkMode, cookieModal }) => {
         };
     }
 
+    const toggleCookieModal = () => {
+        setCookieModalIsVisible(false);
+        document.body.style.overflow = "unset";
+    };
+
     return (
         <div
             className={`${style.WelcomeWrapper} ${darkMode ? style.DarkMode : ""}`}
@@ -77,9 +82,7 @@ const Welcome = ({ toggleProjectFormIsVisible, darkMode, cookieModal }) => {
                             compliant.
                         </div>
                         <button
-                            onClick={() => {
-                                setCookieModalIsVisible(false);
-                            }}
+                            onClick={toggleCookieModal}
                             className={style.AddProject}
                         >
                             Alright, got it!
