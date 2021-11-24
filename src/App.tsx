@@ -1,5 +1,6 @@
 // Style
-import style from "./App.scss";
+// NOTE: it seems that TS needs scss files to be imported as modules
+import style from "./App.module.scss";
 
 // React and React Router
 import React, { useEffect, useState } from "react";
@@ -21,7 +22,7 @@ import PageNotFound from "./UI/PageNotFound";
 import AppConfig from "./App.config";
 import ReactGA from "react-ga";
 
-const App = () => {
+const App: React.FC = () => {
     const [latestProject, setLatestProject] = useState(null);
     const [timeline, setTimeline] = useState([]);
     const [darkMode, setDarkMode] = useState(false);
@@ -31,6 +32,7 @@ const App = () => {
         if (!!document.cookie.split("=").indexOf("_ga")) {
             setCookieModal(true);
 
+            // TODO: assign correct type
             ReactGA.initialize(AppConfig.GOOGLE.GA_MEASUREMENT_ID, { debug: true });
             ReactGA.ga("set", "anonymizeIp", true);
         }
@@ -43,20 +45,24 @@ const App = () => {
             // get all journal entry dates to map them on the timeline in <Menu/> component
             const data = await axios.get(`${API_URL}/journal-entries`);
 
-            const timeline = data.data.map((day) => day.date);
-            timeline.sort((a, b) => b - a);
+            // TODO: assign correct type
+            const timeline = data.data.map((day:any) => day.date);
+            // TODO: assign correct type
+            timeline.sort((a:any, b:any) => b - a);
 
             setLatestProject(timeline[0]);
             setTimeline(timeline);
         })();
     }, []);
 
-    const liftDarkModeToApp = (arg) => {
+    // TODO: assign correct type
+    const liftDarkModeToApp = (arg:any) => {
         setDarkMode(arg);
     };
 
     // TODO: refactor and use redux or react context for this
-    const liftSelectedJournalDateToApp = (arg) => {
+    // TODO: assign correct type
+    const liftSelectedJournalDateToApp = (arg:any) => {
         setLatestProject(arg);
     };
 
