@@ -27,3 +27,4 @@ yarn-error.log*
 /src/util/secrets.js
 /src/_journal.js
 __journal.js
+.vscode
